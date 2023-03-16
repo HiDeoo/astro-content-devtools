@@ -1,11 +1,13 @@
 ---
+import { type CollectionConfig } from '../libs/content'
+
 export interface Props {
-  greeting: string
+  collections: Record<string, CollectionConfig>
 }
 
-const { greeting } = Astro.props
+const { collections } = Astro.props
 
-console.error(greeting)
+const collectionNames = Object.keys(collections)
 ---
 
-<div>{greeting}</div>
+<ul>{collectionNames.map((collectionName) => <li>{collectionName}</li>)}</ul>

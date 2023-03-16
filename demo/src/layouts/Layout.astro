@@ -1,6 +1,8 @@
 ---
 import { AstroContentDevtools } from 'astro-content-devtools'
 
+import { collections } from '../content/config'
+
 export interface Props {
   title: string
 }
@@ -19,7 +21,7 @@ const { title } = Astro.props
   </head>
   <body>
     <slot />
-    <AstroContentDevtools greeting="Hello" />
+    <AstroContentDevtools collections={collections} />
   </body>
 </html>
 

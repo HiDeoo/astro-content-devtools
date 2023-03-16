@@ -6,6 +6,7 @@
 .vscode-test-web
 build
 coverage
+.astro
 dist
 dist-ssr
 out

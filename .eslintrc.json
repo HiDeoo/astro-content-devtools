@@ -9,7 +9,14 @@
         "extraFileExtensions": [".astro"]
       },
       "rules": {
+        "react/jsx-key": "off",
         "react/no-unknown-property": ["error", { "ignore": ["class", "is:global"] }]
+      }
+    },
+    {
+      "files": ["env.d.ts"],
+      "rules": {
+        "@typescript-eslint/triple-slash-reference": "off"
       }
     }
   ]

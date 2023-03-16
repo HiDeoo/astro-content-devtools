@@ -17,6 +17,7 @@
 *.tsbuildinfo
 build
 coverage
+demo/.astro
 dist
 dist-ssr
 lerna-debug.log*
