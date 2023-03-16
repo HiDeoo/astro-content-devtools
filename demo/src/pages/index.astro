@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title="astro-content-devtools">
+  <main>
+    <h1>astro-content-devtools</h1>
+    <p>Ahoy</p>
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin: auto;
+    max-width: 80ch;
+    padding: 1.5rem;
+  }
+
+  h1 {
+    background-image: var(--accent-gradient);
+    background-position: 0%;
+    background-size: 400%;
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+</style>

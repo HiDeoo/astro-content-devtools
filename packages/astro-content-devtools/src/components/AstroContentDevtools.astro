@@ -1,0 +1,11 @@
+---
+export interface Props {
+  greeting: string
+}
+
+const { greeting } = Astro.props
+
+console.error(greeting)
+---
+
+<div>{greeting}</div>

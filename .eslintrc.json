@@ -1,0 +1,16 @@
+{
+  "extends": ["@hideoo", "plugin:astro/recommended"],
+  "overrides": [
+    {
+      "files": ["*.astro"],
+      "parser": "astro-eslint-parser",
+      "parserOptions": {
+        "parser": "@typescript-eslint/parser",
+        "extraFileExtensions": [".astro"]
+      },
+      "rules": {
+        "react/no-unknown-property": ["error", { "ignore": ["class", "is:global"] }]
+      }
+    }
+  ]
+}
