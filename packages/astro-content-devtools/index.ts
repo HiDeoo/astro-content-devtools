@@ -1,1 +1,1 @@
-export { default as AstroContentDevtools } from './src/components/AstroContentDevtools.astro'
+export { default as AstroContentDevtools } from './src/AstroContentDevtools.astro'

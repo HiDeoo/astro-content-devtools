@@ -1,6 +1,8 @@
 import type { AnyZodObject, ZodDiscriminatedUnion, ZodEffects, ZodIntersection, ZodUnion } from 'astro/zod'
 
-export interface CollectionConfig {
+export type Collections = Record<string, CollectionConfig>
+
+interface CollectionConfig {
   schema?: CollectionSchema
 }
 

@@ -1,0 +1,12 @@
+---
+import { Devtools } from './components/Devtools'
+import { type Collections } from './libs/content'
+
+export interface Props {
+  collections: Collections
+}
+
+const { collections } = Astro.props
+---
+
+<Devtools client:only="solid" collections={collections} />
