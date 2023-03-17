@@ -30,6 +30,7 @@
   },
   "sideEffects": false,
   "files": [
+    "index.ts",
     "src"
   ],
   "keywords": [],
