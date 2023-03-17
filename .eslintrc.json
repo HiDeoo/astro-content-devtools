@@ -14,6 +14,12 @@
       }
     },
     {
+      "files": ["*.tsx"],
+      "rules": {
+        "react/no-unknown-property": ["error", { "ignore": ["class", "classList"] }]
+      }
+    },
+    {
       "files": ["env.d.ts"],
       "rules": {
         "@typescript-eslint/triple-slash-reference": "off"

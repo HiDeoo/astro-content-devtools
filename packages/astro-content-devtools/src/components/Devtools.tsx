@@ -1,13 +1,12 @@
-import { type Component, For } from 'solid-js'
+import { type Component } from 'solid-js'
 
-import { type Collections } from '../libs/content'
+import { useDevtools } from '../hooks/useDevtools'
 
-export const Devtools: Component<{ collections: Collections }> = (props) => {
-  const collectionNames = Object.keys(props.collections)
+import { Overlay } from './Overlay'
+import { Toggle } from './Toggle'
 
-  return (
-    <ul>
-      <For each={collectionNames}>{(collectionName) => <li>{collectionName}</li>}</For>
-    </ul>
-  )
+export const Devtools: Component = () => {
+  const { isOverlayOpened } = useDevtools()
+
+  return <>{isOverlayOpened() ? <Overlay /> : <Toggle />}</>
 }

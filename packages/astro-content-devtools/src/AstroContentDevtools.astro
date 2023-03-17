@@ -1,5 +1,5 @@
 ---
-import { Devtools } from './components/Devtools'
+import { App } from './components/App'
 import { type Collections } from './libs/content'
 
 export interface Props {
@@ -7,6 +7,9 @@ export interface Props {
 }
 
 const { collections } = Astro.props
+
+// TODO(HiDeoo) jsonify schema?
+// TODO(HiDeoo) pass only relevant content
 ---
 
-<Devtools client:only="solid" collections={collections} />
+<App client:only="solid" collections={collections} />
