@@ -3,10 +3,11 @@ import { type Component } from 'solid-js'
 import { useDevtools } from '../hooks/useDevtools'
 import { useSelection } from '../hooks/useSelection'
 
-import styles from './Devtools.module.css'
 import { CollectionsPanel } from './panels/CollectionsPanel'
 import { Panel } from './panels/Panel'
+import { Panels } from './panels/Panels'
 import { PreviewTypesPanel } from './panels/PreviewTypesPanel'
+import { SchemaPanel } from './panels/SchemaPanel'
 import { Toggle } from './Toggle'
 
 export const Devtools: Component = () => {
@@ -14,24 +15,17 @@ export const Devtools: Component = () => {
   const { collection, previewType } = useSelection()
 
   const shouldShowPreviewTypesPanel = () => collection() !== undefined
-  const shouldShowSchemaPreviewPanel = () => previewType() === 'schema'
-
-  const classList = () => ({
-    [String(styles['opened'])]: isOverlayOpened(),
-    [String(styles['column1'])]: !shouldShowPreviewTypesPanel(),
-    [String(styles['columns3'])]: shouldShowPreviewTypesPanel() && shouldShowSchemaPreviewPanel(),
-    [String(styles['columns4'])]: shouldShowPreviewTypesPanel() && !shouldShowSchemaPreviewPanel(),
-  })
+  const shouldShowSchemaPanel = () => previewType() === 'schema'
 
   return (
     <aside>
-      <div class={styles['devtools']} classList={classList()}>
+      <Panels columns={shouldShowPreviewTypesPanel() ? (shouldShowSchemaPanel() ? 3 : 4) : 1}>
         <CollectionsPanel />
         {shouldShowPreviewTypesPanel() ? (
           <>
             <PreviewTypesPanel />
-            {shouldShowSchemaPreviewPanel() ? (
-              <Panel>SCHEMA</Panel>
+            {shouldShowSchemaPanel() ? (
+              <SchemaPanel />
             ) : (
               <>
                 <Panel>PAGE</Panel>
@@ -40,7 +34,7 @@ export const Devtools: Component = () => {
             )}
           </>
         ) : null}
-      </div>
+      </Panels>
       {isOverlayOpened() ? null : <Toggle />}
     </aside>
   )
