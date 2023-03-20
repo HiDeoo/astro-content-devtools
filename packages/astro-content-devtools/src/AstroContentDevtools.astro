@@ -1,15 +1,12 @@
 ---
 import { App } from './components/App'
-import { type Collections } from './libs/content'
+import { type AstroCollections, parseAstroCollections } from './libs/content'
 
 export interface Props {
-  collections: Collections
+  collections: AstroCollections
 }
 
 const { collections } = Astro.props
-
-// TODO(HiDeoo) jsonify schema?
-// TODO(HiDeoo) pass only relevant content
 ---
 
-<App client:only="solid" collections={collections} />
+<App client:idle collections={parseAstroCollections(collections)} />
