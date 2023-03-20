@@ -12,7 +12,9 @@ export const Panel: ParentComponent<PanelProps> = (props) => {
       class={styles['panel']}
       classList={{
         [String(styles['opened'])]: isOverlayOpened(),
-        [String(styles['singleColumn'])]: props.singleColumn,
+        [String(styles['column1'])]: props.columns === 1,
+        [String(styles['columns3'])]: props.columns === 3,
+        [String(styles['columns4'])]: props.columns === 4,
       }}
     >
       {props.children}
@@ -21,5 +23,5 @@ export const Panel: ParentComponent<PanelProps> = (props) => {
 }
 
 interface PanelProps {
-  singleColumn?: boolean
+  columns?: 1 | 3 | 4
 }

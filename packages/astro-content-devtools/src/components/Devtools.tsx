@@ -18,12 +18,19 @@ export const Devtools: Component = () => {
 
   return (
     <aside>
-      <Panel singleColumn={!shouldShowPreviewTypesColumn()}>
+      <Panel columns={shouldShowPreviewTypesColumn() ? (shouldShowSchemaPreview() ? 3 : 4) : 1}>
         <CollectionsColumn />
         {shouldShowPreviewTypesColumn() ? (
           <>
             <PreviewTypesColumn />
-            {shouldShowSchemaPreview() ? <Column>SCHEMA</Column> : <Column>DATA</Column>}
+            {shouldShowSchemaPreview() ? (
+              <Column>SCHEMA</Column>
+            ) : (
+              <>
+                <Column>PAGE</Column>
+                <Column>PREVIEW</Column>
+              </>
+            )}
           </>
         ) : null}
       </Panel>

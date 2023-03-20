@@ -2,7 +2,6 @@
   background-color: var(--acd-panel-bg);
   bottom: 0;
   display: grid;
-  grid-template-columns: 20% 20% 1fr;
   /* TODO(HiDeoo)  */
   height: 400px;
   left: 0;
@@ -18,6 +17,14 @@
   pointer-events: all;
 }
 
-.singleColumn {
+.column1 {
   grid-template-columns: 1fr;
+}
+
+.columns3 {
+  grid-template-columns: 20% 20% 1fr;
+}
+
+.columns4 {
+  grid-template-columns: 20% 20% 20% 1fr;
 }
