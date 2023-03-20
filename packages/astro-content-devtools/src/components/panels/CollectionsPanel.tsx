@@ -1,24 +1,24 @@
 import { type Component, For } from 'solid-js'
 
 import { useDevtools } from '../../hooks/useDevtools'
-import { CollectionRow } from '../rows/CollectionRow'
+import { CollectionSelector } from '../selectors/CollectionSelector'
 import { Toggle } from '../Toggle'
 
-import { Column } from './Column'
+import { Panel } from './Panel'
 
 // TODO(HiDeoo) nis
-export const CollectionsColumn: Component = () => {
+export const CollectionsPanel: Component = () => {
   const { collections } = useDevtools()
 
   // TODO(HiDeoo) sort
   const collectionNames = Object.keys(collections)
 
   return (
-    <Column>
+    <Panel>
       <Toggle />
       <ul>
-        <For each={collectionNames}>{(collectionName) => <CollectionRow name={collectionName} />}</For>
+        <For each={collectionNames}>{(collectionName) => <CollectionSelector name={collectionName} />}</For>
       </ul>
-    </Column>
+    </Panel>
   )
 }

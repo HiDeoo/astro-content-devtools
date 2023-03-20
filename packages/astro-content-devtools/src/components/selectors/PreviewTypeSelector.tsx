@@ -3,7 +3,7 @@ import { type Component } from 'solid-js'
 import { useSelection } from '../../hooks/useSelection'
 import { type PreviewType } from '../../libs/previewType'
 
-export const PreviewTypeRow: Component<PreviewTypeRowProps> = (props) => {
+export const PreviewTypeSelector: Component<PreviewTypeSelectorProps> = (props) => {
   const { previewType, setPreviewType } = useSelection()
 
   const isSelected = () => previewType() === props.type
@@ -22,6 +22,6 @@ export const PreviewTypeRow: Component<PreviewTypeRowProps> = (props) => {
   )
 }
 
-interface PreviewTypeRowProps {
+interface PreviewTypeSelectorProps {
   type: PreviewType
 }

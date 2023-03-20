@@ -3,37 +3,44 @@ import { type Component } from 'solid-js'
 import { useDevtools } from '../hooks/useDevtools'
 import { useSelection } from '../hooks/useSelection'
 
-import { CollectionsColumn } from './columns/CollectionsColumn'
-import { Column } from './columns/Column'
-import { PreviewTypesColumn } from './columns/PreviewTypesColumn'
-import { Panel } from './Panel'
+import styles from './Devtools.module.css'
+import { CollectionsPanel } from './panels/CollectionsPanel'
+import { Panel } from './panels/Panel'
+import { PreviewTypesPanel } from './panels/PreviewTypesPanel'
 import { Toggle } from './Toggle'
 
 export const Devtools: Component = () => {
   const { isOverlayOpened } = useDevtools()
   const { collection, previewType } = useSelection()
 
-  const shouldShowPreviewTypesColumn = () => collection() !== undefined
-  const shouldShowSchemaPreview = () => previewType() === 'schema'
+  const shouldShowPreviewTypesPanel = () => collection() !== undefined
+  const shouldShowSchemaPreviewPanel = () => previewType() === 'schema'
+
+  const classList = () => ({
+    [String(styles['opened'])]: isOverlayOpened(),
+    [String(styles['column1'])]: !shouldShowPreviewTypesPanel(),
+    [String(styles['columns3'])]: shouldShowPreviewTypesPanel() && shouldShowSchemaPreviewPanel(),
+    [String(styles['columns4'])]: shouldShowPreviewTypesPanel() && !shouldShowSchemaPreviewPanel(),
+  })
 
   return (
     <aside>
-      <Panel columns={shouldShowPreviewTypesColumn() ? (shouldShowSchemaPreview() ? 3 : 4) : 1}>
-        <CollectionsColumn />
-        {shouldShowPreviewTypesColumn() ? (
+      <div class={styles['devtools']} classList={classList()}>
+        <CollectionsPanel />
+        {shouldShowPreviewTypesPanel() ? (
           <>
-            <PreviewTypesColumn />
-            {shouldShowSchemaPreview() ? (
-              <Column>SCHEMA</Column>
+            <PreviewTypesPanel />
+            {shouldShowSchemaPreviewPanel() ? (
+              <Panel>SCHEMA</Panel>
             ) : (
               <>
-                <Column>PAGE</Column>
-                <Column>PREVIEW</Column>
+                <Panel>PAGE</Panel>
+                <Panel>PREVIEW</Panel>
               </>
             )}
           </>
         ) : null}
-      </Panel>
+      </div>
       {isOverlayOpened() ? null : <Toggle />}
     </aside>
   )
