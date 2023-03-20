@@ -1,4 +1,5 @@
 import type { AnyZodObject, ZodDiscriminatedUnion, ZodEffects, ZodIntersection, ZodUnion } from 'astro/zod'
+import { getCollection } from 'astro:content'
 import zodToJsonSchema from 'zod-to-json-schema'
 import { type JsonSchema7Type } from 'zod-to-json-schema/src/parseDef'
 
@@ -18,11 +19,24 @@ export function parseAstroCollections(astroCollections: AstroCollections): Colle
   return collections
 }
 
+export async function fetchCollectionEntries(collectionName: CollectionName) {
+  const entries = await getCollection(collectionName)
+
+  return entries.map(({ render, ...rest }) => rest)
+}
+
 export type CollectionName = string
 export type Collections = Record<CollectionName, CollectionConfig>
 
-interface CollectionConfig {
+export interface CollectionConfig {
   schema?: JsonSchema7Type
+}
+
+export interface CollectionEntry {
+  body: string
+  data: unknown
+  id: string
+  slug: string
 }
 
 export type AstroCollections = Record<CollectionName, AstroCollectionConfig>

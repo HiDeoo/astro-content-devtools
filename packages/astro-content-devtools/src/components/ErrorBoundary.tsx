@@ -5,6 +5,8 @@ export const ErrorBoundary: ParentComponent = (props) => {
 }
 
 export const ErrorBoundaryFallback = (error: unknown, reset: () => void) => {
+  console.error(error)
+
   // TODO(HiDeoo)
   reset
 
