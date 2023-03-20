@@ -17,3 +17,7 @@
   opacity: 1;
   pointer-events: all;
 }
+
+.singleColumn {
+  grid-template-columns: 1fr;
+}
