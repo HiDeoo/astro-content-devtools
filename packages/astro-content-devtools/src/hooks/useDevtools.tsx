@@ -9,7 +9,7 @@ export function useDevtools() {
 }
 
 export const DevtoolsProvider: ParentComponent<DevtoolsProviderProps> = (props) => {
-  const [isOverlayOpened, setIsOverlayOpened] = createSignal(false)
+  const [isOverlayOpened, setIsOverlayOpened] = createSignal(true)
 
   function toggleOverlay() {
     setIsOverlayOpened((prevIsOverlayOpened) => !prevIsOverlayOpened)

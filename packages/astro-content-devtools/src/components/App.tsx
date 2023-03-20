@@ -5,6 +5,8 @@ import { type Collections } from '../libs/content'
 
 import { Devtools } from './Devtools'
 
+import '../styles/theme.css'
+
 export const App: Component<AppProps> = (props) => {
   return (
     <DevtoolsProvider collections={props.collections}>

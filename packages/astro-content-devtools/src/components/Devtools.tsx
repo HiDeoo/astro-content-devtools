@@ -8,5 +8,10 @@ import { Toggle } from './Toggle'
 export const Devtools: Component = () => {
   const { isOverlayOpened } = useDevtools()
 
-  return <>{isOverlayOpened() ? <Overlay /> : <Toggle />}</>
+  return (
+    <aside>
+      <Overlay />
+      {isOverlayOpened() ? null : <Toggle />}
+    </aside>
+  )
 }

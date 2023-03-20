@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content'
 import Layout from '../layouts/Layout.astro'
 
 const docsEntries = await getCollection('docs')
+const postsEntries = await getCollection('posts')
 ---
 
 <Layout title="astro-content-devtools">
@@ -13,7 +14,35 @@ const docsEntries = await getCollection('docs')
       {
         docsEntries.map((docsEntry) => (
           <li>
-            <a href={`/my-blog-url/${docsEntry.slug}`}>{docsEntry.data.title}</a>
+            <a href={`/docs/${docsEntry.slug}`}>{docsEntry.data.title}</a> - {docsEntry.data.description}
+          </li>
+        ))
+      }
+    </ul>
+    <ul>
+      {
+        [
+          ...postsEntries,
+          ...postsEntries,
+          ...postsEntries,
+          ...postsEntries,
+          ...postsEntries,
+          ...postsEntries,
+          ...postsEntries,
+          ...postsEntries,
+          ...postsEntries,
+          ...postsEntries,
+          ...postsEntries,
+          ...postsEntries,
+          ...postsEntries,
+          ...postsEntries,
+          ...postsEntries,
+          ...postsEntries,
+          ...postsEntries,
+          ...postsEntries,
+        ].map((postsEntry) => (
+          <li>
+            <a href={`/posts/${postsEntry.slug}`}>{postsEntry.data.title}</a> - [{postsEntry.data.tags?.join('; ')}]
           </li>
         ))
       }

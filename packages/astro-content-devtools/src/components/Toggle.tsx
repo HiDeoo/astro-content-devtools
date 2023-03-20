@@ -11,6 +11,7 @@ export const Toggle: Component = () => {
 
   return (
     <button
+      class={styles['toggle']}
       classList={{ [String(styles['closed'])]: !isOverlayOpened(), [String(styles['opened'])]: isOverlayOpened() }}
       onClick={toggleOverlay}
     >

@@ -1,12 +1,15 @@
 import { type Component } from 'solid-js'
 
-import { Toggle } from './Toggle'
+import { Column } from './column/Column'
+import { Names } from './column/Names'
+import { Panel } from './Panel'
 
 export const Overlay: Component = () => {
   return (
-    <div>
-      <div>Overlay</div>
-      <Toggle />
-    </div>
+    <Panel>
+      <Names />
+      <Column />
+      <Column />
+    </Panel>
   )
 }

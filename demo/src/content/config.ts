@@ -7,6 +7,14 @@ const docs = defineCollection({
   }),
 })
 
+const posts = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    tags: z.string().array().optional(),
+  }),
+})
+
 export const collections = {
   docs,
+  posts,
 }
