@@ -3,7 +3,7 @@ import { type Component } from 'solid-js'
 import { useSelection } from '../../hooks/useSelection'
 import { type CollectionName } from '../../libs/content'
 
-export const Collection: Component<CollectionProps> = (props) => {
+export const CollectionRow: Component<CollectionRowProps> = (props) => {
   const { collection, setCollection } = useSelection()
 
   const isSelected = () => collection() === props.name
@@ -22,6 +22,6 @@ export const Collection: Component<CollectionProps> = (props) => {
   )
 }
 
-interface CollectionProps {
+interface CollectionRowProps {
   name: CollectionName
 }
