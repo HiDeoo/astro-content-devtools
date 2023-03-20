@@ -1,11 +1,13 @@
 import { type Component, For } from 'solid-js'
 
 import { useDevtools } from '../../hooks/useDevtools'
+import { Collection } from '../row/Collection'
 import { Toggle } from '../Toggle'
 
 import { Column } from './Column'
 
-export const Names: Component = () => {
+// TODO(HiDeoo) nis
+export const Collections: Component = () => {
   const { collections } = useDevtools()
 
   // TODO(HiDeoo) sort
@@ -15,7 +17,7 @@ export const Names: Component = () => {
     <Column>
       <Toggle />
       <ul>
-        <For each={collectionNames}>{(collectionName) => <li>{collectionName}</li>}</For>
+        <For each={collectionNames}>{(collectionName) => <Collection name={collectionName} />}</For>
       </ul>
     </Column>
   )

@@ -1,13 +1,13 @@
 import { type Component } from 'solid-js'
 
+import { Collections } from './column/Collections'
 import { Column } from './column/Column'
-import { Names } from './column/Names'
 import { Panel } from './Panel'
 
 export const Overlay: Component = () => {
   return (
     <Panel>
-      <Names />
+      <Collections />
       <Column />
       <Column />
     </Panel>

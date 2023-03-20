@@ -18,13 +18,14 @@ export function parseAstroCollections(astroCollections: AstroCollections): Colle
   return collections
 }
 
-export type Collections = Record<string, CollectionConfig>
+export type CollectionName = string
+export type Collections = Record<CollectionName, CollectionConfig>
 
 interface CollectionConfig {
   schema?: JsonSchema7Type
 }
 
-export type AstroCollections = Record<string, AstroCollectionConfig>
+export type AstroCollections = Record<CollectionName, AstroCollectionConfig>
 
 interface AstroCollectionConfig {
   schema?: AstroCollectionSchema
