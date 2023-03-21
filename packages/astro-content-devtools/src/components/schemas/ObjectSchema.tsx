@@ -12,35 +12,39 @@ import styles from './ObjectSchema.module.css'
 import { Schema } from './Schema'
 
 export const ObjectSchema: Component<ObjectSchemaProps> = (props) => {
+  const properties = Object.entries(props.schema.properties)
+
   return (
-    <div class={styles['object']} classList={{ [String(styles['root'])]: props.root }}>
-      <For each={Object.entries(props.schema.properties)}>
-        {([propertyName, propertySchema]: [string, JsonSchema]) => {
-          const isRequired = isRequiredProperty(propertyName, props.schema.required)
-          const isNested = isObjectSchema(propertySchema) || isRecordSchema(propertySchema)
+    <Show when={properties.length > 0} fallback="object">
+      <div class={styles['object']} classList={{ [String(styles['root'])]: props.root }}>
+        <For each={properties}>
+          {([propertyName, propertySchema]: [string, JsonSchema]) => {
+            const isRequired = isRequiredProperty(propertyName, props.schema.required)
+            const isNested = isObjectSchema(propertySchema) || isRecordSchema(propertySchema)
 
-          const SchemaContent = () => <Schema required={isRequired} schema={propertySchema} />
+            const SchemaContent = () => <Schema required={isRequired} schema={propertySchema} />
 
-          return (
-            <>
-              <div class={styles['propertyName']} classList={{ [String(styles['required'])]: isRequired }}>
-                {propertyName}
-              </div>
-              <Show when={isNested} fallback={<SchemaContent />}>
-                <div>
-                  <SchemaContent />
+            return (
+              <>
+                <div class={styles['propertyName']} classList={{ [String(styles['required'])]: isRequired }}>
+                  {propertyName}
                 </div>
-              </Show>
-              <div>
-                <Show when={isRequired} fallback="optional">
-                  required
+                <Show when={isNested} fallback={<SchemaContent />}>
+                  <div>
+                    <SchemaContent />
+                  </div>
                 </Show>
-              </div>
-            </>
-          )
-        }}
-      </For>
-    </div>
+                <div>
+                  <Show when={isRequired} fallback="optional">
+                    required
+                  </Show>
+                </div>
+              </>
+            )
+          }}
+        </For>
+      </div>
+    </Show>
   )
 }
 
