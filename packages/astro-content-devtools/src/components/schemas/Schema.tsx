@@ -1,15 +1,18 @@
 import { type Component, Match, splitProps, Switch } from 'solid-js'
 
 import {
+  isBooleanSchema,
   isNumberSchema,
   isObjectSchema,
   isStringSchema,
+  type BooleanSchemaType,
   type JsonSchema,
   type NumberSchemaType,
   type ObjectSchemaType,
   type StringSchemaType,
 } from '../../libs/schema'
 
+import { BooleanSchema } from './BooleanSchema'
 import { NumberSchema } from './NumberSchema'
 import { ObjectSchema } from './ObjectSchema'
 import { StringSchema } from './StringSchema'
@@ -18,6 +21,7 @@ import { StringSchema } from './StringSchema'
 export const Schema: Component<SchemaProps> = (props) => {
   const [local, others] = splitProps(props, ['root', 'schema'])
 
+  // TODO(HiDeoo) refactor?
   return (
     <Switch fallback={<p>{`// TODO`}</p>}>
       <Match when={isObjectSchema(local.schema)}>
@@ -28,6 +32,9 @@ export const Schema: Component<SchemaProps> = (props) => {
       </Match>
       <Match when={isNumberSchema(local.schema)}>
         <NumberSchema schema={local.schema as NumberSchemaType} {...others} />
+      </Match>
+      <Match when={isBooleanSchema(local.schema)}>
+        <BooleanSchema schema={local.schema as BooleanSchemaType} {...others} />
       </Match>
     </Switch>
   )
