@@ -1,0 +1,10 @@
+.type {
+  display: flex;
+  align-items: center;
+}
+
+.details {
+  display: inline-block;
+  font-size: var(--acd-text-sm);
+  margin-left: 0.25rem;
+}

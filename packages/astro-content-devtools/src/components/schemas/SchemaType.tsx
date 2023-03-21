@@ -1,18 +1,19 @@
-import { For, type ParentComponent } from 'solid-js'
+import { type Component, Show } from 'solid-js'
 
-export const SchemaType: ParentComponent<SchemaTypeProps> = (props) => {
-  const details = props.details ? (Array.isArray(props.details) ? props.details : [props.details]) : []
+import styles from './SchemaType.module.css'
 
+export const SchemaType: Component<SchemaTypeProps> = (props) => {
   return (
-    <>
-      <div>{props.children}</div>
-      <ul>
-        <For each={details}>{(detail) => <li>{detail}</li>}</For>
-      </ul>
-    </>
+    <div class={styles['type']}>
+      {props.type}
+      <Show when={props.details && props.details.length > 0}>
+        <span class={styles['details']}> ({props.details?.join(' - ')})</span>
+      </Show>
+    </div>
   )
 }
 
 interface SchemaTypeProps {
-  details?: string | string[] | undefined
+  details?: string[]
+  type: string
 }

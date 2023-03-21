@@ -18,6 +18,14 @@ const debug = defineCollection({
   schema: z.object({
     aString: z.string(),
     anOptionalString: z.string().optional(),
+    anotherString: z
+      .string()
+      .min(3)
+      .max(5)
+      .regex(/^[a-z]+$/)
+      .email()
+      .startsWith('st')
+      .endsWith('nd'),
     aNestedObject: z.object({
       title: z.string(),
     }),

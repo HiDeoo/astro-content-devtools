@@ -1,18 +1,18 @@
 .object {
   background-color: var(--acd-color-gray-700);
   display: grid;
-  grid-template-columns: min-content auto auto;
+  grid-template-columns: min-content auto min-content;
 }
 
 .object:not(.root) {
   border: 1px solid var(--acd-color-gray-600);
 }
 
-.object > :is(div, ul) {
+.object > div {
   padding: 0.4rem 0.5rem;
 }
 
-.object > :is(div:nth-child(6n + 1), div:nth-child(6n + 2), ul:nth-child(6n + 3)) {
+.object > :is(div:nth-child(6n + 1), div:nth-child(6n + 2), div:nth-child(6n + 3)) {
   background-color: var(--acd-color-gray-800);
 }
 

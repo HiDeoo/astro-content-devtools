@@ -1,10 +1,9 @@
-import { type Component, For, type ParentComponent } from 'solid-js'
+import { type Component, For, type ParentComponent, Show } from 'solid-js'
 
-import { type JsonSchema, type ObjectSchemaType } from '../../libs/schema'
+import { isObjectSchema, type JsonSchema, type ObjectSchemaType } from '../../libs/schema'
 
 import styles from './ObjectSchema.module.css'
 import { Schema } from './Schema'
-import { SchemaType } from './SchemaType'
 
 export const ObjectSchema: Component<ObjectSchemaProps> = (props) => {
   return (
@@ -12,13 +11,23 @@ export const ObjectSchema: Component<ObjectSchemaProps> = (props) => {
       <For each={Object.entries(props.schema.properties)}>
         {([propertyName, propertySchema]: [string, JsonSchema]) => {
           const isRequired = isRequiredProperty(propertyName, props.schema.required)
+          const isNestedObject = isObjectSchema(propertySchema)
+
+          const SchemaContent = () => <Schema required={isRequired} schema={propertySchema} />
 
           return (
             <>
               <PropertyName required={isRequired}>{propertyName}</PropertyName>
-              <SchemaType details={isRequired ? 'required' : 'optional'}>
-                <Schema schema={propertySchema} />
-              </SchemaType>
+              <Show when={isNestedObject} fallback={<SchemaContent />}>
+                <div>
+                  <SchemaContent />
+                </div>
+              </Show>
+              <div>
+                <Show when={isRequired} fallback="optional">
+                  required
+                </Show>
+              </div>
             </>
           )
         }}
