@@ -1,9 +1,16 @@
 import { type ParentComponent } from 'solid-js'
 
+import styles from './Selector.module.css'
+
 export const Selector: ParentComponent<SelectorProps> = (props) => {
   return (
     <li>
-      <button style={{ 'background-color': props.selected ? 'red' : 'white' }} onClick={props.onSelect}>
+      <button
+        aria-label={props.label}
+        class={styles['selector']}
+        classList={{ [String(styles['selected'])]: props.selected }}
+        onClick={props.onSelect}
+      >
         {props.children}
       </button>
     </li>
@@ -11,6 +18,7 @@ export const Selector: ParentComponent<SelectorProps> = (props) => {
 }
 
 interface SelectorProps {
+  label: string
   onSelect: () => void
   selected: boolean
 }

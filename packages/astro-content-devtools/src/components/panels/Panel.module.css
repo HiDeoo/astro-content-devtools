@@ -1,0 +1,13 @@
+.panel {
+  background-color: var(--acd-color-gray-800);
+  border: 1px solid var(--acd-color-gray-700);
+  color: var(--acd-color-gray-100);
+  font-size: var(--acd-text-base);
+  overflow-x: hidden;
+}
+
+.panel :global(ul) {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}

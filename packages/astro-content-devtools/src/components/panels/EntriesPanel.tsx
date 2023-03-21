@@ -22,7 +22,11 @@ export const EntriesPanel: Component = () => {
               const isSelected = () => entry()?.id === panelEntry.id
 
               return (
-                <Selector onSelect={() => setEntry(isSelected() ? undefined : panelEntry)} selected={isSelected()}>
+                <Selector
+                  label={`Open ${panelEntry.id}`}
+                  onSelect={() => setEntry(isSelected() ? undefined : panelEntry)}
+                  selected={isSelected()}
+                >
                   {panelEntry.id}
                 </Selector>
               )

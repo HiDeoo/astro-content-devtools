@@ -26,6 +26,7 @@ export const CollectionsPanel: Component = () => {
 
             return (
               <Selector
+                label={`Open details for the ${panelCollectionName} collection`}
                 onSelect={() => setCollection(isSelected() ? undefined : panelCollectionName)}
                 selected={isSelected()}
               >
