@@ -1,6 +1,12 @@
-import { type Component, For, type ParentComponent, Show } from 'solid-js'
+import { type Component, For, Show } from 'solid-js'
 
-import { isObjectSchema, type JsonSchema, type ObjectSchemaType, type WithSchemaProps } from '../../libs/schema'
+import {
+  isObjectSchema,
+  isRecordSchema,
+  type JsonSchema,
+  type ObjectSchemaType,
+  type WithSchemaProps,
+} from '../../libs/schema'
 
 import styles from './ObjectSchema.module.css'
 import { Schema } from './Schema'
@@ -11,14 +17,16 @@ export const ObjectSchema: Component<ObjectSchemaProps> = (props) => {
       <For each={Object.entries(props.schema.properties)}>
         {([propertyName, propertySchema]: [string, JsonSchema]) => {
           const isRequired = isRequiredProperty(propertyName, props.schema.required)
-          const isNestedObject = isObjectSchema(propertySchema)
+          const isNested = isObjectSchema(propertySchema) || isRecordSchema(propertySchema)
 
           const SchemaContent = () => <Schema required={isRequired} schema={propertySchema} />
 
           return (
             <>
-              <PropertyName required={isRequired}>{propertyName}</PropertyName>
-              <Show when={isNestedObject} fallback={<SchemaContent />}>
+              <div class={styles['propertyName']} classList={{ [String(styles['required'])]: isRequired }}>
+                {propertyName}
+              </div>
+              <Show when={isNested} fallback={<SchemaContent />}>
                 <div>
                   <SchemaContent />
                 </div>
@@ -36,14 +44,6 @@ export const ObjectSchema: Component<ObjectSchemaProps> = (props) => {
   )
 }
 
-const PropertyName: ParentComponent<PropertyNameProps> = (props) => {
-  return (
-    <div class={styles['propertyName']} classList={{ [String(styles['required'])]: props.required }}>
-      {props.children}
-    </div>
-  )
-}
-
 function isRequiredProperty(propertyName: string, required: string[] | undefined) {
   return required?.includes(propertyName) ?? false
 }
@@ -51,8 +51,4 @@ function isRequiredProperty(propertyName: string, required: string[] | undefined
 interface ObjectSchemaProps extends WithSchemaProps<ObjectSchemaType> {
   required?: boolean | undefined
   root?: boolean | undefined
-}
-
-interface PropertyNameProps {
-  required: boolean
 }

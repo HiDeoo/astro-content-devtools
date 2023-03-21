@@ -4,10 +4,11 @@ import { type JsonSchema7BooleanType } from 'zod-to-json-schema/src/parsers/bool
 import { type JsonSchema7DateType } from 'zod-to-json-schema/src/parsers/date'
 import { type JsonSchema7NumberType } from 'zod-to-json-schema/src/parsers/number'
 import { type JsonSchema7ObjectType } from 'zod-to-json-schema/src/parsers/object'
+import { type JsonSchema7RecordType } from 'zod-to-json-schema/src/parsers/record'
 import { type JsonSchema7StringType } from 'zod-to-json-schema/src/parsers/string'
 
 export function isObjectSchema(schema: JsonSchema): schema is ObjectSchemaType {
-  return isTypedSchema(schema) && schema.type === 'object'
+  return isTypedSchema(schema) && schema.type === 'object' && 'properties' in schema
 }
 
 export function isStringSchema(schema: JsonSchema): schema is StringSchemaType {
@@ -30,6 +31,10 @@ export function isDateSchema(schema: JsonSchema): schema is DateSchemaType {
   return isTypedSchema(schema) && schema.type === 'string' && (schema as StringSchemaType).format === 'date-time'
 }
 
+export function isRecordSchema(schema: JsonSchema): schema is RecordSchemaType {
+  return isTypedSchema(schema) && schema.type === 'object' && !('properties' in schema)
+}
+
 function isTypedSchema(schema: JsonSchema): schema is TypedSchema {
   return typeof (schema as TypedSchema).type === 'string'
 }
@@ -47,7 +52,7 @@ export type JsonSchema =
   //   | JsonSchema7NativeEnumType
   //   | JsonSchema7NullType
   | ObjectSchemaType
-  //   | JsonSchema7RecordType
+  | RecordSchemaType
   //   | JsonSchema7TupleType
   //   | JsonSchema7UnionType
   //   | JsonSchema7UndefinedType
@@ -65,6 +70,7 @@ export type BooleanSchemaType = JsonSchema7BooleanType
 export type DateSchemaType = JsonSchema7DateType
 export type NumberSchemaType = JsonSchema7NumberType
 export type ObjectSchemaType = JsonSchema7ObjectType
+export type RecordSchemaType = JsonSchema7RecordType
 export type StringSchemaType = JsonSchema7StringType
 
 interface TypedSchema {

@@ -23,6 +23,8 @@ const debug = defineCollection({
     aBigInt: z.bigint().positive(),
     aBoolean: z.boolean(),
     aDate: z.date(),
+    aRecord: z.record(z.number()),
+    aNestedRecord: z.record(z.record(z.number())),
     anotherString: z
       .string()
       .min(3)
