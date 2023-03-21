@@ -4,17 +4,20 @@ import {
   isBigIntSchema,
   isBooleanSchema,
   isDateSchema,
+  isLiteralSchema,
   isNumberSchema,
   isObjectSchema,
   isRecordSchema,
   isStringSchema,
   type JsonSchema,
+  type LiteralSchemaType,
   type NumberSchemaType,
   type ObjectSchemaType,
   type RecordSchemaType,
   type StringSchemaType,
 } from '../../libs/schema'
 
+import { LiteralSchema } from './LiteralSchema'
 import { NumberSchema } from './NumberSchema'
 import { ObjectSchema } from './ObjectSchema'
 import { RecordSchema } from './RecordSchema'
@@ -46,6 +49,9 @@ export const Schema: Component<SchemaProps> = (props) => {
       </Match>
       <Match when={isRecordSchema(props.schema)}>
         <RecordSchema schema={props.schema as RecordSchemaType} />
+      </Match>
+      <Match when={isLiteralSchema(props.schema)}>
+        <LiteralSchema schema={props.schema as LiteralSchemaType} />
       </Match>
     </Switch>
   )

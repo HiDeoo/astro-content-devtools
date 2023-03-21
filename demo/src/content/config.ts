@@ -36,6 +36,8 @@ const debug = defineCollection({
     aNestedObject: z.object({
       title: z.string(),
     }),
+    aStringLiteral: z.literal('abc').optional(),
+    aNumberLiteral: z.literal(123),
     anOptionalNestedObject: z
       .object({
         aString: z.string(),
