@@ -1,10 +1,14 @@
 .type {
-  display: flex;
   align-items: center;
+  display: flex;
+  min-width: 0;
 }
 
 .details {
-  display: inline-block;
+  display: block;
   font-size: var(--acd-text-sm);
-  margin-left: 0.25rem;
+  margin-left: 0.35rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
