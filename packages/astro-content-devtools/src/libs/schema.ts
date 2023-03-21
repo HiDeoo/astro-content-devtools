@@ -1,6 +1,7 @@
 import { type JsonSchema7AnyType } from 'zod-to-json-schema/src/parsers/any'
 import { type JsonSchema7BigintType } from 'zod-to-json-schema/src/parsers/bigint'
 import { type JsonSchema7BooleanType } from 'zod-to-json-schema/src/parsers/boolean'
+import { type JsonSchema7DateType } from 'zod-to-json-schema/src/parsers/date'
 import { type JsonSchema7NumberType } from 'zod-to-json-schema/src/parsers/number'
 import { type JsonSchema7ObjectType } from 'zod-to-json-schema/src/parsers/object'
 import { type JsonSchema7StringType } from 'zod-to-json-schema/src/parsers/string'
@@ -10,7 +11,7 @@ export function isObjectSchema(schema: JsonSchema): schema is ObjectSchemaType {
 }
 
 export function isStringSchema(schema: JsonSchema): schema is StringSchemaType {
-  return isTypedSchema(schema) && schema.type === 'string'
+  return isTypedSchema(schema) && schema.type === 'string' && (schema as StringSchemaType).format !== 'date-time'
 }
 
 export function isNumberSchema(schema: JsonSchema): schema is NumberSchemaType {
@@ -25,6 +26,10 @@ export function isBigIntSchema(schema: JsonSchema): schema is BigIntSchemaType {
   return isTypedSchema(schema) && schema.type === 'integer' && 'format' in schema
 }
 
+export function isDateSchema(schema: JsonSchema): schema is DateSchemaType {
+  return isTypedSchema(schema) && schema.type === 'string' && (schema as StringSchemaType).format === 'date-time'
+}
+
 function isTypedSchema(schema: JsonSchema): schema is TypedSchema {
   return typeof (schema as TypedSchema).type === 'string'
 }
@@ -36,7 +41,7 @@ export type JsonSchema =
   | NumberSchemaType
   | BigIntSchemaType
   | BooleanSchemaType
-  //   | JsonSchema7DateType
+  | DateSchemaType
   //   | JsonSchema7EnumType
   //   | JsonSchema7LiteralType
   //   | JsonSchema7NativeEnumType
@@ -57,6 +62,7 @@ export type JsonSchema =
 
 export type BigIntSchemaType = JsonSchema7BigintType
 export type BooleanSchemaType = JsonSchema7BooleanType
+export type DateSchemaType = JsonSchema7DateType
 export type NumberSchemaType = JsonSchema7NumberType
 export type ObjectSchemaType = JsonSchema7ObjectType
 export type StringSchemaType = JsonSchema7StringType

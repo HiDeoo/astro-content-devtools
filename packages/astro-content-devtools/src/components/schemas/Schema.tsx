@@ -3,6 +3,7 @@ import { type Component, Match, Switch } from 'solid-js'
 import {
   isBigIntSchema,
   isBooleanSchema,
+  isDateSchema,
   isNumberSchema,
   isObjectSchema,
   isStringSchema,
@@ -36,6 +37,9 @@ export const Schema: Component<SchemaProps> = (props) => {
       </Match>
       <Match when={isBigIntSchema(props.schema)}>
         <SchemaType type="bigint" />
+      </Match>
+      <Match when={isDateSchema(props.schema)}>
+        <SchemaType type="date" />
       </Match>
     </Switch>
   )

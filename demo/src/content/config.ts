@@ -22,6 +22,7 @@ const debug = defineCollection({
     anOptionalNumber: z.number().int().gt(3).gte(5).lt(10).lte(20).multipleOf(5).optional(),
     aBigInt: z.bigint().positive(),
     aBoolean: z.boolean(),
+    aDate: z.date(),
     anotherString: z
       .string()
       .min(3)
