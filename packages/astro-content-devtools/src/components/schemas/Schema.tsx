@@ -5,6 +5,7 @@ import {
   isBooleanSchema,
   isDateSchema,
   isLiteralSchema,
+  isNullSchema,
   isNumberSchema,
   isObjectSchema,
   isRecordSchema,
@@ -60,6 +61,9 @@ export const Schema: Component<SchemaProps> = (props) => {
       </Match>
       <Match when={isUnknownSchema(props.schema)}>
         <SchemaType type="unknown" />
+      </Match>
+      <Match when={isNullSchema(props.schema)}>
+        <SchemaType type="null" />
       </Match>
     </Switch>
   )

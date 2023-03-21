@@ -3,6 +3,7 @@ import { type JsonSchema7BigintType } from 'zod-to-json-schema/src/parsers/bigin
 import { type JsonSchema7BooleanType } from 'zod-to-json-schema/src/parsers/boolean'
 import { type JsonSchema7DateType } from 'zod-to-json-schema/src/parsers/date'
 import { type JsonSchema7LiteralType } from 'zod-to-json-schema/src/parsers/literal'
+import { type JsonSchema7NullType } from 'zod-to-json-schema/src/parsers/null'
 import { type JsonSchema7NumberType } from 'zod-to-json-schema/src/parsers/number'
 import { type JsonSchema7ObjectType } from 'zod-to-json-schema/src/parsers/object'
 import { type JsonSchema7RecordType } from 'zod-to-json-schema/src/parsers/record'
@@ -63,6 +64,10 @@ export function isUnknownSchema(schema: JsonSchema): schema is UnknownSchemaType
   return Object.keys(schema).length === 0
 }
 
+export function isNullSchema(schema: JsonSchema): schema is NullSchemaType {
+  return isTypedSchema(schema) && schema.type === 'null'
+}
+
 export function isConstSchema(schema: JsonSchema): schema is ConstSchema {
   return (
     typeof (schema as ConstSchema).const === 'string' ||
@@ -86,7 +91,7 @@ export type JsonSchema =
   //   | JsonSchema7EnumType
   | LiteralSchemaType
   //   | JsonSchema7NativeEnumType
-  //   | JsonSchema7NullType
+  | NullSchemaType
   | ObjectSchemaType
   | RecordSchemaType
   //   | JsonSchema7TupleType
@@ -106,6 +111,7 @@ export type BooleanSchemaType = JsonSchema7BooleanType
 export type DateSchemaType = JsonSchema7DateType
 export type LiteralSchemaType = JsonSchema7LiteralType
 export type NumberSchemaType = JsonSchema7NumberType
+export type NullSchemaType = JsonSchema7NullType
 export type ObjectSchemaType = JsonSchema7ObjectType
 export type RecordSchemaType = JsonSchema7RecordType
 export type StringSchemaType = JsonSchema7StringType
