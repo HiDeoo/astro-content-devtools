@@ -10,6 +10,7 @@ import {
   isRecordSchema,
   isStringSchema,
   isUndefinedSchema,
+  isUnknownSchema,
   type JsonSchema,
   type LiteralSchemaType,
   type NumberSchemaType,
@@ -56,6 +57,9 @@ export const Schema: Component<SchemaProps> = (props) => {
       </Match>
       <Match when={isUndefinedSchema(props.schema)}>
         <SchemaType type="undefined" />
+      </Match>
+      <Match when={isUnknownSchema(props.schema)}>
+        <SchemaType type="unknown" />
       </Match>
     </Switch>
   )

@@ -8,6 +8,7 @@ import { type JsonSchema7ObjectType } from 'zod-to-json-schema/src/parsers/objec
 import { type JsonSchema7RecordType } from 'zod-to-json-schema/src/parsers/record'
 import { type JsonSchema7StringType } from 'zod-to-json-schema/src/parsers/string'
 import { type JsonSchema7UndefinedType } from 'zod-to-json-schema/src/parsers/undefined'
+import { type JsonSchema7UnknownType } from 'zod-to-json-schema/src/parsers/unknown'
 
 export function isObjectSchema(schema: JsonSchema): schema is ObjectSchemaType {
   return isTypedSchema(schema) && schema.type === 'object' && 'properties' in schema
@@ -58,6 +59,10 @@ export function isUndefinedSchema(schema: JsonSchema): schema is UndefinedSchema
   return 'not' in schema
 }
 
+export function isUnknownSchema(schema: JsonSchema): schema is UnknownSchemaType {
+  return Object.keys(schema).length === 0
+}
+
 export function isConstSchema(schema: JsonSchema): schema is ConstSchema {
   return (
     typeof (schema as ConstSchema).const === 'string' ||
@@ -91,9 +96,9 @@ export type JsonSchema =
   //   | JsonSchema7NeverType
   //   | JsonSchema7MapType
   | JsonSchema7AnyType
-//   | JsonSchema7NullableType
-//   | JsonSchema7AllOfType
-//   | JsonSchema7UnknownType
+  //   | JsonSchema7NullableType
+  //   | JsonSchema7AllOfType
+  | UnknownSchemaType
 //   | JsonSchema7SetType
 
 export type BigIntSchemaType = JsonSchema7BigintType
@@ -105,6 +110,7 @@ export type ObjectSchemaType = JsonSchema7ObjectType
 export type RecordSchemaType = JsonSchema7RecordType
 export type StringSchemaType = JsonSchema7StringType
 export type UndefinedSchemaType = JsonSchema7UndefinedType
+export type UnknownSchemaType = JsonSchema7UnknownType
 
 interface TypedSchema {
   type: string
