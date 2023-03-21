@@ -7,6 +7,7 @@ import { type JsonSchema7NumberType } from 'zod-to-json-schema/src/parsers/numbe
 import { type JsonSchema7ObjectType } from 'zod-to-json-schema/src/parsers/object'
 import { type JsonSchema7RecordType } from 'zod-to-json-schema/src/parsers/record'
 import { type JsonSchema7StringType } from 'zod-to-json-schema/src/parsers/string'
+import { type JsonSchema7UndefinedType } from 'zod-to-json-schema/src/parsers/undefined'
 
 export function isObjectSchema(schema: JsonSchema): schema is ObjectSchemaType {
   return isTypedSchema(schema) && schema.type === 'object' && 'properties' in schema
@@ -53,6 +54,10 @@ export function isLiteralSchema(schema: JsonSchema): schema is LiteralSchemaType
   )
 }
 
+export function isUndefinedSchema(schema: JsonSchema): schema is UndefinedSchemaType {
+  return 'not' in schema
+}
+
 export function isConstSchema(schema: JsonSchema): schema is ConstSchema {
   return (
     typeof (schema as ConstSchema).const === 'string' ||
@@ -81,7 +86,7 @@ export type JsonSchema =
   | RecordSchemaType
   //   | JsonSchema7TupleType
   //   | JsonSchema7UnionType
-  //   | JsonSchema7UndefinedType
+  | UndefinedSchemaType
   //   | JsonSchema7RefType
   //   | JsonSchema7NeverType
   //   | JsonSchema7MapType
@@ -99,6 +104,7 @@ export type NumberSchemaType = JsonSchema7NumberType
 export type ObjectSchemaType = JsonSchema7ObjectType
 export type RecordSchemaType = JsonSchema7RecordType
 export type StringSchemaType = JsonSchema7StringType
+export type UndefinedSchemaType = JsonSchema7UndefinedType
 
 interface TypedSchema {
   type: string
