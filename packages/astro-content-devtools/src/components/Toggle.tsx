@@ -1,4 +1,4 @@
-import { type Component } from 'solid-js'
+import { type Component, Show } from 'solid-js'
 
 import { useDevtools } from '../hooks/useDevtools'
 
@@ -15,7 +15,9 @@ export const Toggle: Component = () => {
       classList={{ [String(styles['closed'])]: !isOverlayOpened(), [String(styles['opened'])]: isOverlayOpened() }}
       onClick={toggleOverlay}
     >
-      {isOverlayOpened() ? 'Close' : 'Open'}
+      <Show when={isOverlayOpened()} fallback="Open">
+        Close
+      </Show>
     </button>
   )
 }

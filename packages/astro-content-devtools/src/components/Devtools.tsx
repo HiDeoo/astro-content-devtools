@@ -1,4 +1,4 @@
-import { type Component } from 'solid-js'
+import { type Component, Show } from 'solid-js'
 
 import { useDevtools } from '../hooks/useDevtools'
 import { useSelection } from '../hooks/useSelection'
@@ -22,14 +22,16 @@ export const Devtools: Component = () => {
     <aside>
       <Panels columns={shouldShowPreviewTypesPanel() ? (shouldShowDataPanel() ? 4 : 3) : 1}>
         <CollectionsPanel />
-        {shouldShowPreviewTypesPanel() ? (
-          <>
-            <PreviewTypesPanel />
-            {shouldShowSchemaPanel() ? <SchemaPanel /> : <EntriesPanel />}
-          </>
-        ) : null}
+        <Show when={shouldShowPreviewTypesPanel()}>
+          <PreviewTypesPanel />
+          <Show when={shouldShowSchemaPanel()} fallback={<EntriesPanel />}>
+            <SchemaPanel />
+          </Show>
+        </Show>
       </Panels>
-      {isOverlayOpened() ? null : <Toggle />}
+      <Show when={!isOverlayOpened()}>
+        <Toggle />
+      </Show>
     </aside>
   )
 }

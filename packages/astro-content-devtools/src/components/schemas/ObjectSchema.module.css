@@ -1,0 +1,27 @@
+.object {
+  background-color: var(--acd-color-gray-700);
+  display: grid;
+  grid-template-columns: min-content auto auto;
+}
+
+.object:not(.root) {
+  border: 1px solid var(--acd-color-gray-600);
+}
+
+.object > :is(div, ul) {
+  padding: 0.4rem 0.5rem;
+}
+
+.object > :is(div:nth-child(6n + 1), div:nth-child(6n + 2), ul:nth-child(6n + 3)) {
+  background-color: var(--acd-color-gray-800);
+}
+
+.propertyName {
+  color: var(--acd-color-white);
+  font-style: italic;
+  font-weight: var(--acd-font-medium);
+}
+
+.propertyName.required {
+  font-style: normal;
+}

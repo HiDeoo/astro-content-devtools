@@ -1,4 +1,4 @@
-import { type Component, createResource, For } from 'solid-js'
+import { type Component, createResource, For, Show } from 'solid-js'
 
 import { useSelection } from '../../hooks/useSelection'
 import { type CollectionEntry, fetchCollectionEntries } from '../../libs/content'
@@ -34,7 +34,9 @@ export const EntriesPanel: Component = () => {
           </For>
         </ul>
       </Panel>
-      {shouldShowDataPanel() ? <DataPanel /> : null}
+      <Show when={shouldShowDataPanel()}>
+        <DataPanel />
+      </Show>
     </>
   )
 }
