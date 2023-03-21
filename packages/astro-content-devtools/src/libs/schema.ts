@@ -1,4 +1,5 @@
 import { type JsonSchema7AnyType } from 'zod-to-json-schema/src/parsers/any'
+import { type JsonSchema7BigintType } from 'zod-to-json-schema/src/parsers/bigint'
 import { type JsonSchema7BooleanType } from 'zod-to-json-schema/src/parsers/boolean'
 import { type JsonSchema7NumberType } from 'zod-to-json-schema/src/parsers/number'
 import { type JsonSchema7ObjectType } from 'zod-to-json-schema/src/parsers/object'
@@ -13,11 +14,15 @@ export function isStringSchema(schema: JsonSchema): schema is StringSchemaType {
 }
 
 export function isNumberSchema(schema: JsonSchema): schema is NumberSchemaType {
-  return isTypedSchema(schema) && (schema.type === 'number' || schema.type === 'integer')
+  return isTypedSchema(schema) && (schema.type === 'number' || (schema.type === 'integer' && !('format' in schema)))
 }
 
 export function isBooleanSchema(schema: JsonSchema): schema is BooleanSchemaType {
   return isTypedSchema(schema) && schema.type === 'boolean'
+}
+
+export function isBigIntSchema(schema: JsonSchema): schema is BigIntSchemaType {
+  return isTypedSchema(schema) && schema.type === 'integer' && 'format' in schema
 }
 
 function isTypedSchema(schema: JsonSchema): schema is TypedSchema {
@@ -29,7 +34,7 @@ export type JsonSchema =
   | StringSchemaType
   //   | JsonSchema7ArrayType
   | NumberSchemaType
-  //   | JsonSchema7BigintType
+  | BigIntSchemaType
   | BooleanSchemaType
   //   | JsonSchema7DateType
   //   | JsonSchema7EnumType
@@ -50,6 +55,7 @@ export type JsonSchema =
 //   | JsonSchema7UnknownType
 //   | JsonSchema7SetType
 
+export type BigIntSchemaType = JsonSchema7BigintType
 export type BooleanSchemaType = JsonSchema7BooleanType
 export type NumberSchemaType = JsonSchema7NumberType
 export type ObjectSchemaType = JsonSchema7ObjectType

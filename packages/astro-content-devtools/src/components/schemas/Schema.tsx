@@ -1,20 +1,20 @@
 import { type Component, Match, Switch } from 'solid-js'
 
 import {
+  isBigIntSchema,
   isBooleanSchema,
   isNumberSchema,
   isObjectSchema,
   isStringSchema,
-  type BooleanSchemaType,
   type JsonSchema,
   type NumberSchemaType,
   type ObjectSchemaType,
   type StringSchemaType,
 } from '../../libs/schema'
 
-import { BooleanSchema } from './BooleanSchema'
 import { NumberSchema } from './NumberSchema'
 import { ObjectSchema } from './ObjectSchema'
+import { SchemaType } from './SchemaType'
 import { StringSchema } from './StringSchema'
 
 // TODO(HiDeoo) Check zod documentation for more types
@@ -32,7 +32,10 @@ export const Schema: Component<SchemaProps> = (props) => {
         <NumberSchema schema={props.schema as NumberSchemaType} />
       </Match>
       <Match when={isBooleanSchema(props.schema)}>
-        <BooleanSchema schema={props.schema as BooleanSchemaType} />
+        <SchemaType type="boolean" />
+      </Match>
+      <Match when={isBigIntSchema(props.schema)}>
+        <SchemaType type="bigint" />
       </Match>
     </Switch>
   )
