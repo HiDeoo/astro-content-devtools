@@ -5,6 +5,7 @@ import {
   isBooleanSchema,
   isDateSchema,
   isLiteralSchema,
+  isNullableSchema,
   isNullSchema,
   isNumberSchema,
   isObjectSchema,
@@ -14,6 +15,7 @@ import {
   isUnknownSchema,
   type JsonSchema,
   type LiteralSchemaType,
+  type NullableSchemaType,
   type NumberSchemaType,
   type ObjectSchemaType,
   type RecordSchemaType,
@@ -21,6 +23,7 @@ import {
 } from '../../libs/schema'
 
 import { LiteralSchema } from './LiteralSchema'
+import { NullableSchema } from './NullableSchema'
 import { NumberSchema } from './NumberSchema'
 import { ObjectSchema } from './ObjectSchema'
 import { RecordSchema } from './RecordSchema'
@@ -33,7 +36,7 @@ export const Schema: Component<SchemaProps> = (props) => {
   return (
     <Switch fallback={<p>{`// TODO`}</p>}>
       <Match when={isObjectSchema(props.schema)}>
-        <ObjectSchema root={props.root} schema={props.schema as ObjectSchemaType} required={props.required} />
+        <ObjectSchema nullable={props.nullable} root={props.root} schema={props.schema as ObjectSchemaType} />
       </Match>
       <Match when={isStringSchema(props.schema)}>
         <StringSchema schema={props.schema as StringSchemaType} />
@@ -51,7 +54,7 @@ export const Schema: Component<SchemaProps> = (props) => {
         <SchemaType type="date" />
       </Match>
       <Match when={isRecordSchema(props.schema)}>
-        <RecordSchema schema={props.schema as RecordSchemaType} />
+        <RecordSchema nullable={props.nullable} schema={props.schema as RecordSchemaType} />
       </Match>
       <Match when={isLiteralSchema(props.schema)}>
         <LiteralSchema schema={props.schema as LiteralSchemaType} />
@@ -65,12 +68,15 @@ export const Schema: Component<SchemaProps> = (props) => {
       <Match when={isNullSchema(props.schema)}>
         <SchemaType type="null" />
       </Match>
+      <Match when={isNullableSchema(props.schema)}>
+        <NullableSchema schema={props.schema as NullableSchemaType} />
+      </Match>
     </Switch>
   )
 }
 
 interface SchemaProps {
-  required?: boolean | undefined
+  nullable?: boolean | undefined
   root?: boolean | undefined
   schema: JsonSchema
 }

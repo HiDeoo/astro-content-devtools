@@ -4,6 +4,7 @@ import { type JsonSchema7BooleanType } from 'zod-to-json-schema/src/parsers/bool
 import { type JsonSchema7DateType } from 'zod-to-json-schema/src/parsers/date'
 import { type JsonSchema7LiteralType } from 'zod-to-json-schema/src/parsers/literal'
 import { type JsonSchema7NullType } from 'zod-to-json-schema/src/parsers/null'
+import { type JsonSchema7NullableType } from 'zod-to-json-schema/src/parsers/nullable'
 import { type JsonSchema7NumberType } from 'zod-to-json-schema/src/parsers/number'
 import { type JsonSchema7ObjectType } from 'zod-to-json-schema/src/parsers/object'
 import { type JsonSchema7RecordType } from 'zod-to-json-schema/src/parsers/record'
@@ -68,6 +69,10 @@ export function isNullSchema(schema: JsonSchema): schema is NullSchemaType {
   return isTypedSchema(schema) && schema.type === 'null'
 }
 
+export function isNullableSchema(schema: JsonSchema): schema is NullableSchemaType {
+  return isTypedNullableSchema(schema) || isAnyOfSchema(schema)
+}
+
 export function isConstSchema(schema: JsonSchema): schema is ConstSchema {
   return (
     typeof (schema as ConstSchema).const === 'string' ||
@@ -76,7 +81,15 @@ export function isConstSchema(schema: JsonSchema): schema is ConstSchema {
   )
 }
 
-function isTypedSchema(schema: JsonSchema): schema is TypedSchema {
+export function isTypedNullableSchema(schema: JsonSchema): schema is TypedNullableSchema {
+  return Array.isArray((schema as TypedNullableSchema).type) && (schema as { type?: string[] }).type?.[1] === 'null'
+}
+
+export function isAnyOfSchema(schema: JsonSchema): schema is AnyOfSchema {
+  return !isTypedSchema(schema) && 'anyOf' in schema
+}
+
+export function isTypedSchema(schema: JsonSchema): schema is TypedSchema {
   return typeof (schema as TypedSchema).type === 'string'
 }
 
@@ -101,7 +114,7 @@ export type JsonSchema =
   //   | JsonSchema7NeverType
   //   | JsonSchema7MapType
   | JsonSchema7AnyType
-  //   | JsonSchema7NullableType
+  | NullableSchemaType
   //   | JsonSchema7AllOfType
   | UnknownSchemaType
 //   | JsonSchema7SetType
@@ -112,6 +125,7 @@ export type DateSchemaType = JsonSchema7DateType
 export type LiteralSchemaType = JsonSchema7LiteralType
 export type NumberSchemaType = JsonSchema7NumberType
 export type NullSchemaType = JsonSchema7NullType
+export type NullableSchemaType = JsonSchema7NullableType
 export type ObjectSchemaType = JsonSchema7ObjectType
 export type RecordSchemaType = JsonSchema7RecordType
 export type StringSchemaType = JsonSchema7StringType
@@ -120,6 +134,14 @@ export type UnknownSchemaType = JsonSchema7UnknownType
 
 interface TypedSchema {
   type: string
+}
+
+interface TypedNullableSchema {
+  type: [string, 'null']
+}
+
+interface AnyOfSchema {
+  anyOf: [JsonSchema, NullSchemaType]
 }
 
 interface ConstSchema {

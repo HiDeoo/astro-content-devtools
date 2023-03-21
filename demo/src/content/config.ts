@@ -41,15 +41,24 @@ const debug = defineCollection({
     aNumberLiteral: z.literal(123),
     anUndefined: z.undefined(),
     anUnknown: z.unknown(),
+    anNullableBoolean: z.boolean().nullable(),
+    anNullableObject: z
+      .object({
+        title: z.string(),
+      })
+      .nullable(),
+    anNullableRecord: z.record(z.number()).nullable(),
     aNull: z.null(),
     anOptionalNestedObject: z
       .object({
         aString: z.string(),
         anOptionalString: z.string().optional(),
-        anOptionalObject: z.object({
-          aString: z.string(),
-          anOptionalString: z.string().optional(),
-        }),
+        anOptionalObject: z
+          .object({
+            aString: z.string(),
+            anOptionalString: z.string().optional(),
+          })
+          .optional(),
       })
       .optional(),
   }),
