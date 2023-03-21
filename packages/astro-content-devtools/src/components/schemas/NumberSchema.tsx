@@ -1,10 +1,10 @@
 import { type Component } from 'solid-js'
 
-import { type NumberSchemaType } from '../../libs/schema'
+import { type NumberSchemaType, type WithSchemaProps } from '../../libs/schema'
 
 import { SchemaType } from './SchemaType'
 
-export const NumberSchema: Component<NumberSchemaProps> = (props) => {
+export const NumberSchema: Component<WithSchemaProps<NumberSchemaType>> = (props) => {
   return <SchemaType type={props.schema.type} details={getNumberDetails(props.schema)} />
 }
 
@@ -32,9 +32,4 @@ function getNumberDetails(schema: NumberSchemaType) {
   }
 
   return details
-}
-
-interface NumberSchemaProps {
-  required?: boolean | undefined
-  schema: NumberSchemaType
 }

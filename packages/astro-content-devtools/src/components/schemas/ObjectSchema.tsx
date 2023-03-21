@@ -1,6 +1,6 @@
 import { type Component, For, type ParentComponent, Show } from 'solid-js'
 
-import { isObjectSchema, type JsonSchema, type ObjectSchemaType } from '../../libs/schema'
+import { isObjectSchema, type JsonSchema, type ObjectSchemaType, type WithSchemaProps } from '../../libs/schema'
 
 import styles from './ObjectSchema.module.css'
 import { Schema } from './Schema'
@@ -48,9 +48,9 @@ function isRequiredProperty(propertyName: string, required: string[] | undefined
   return required?.includes(propertyName) ?? false
 }
 
-interface ObjectSchemaProps {
+interface ObjectSchemaProps extends WithSchemaProps<ObjectSchemaType> {
+  required?: boolean | undefined
   root?: boolean | undefined
-  schema: ObjectSchemaType
 }
 
 interface PropertyNameProps {

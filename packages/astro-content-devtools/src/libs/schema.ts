@@ -58,3 +58,7 @@ export type StringSchemaType = JsonSchema7StringType
 interface TypedSchema {
   type: string
 }
+
+export interface WithSchemaProps<TSchema> {
+  schema: TSchema
+}

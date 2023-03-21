@@ -1,10 +1,10 @@
 import { type Component } from 'solid-js'
 
-import { type StringSchemaType } from '../../libs/schema'
+import { type StringSchemaType, type WithSchemaProps } from '../../libs/schema'
 
 import { SchemaType } from './SchemaType'
 
-export const StringSchema: Component<StringSchemaProps> = (props) => {
+export const StringSchema: Component<WithSchemaProps<StringSchemaType>> = (props) => {
   return <SchemaType type="string" details={getStringDetails(props.schema)} />
 }
 
@@ -32,9 +32,4 @@ function getStringDetails(schema: StringSchemaType) {
   }
 
   return details
-}
-
-interface StringSchemaProps {
-  required?: boolean | undefined
-  schema: StringSchemaType
 }

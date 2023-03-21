@@ -1,13 +1,9 @@
 import { type Component } from 'solid-js'
 
-import { type BooleanSchemaType } from '../../libs/schema'
+import { type BooleanSchemaType, type WithSchemaProps } from '../../libs/schema'
 
 import { SchemaType } from './SchemaType'
 
-export const BooleanSchema: Component<BooleanSchemaProps> = () => {
+export const BooleanSchema: Component<WithSchemaProps<BooleanSchemaType>> = () => {
   return <SchemaType type="boolean" />
-}
-
-interface BooleanSchemaProps {
-  schema: BooleanSchemaType
 }

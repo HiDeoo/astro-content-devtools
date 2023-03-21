@@ -1,4 +1,4 @@
-import { type Component, Match, splitProps, Switch } from 'solid-js'
+import { type Component, Match, Switch } from 'solid-js'
 
 import {
   isBooleanSchema,
@@ -19,22 +19,20 @@ import { StringSchema } from './StringSchema'
 
 // TODO(HiDeoo) Check zod documentation for more types
 export const Schema: Component<SchemaProps> = (props) => {
-  const [local, others] = splitProps(props, ['root', 'schema'])
-
-  // TODO(HiDeoo) refactor?
+  // TODO(HiDeoo) refactor
   return (
     <Switch fallback={<p>{`// TODO`}</p>}>
-      <Match when={isObjectSchema(local.schema)}>
-        <ObjectSchema root={local.root} schema={local.schema as ObjectSchemaType} />
+      <Match when={isObjectSchema(props.schema)}>
+        <ObjectSchema root={props.root} schema={props.schema as ObjectSchemaType} required={props.required} />
       </Match>
-      <Match when={isStringSchema(local.schema)}>
-        <StringSchema schema={local.schema as StringSchemaType} {...others} />
+      <Match when={isStringSchema(props.schema)}>
+        <StringSchema schema={props.schema as StringSchemaType} />
       </Match>
-      <Match when={isNumberSchema(local.schema)}>
-        <NumberSchema schema={local.schema as NumberSchemaType} {...others} />
+      <Match when={isNumberSchema(props.schema)}>
+        <NumberSchema schema={props.schema as NumberSchemaType} />
       </Match>
-      <Match when={isBooleanSchema(local.schema)}>
-        <BooleanSchema schema={local.schema as BooleanSchemaType} {...others} />
+      <Match when={isBooleanSchema(props.schema)}>
+        <BooleanSchema schema={props.schema as BooleanSchemaType} />
       </Match>
     </Switch>
   )

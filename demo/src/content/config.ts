@@ -36,12 +36,10 @@ const debug = defineCollection({
       .object({
         aString: z.string(),
         anOptionalString: z.string().optional(),
-        anOptionalNestedObject: z
-          .object({
-            aString: z.string(),
-            anOptionalString: z.string().optional(),
-          })
-          .optional(),
+        anOptionalObject: z.object({
+          aString: z.string(),
+          anOptionalString: z.string().optional(),
+        }),
       })
       .optional(),
   }),
