@@ -9,4 +9,4 @@ export interface Props {
 const { collections } = Astro.props
 ---
 
-<App client:idle collections={parseAstroCollections(collections)} />
+<App client:only="solid-js" collections={parseAstroCollections(collections)} />

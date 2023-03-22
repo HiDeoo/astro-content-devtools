@@ -1,6 +1,7 @@
-import { type Accessor, type Context, createContext, createSignal, type ParentComponent, useContext } from 'solid-js'
+import { type Accessor, type Context, createContext, type ParentComponent, useContext } from 'solid-js'
 
 import { type Collections } from '../libs/content'
+import { createLocalStorageSignal } from '../libs/signal'
 
 const DevtoolsContext = createContext<DevtoolsContextType>() as Context<DevtoolsContextType>
 
@@ -9,7 +10,7 @@ export function useDevtools() {
 }
 
 export const DevtoolsProvider: ParentComponent<DevtoolsProviderProps> = (props) => {
-  const [isOverlayOpened, setIsOverlayOpened] = createSignal(true)
+  const [isOverlayOpened, setIsOverlayOpened] = createLocalStorageSignal('astroContentDevtoolsIsOverlayOpened', false)
 
   function toggleOverlay() {
     setIsOverlayOpened((prevIsOverlayOpened) => !prevIsOverlayOpened)
