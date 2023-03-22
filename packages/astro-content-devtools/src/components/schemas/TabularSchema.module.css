@@ -7,24 +7,25 @@
   padding: 0.4rem 0.5rem;
 }
 
-.header span {
+.details {
   display: block;
   font-size: var(--acd-text-sm);
   margin-left: 0.35rem;
 }
 
+.table {
+  background-color: var(--acd-color-gray-800);
+  border: 1px solid var(--acd-color-gray-600);
+  display: grid;
+}
+
+.table.borderless {
+  border: none;
+}
+
 .object {
   background-color: var(--acd-color-gray-700);
-  display: grid;
   grid-template-columns: min-content auto min-content;
-}
-
-.object:not(.root) {
-  border: 1px solid var(--acd-color-gray-600);
-}
-
-:is(.object, .record) > div {
-  padding: 0.4rem 0.5rem;
 }
 
 .object > :is(div:nth-child(6n + 1), div:nth-child(6n + 2), div:nth-child(6n + 3)) {
@@ -32,23 +33,19 @@
 }
 
 .record {
-  background-color: var(--acd-color-gray-800);
-  border: 1px solid var(--acd-color-gray-600);
-  display: grid;
   grid-template-columns: min-content auto;
+}
+
+.table > div {
+  padding: 0.4rem 0.5rem;
 }
 
 .propertyName {
   color: var(--acd-color-white);
-  font-style: italic;
   font-weight: var(--acd-font-medium);
-}
-
-.propertyName.required {
-  font-style: normal;
-}
-
-.record .propertyName {
-  font-style: normal;
   white-space: pre;
+}
+
+.object > .propertyName:not(.required) {
+  font-style: italic;
 }

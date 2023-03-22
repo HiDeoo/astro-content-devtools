@@ -39,6 +39,13 @@ const debug = defineCollection({
     anEmptyObject: z.object({}),
     aStringLiteral: z.literal('abc').optional(),
     aNumberLiteral: z.literal(123),
+    anArray: z.string().array(),
+    aNonEmptyArray: z.string().array().nonempty(),
+    anotherArray: z.string().array().min(5).max(10),
+    aNestedArray: z.object({
+      tags: z.string().array().length(10),
+    }),
+    aNestedArrayOfArrays: z.string().array().array(),
     anUndefined: z.undefined(),
     anUnknown: z.unknown(),
     anNullableBoolean: z.boolean().nullable(),

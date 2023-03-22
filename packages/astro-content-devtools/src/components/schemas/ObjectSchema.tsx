@@ -16,7 +16,7 @@ export const ObjectSchema: Component<ObjectSchemaProps> = (props) => {
 
   return (
     <Show when={properties().length > 0} fallback="object">
-      <TabularSchema nullable={props.nullable} root={props.root} showHeader={props.root} type="object">
+      <TabularSchema nullable={props.nullable} showBorder={!props.root} showHeader={!props.root} type="object">
         <For each={properties()}>
           {([propertyName, propertySchema]: [string, JsonSchema]) => {
             const isRequired = isRequiredProperty(propertyName, props.schema.required)

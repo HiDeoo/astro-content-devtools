@@ -1,6 +1,7 @@
 import { type Component, Match, Switch, splitProps } from 'solid-js'
 
 import {
+  isArraySchema,
   isBigIntSchema,
   isBooleanSchema,
   isDateSchema,
@@ -13,6 +14,7 @@ import {
   isStringSchema,
   isUndefinedSchema,
   isUnknownSchema,
+  type ArraySchemaType,
   type JsonSchema,
   type LiteralSchemaType,
   type NullableSchemaType,
@@ -23,6 +25,7 @@ import {
   type StringSchemaType,
 } from '../../libs/schema'
 
+import { ArraySchema } from './ArraySchema'
 import { LiteralSchema } from './LiteralSchema'
 import { NullableSchema } from './NullableSchema'
 import { NumberSchema } from './NumberSchema'
@@ -31,7 +34,6 @@ import { RecordSchema } from './RecordSchema'
 import { SchemaType } from './SchemaType'
 import { StringSchema } from './StringSchema'
 
-// TODO(HiDeoo) Check zod documentation for more types
 export const Schema: Component<SchemaComponentProps> = (props) => {
   const [local, others] = splitProps(props, ['root', 'schema'])
 
@@ -73,6 +75,9 @@ export const Schema: Component<SchemaComponentProps> = (props) => {
       </Match>
       <Match when={isNullableSchema(local.schema)}>
         <NullableSchema schema={local.schema as NullableSchemaType} {...others} />
+      </Match>
+      <Match when={isArraySchema(local.schema)}>
+        <ArraySchema schema={local.schema as ArraySchemaType} {...others} />
       </Match>
     </Switch>
   )

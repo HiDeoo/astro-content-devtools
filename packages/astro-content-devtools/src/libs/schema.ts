@@ -1,4 +1,5 @@
 import { type JsonSchema7AnyType } from 'zod-to-json-schema/src/parsers/any'
+import { type JsonSchema7ArrayType } from 'zod-to-json-schema/src/parsers/array'
 import { type JsonSchema7BigintType } from 'zod-to-json-schema/src/parsers/bigint'
 import { type JsonSchema7BooleanType } from 'zod-to-json-schema/src/parsers/boolean'
 import { type JsonSchema7DateType } from 'zod-to-json-schema/src/parsers/date'
@@ -57,6 +58,10 @@ export function isLiteralSchema(schema: JsonSchema): schema is LiteralSchemaType
   )
 }
 
+export function isArraySchema(schema: JsonSchema): schema is ArraySchemaType {
+  return isTypedSchema(schema) && schema.type === 'array'
+}
+
 export function isUndefinedSchema(schema: JsonSchema): schema is UndefinedSchemaType {
   return 'not' in schema
 }
@@ -96,7 +101,7 @@ export function isTypedSchema(schema: JsonSchema): schema is TypedSchema {
 // TODO(HiDeoo)
 export type JsonSchema =
   | StringSchemaType
-  //   | JsonSchema7ArrayType
+  | ArraySchemaType
   | NumberSchemaType
   | BigIntSchemaType
   | BooleanSchemaType
@@ -119,6 +124,7 @@ export type JsonSchema =
   | UnknownSchemaType
 //   | JsonSchema7SetType
 
+export type ArraySchemaType = JsonSchema7ArrayType
 export type BigIntSchemaType = JsonSchema7BigintType
 export type BooleanSchemaType = JsonSchema7BooleanType
 export type DateSchemaType = JsonSchema7DateType
