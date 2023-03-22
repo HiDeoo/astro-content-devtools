@@ -17,18 +17,18 @@ export const TabularSchema: ParentComponent<TabularSchemaProps> = (props) => {
   return (
     <div>
       <Show when={merged.showHeader}>
-        <div class={styles['header']} classList={{ [String(styles['borderless'])]: !merged.showBorder }}>
+        <div class={styles.header} classList={{ [styles.borderless!]: !merged.showBorder }}>
           {merged.type}
           <Show when={headerDetails.length > 0}>
-            <span class={styles['details']}> ({headerDetails.join(' - ')})</span>
+            <span class={styles.details}> ({headerDetails.join(' - ')})</span>
           </Show>
         </div>
       </Show>
       <div
-        class={styles['table']}
+        class={styles.table}
         classList={{
-          [String(styles['borderless'])]: !merged.showBorder,
-          [String(styles[merged.type])]: true,
+          [styles.borderless!]: !merged.showBorder,
+          [styles[merged.type]!]: true,
         }}
       >
         {merged.children}
@@ -39,7 +39,7 @@ export const TabularSchema: ParentComponent<TabularSchemaProps> = (props) => {
 
 export const TabularPropertyName: ParentComponent<TabularPropertyNameProps> = (props) => {
   return (
-    <div class={styles['propertyName']} classList={{ [String(styles['required'])]: props.required }}>
+    <div class={styles.propertyName} classList={{ [styles.required!]: props.required }}>
       {props.children}
     </div>
   )
@@ -47,7 +47,7 @@ export const TabularPropertyName: ParentComponent<TabularPropertyNameProps> = (p
 
 export const TabularVariadicSchema: ParentComponent<TabularVariadicSchemaProps> = (props) => {
   return (
-    <div class={styles['variadicSchema']}>
+    <div class={styles.variadicSchema}>
       <span>…</span>
       <Schema schema={props.schema} />
     </div>

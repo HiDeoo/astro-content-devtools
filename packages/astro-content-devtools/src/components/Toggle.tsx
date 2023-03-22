@@ -11,8 +11,8 @@ export const Toggle: Component = () => {
 
   return (
     <button
-      class={styles['toggle']}
-      classList={{ [String(styles['closed'])]: !isOverlayOpened(), [String(styles['opened'])]: isOverlayOpened() }}
+      class={styles.toggle}
+      classList={{ [styles.closed!]: !isOverlayOpened(), [styles.opened!]: isOverlayOpened() }}
       onClick={toggleOverlay}
     >
       <Show when={isOverlayOpened()} fallback="Open">

@@ -7,8 +7,8 @@ export const Selector: ParentComponent<SelectorProps> = (props) => {
     <li>
       <button
         aria-label={props.label}
-        class={styles['selector']}
-        classList={{ [String(styles['selected'])]: props.selected }}
+        class={styles.selector}
+        classList={{ [styles.selected!]: props.selected }}
         onClick={props.onSelect}
       >
         {props.children}

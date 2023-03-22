@@ -10,12 +10,12 @@ export const Panels: ParentComponent<PanelsProps> = (props) => {
 
   return (
     <div
-      class={styles['devtools']}
+      class={styles.devtools}
       classList={{
-        [String(styles['opened'])]: isOverlayOpened(),
-        [String(styles['column1'])]: props.columns === 1,
-        [String(styles['columns3'])]: props.columns === 3,
-        [String(styles['columns4'])]: props.columns === 4,
+        [styles.opened!]: isOverlayOpened(),
+        [styles.column1!]: props.columns === 1,
+        [styles.columns3!]: props.columns === 3,
+        [styles.columns4!]: props.columns === 4,
       }}
     >
       <ErrorBoundary>{props.children}</ErrorBoundary>

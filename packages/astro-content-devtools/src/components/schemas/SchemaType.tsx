@@ -10,10 +10,10 @@ export const SchemaType: Component<SchemaTypeProps> = (props) => {
   }
 
   return (
-    <div class={styles['type']}>
+    <div class={styles.type}>
       {props.type}
       <Show when={details.length > 0}>
-        <span class={styles['details']}> ({details.join(' - ')})</span>
+        <span class={styles.details}> ({details.join(' - ')})</span>
       </Show>
     </div>
   )
