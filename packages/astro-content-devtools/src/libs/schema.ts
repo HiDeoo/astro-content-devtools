@@ -3,7 +3,9 @@ import { type JsonSchema7ArrayType } from 'zod-to-json-schema/src/parsers/array'
 import { type JsonSchema7BigintType } from 'zod-to-json-schema/src/parsers/bigint'
 import { type JsonSchema7BooleanType } from 'zod-to-json-schema/src/parsers/boolean'
 import { type JsonSchema7DateType } from 'zod-to-json-schema/src/parsers/date'
+import { type JsonSchema7EnumType } from 'zod-to-json-schema/src/parsers/enum'
 import { type JsonSchema7LiteralType } from 'zod-to-json-schema/src/parsers/literal'
+import { type JsonSchema7NativeEnumType } from 'zod-to-json-schema/src/parsers/nativeEnum'
 import { type JsonSchema7NullType } from 'zod-to-json-schema/src/parsers/null'
 import { type JsonSchema7NullableType } from 'zod-to-json-schema/src/parsers/nullable'
 import { type JsonSchema7NumberType } from 'zod-to-json-schema/src/parsers/number'
@@ -22,6 +24,7 @@ export function isStringSchema(schema: JsonSchema): schema is StringSchemaType {
   return (
     isTypedSchema(schema) &&
     !isConstSchema(schema) &&
+    !isZodOrNativeEnumSchema(schema) &&
     schema.type === 'string' &&
     (schema as StringSchemaType).format !== 'date-time'
   )
@@ -31,6 +34,7 @@ export function isNumberSchema(schema: JsonSchema): schema is NumberSchemaType {
   return (
     isTypedSchema(schema) &&
     !isConstSchema(schema) &&
+    !isZodOrNativeEnumSchema(schema) &&
     (schema.type === 'number' || (schema.type === 'integer' && !('format' in schema)))
   )
 }
@@ -69,6 +73,10 @@ export function isTupleSchema(schema: JsonSchema): schema is TupleSchemaType {
 
 export function isVariadicTupleSchema(schema: TupleSchemaType): schema is VariadicTupleSchema {
   return !(`maxItems` in schema) && `additionalItems` in schema
+}
+
+export function isZodOrNativeEnumSchema(schema: JsonSchema): schema is EnumSchemaType | NativeEnumSchemaType {
+  return isTypedSchema(schema) && 'enum' in schema
 }
 
 export function isUndefinedSchema(schema: JsonSchema): schema is UndefinedSchemaType {
@@ -115,9 +123,9 @@ export type JsonSchema =
   | BigIntSchemaType
   | BooleanSchemaType
   | DateSchemaType
-  //   | JsonSchema7EnumType
+  | EnumSchemaType
   | LiteralSchemaType
-  //   | JsonSchema7NativeEnumType
+  | NativeEnumSchemaType
   | NullSchemaType
   | ObjectSchemaType
   | RecordSchemaType
@@ -125,7 +133,6 @@ export type JsonSchema =
   //   | JsonSchema7UnionType
   | UndefinedSchemaType
   //   | JsonSchema7RefType
-  //   | JsonSchema7NeverType
   //   | JsonSchema7MapType
   | JsonSchema7AnyType
   | NullableSchemaType
@@ -137,7 +144,9 @@ export type ArraySchemaType = JsonSchema7ArrayType
 export type BigIntSchemaType = JsonSchema7BigintType
 export type BooleanSchemaType = JsonSchema7BooleanType
 export type DateSchemaType = JsonSchema7DateType
+export type EnumSchemaType = JsonSchema7EnumType
 export type LiteralSchemaType = JsonSchema7LiteralType
+export type NativeEnumSchemaType = JsonSchema7NativeEnumType
 export type NumberSchemaType = JsonSchema7NumberType
 export type NullSchemaType = JsonSchema7NullType
 export type NullableSchemaType = JsonSchema7NullableType

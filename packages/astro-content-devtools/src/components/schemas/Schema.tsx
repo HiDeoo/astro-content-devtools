@@ -5,6 +5,7 @@ import {
   isBigIntSchema,
   isBooleanSchema,
   isDateSchema,
+  isZodOrNativeEnumSchema,
   isLiteralSchema,
   isNullableSchema,
   isNullSchema,
@@ -15,8 +16,10 @@ import {
   isUndefinedSchema,
   isUnknownSchema,
   type ArraySchemaType,
+  type EnumSchemaType,
   type JsonSchema,
   type LiteralSchemaType,
+  type NativeEnumSchemaType,
   type NullableSchemaType,
   type NumberSchemaType,
   type ObjectSchemaType,
@@ -27,6 +30,7 @@ import {
 } from '../../libs/schema'
 
 import { ArraySchema } from './ArraySchema'
+import { EnumSchema } from './EnumSchema'
 import { LiteralSchema } from './LiteralSchema'
 import { NullableSchema } from './NullableSchema'
 import { NumberSchema } from './NumberSchema'
@@ -38,17 +42,31 @@ import { StringSchema } from './StringSchema'
 export const Schema: Component<SchemaComponentProps> = (props) => {
   const [local, others] = splitProps(props, ['root', 'schema'])
 
-  // TODO(HiDeoo) refactor
   return (
     <Switch fallback={<p>{`// TODO`}</p>}>
       <Match when={isObjectSchema(local.schema)}>
         <ObjectSchema root={local.root} schema={local.schema as ObjectSchemaType} {...others} />
+      </Match>
+      <Match when={isRecordSchema(local.schema)}>
+        <RecordSchema schema={local.schema as RecordSchemaType} {...others} />
+      </Match>
+      <Match when={isArrayOrTupleSchema(local.schema)}>
+        <ArraySchema schema={local.schema as ArraySchemaType | TupleSchemaType} {...others} />
+      </Match>
+      <Match when={isZodOrNativeEnumSchema(local.schema)}>
+        <EnumSchema schema={local.schema as EnumSchemaType | NativeEnumSchemaType} {...others} />
       </Match>
       <Match when={isStringSchema(local.schema)}>
         <StringSchema schema={local.schema as StringSchemaType} {...others} />
       </Match>
       <Match when={isNumberSchema(local.schema)}>
         <NumberSchema schema={local.schema as NumberSchemaType} {...others} />
+      </Match>
+      <Match when={isLiteralSchema(local.schema)}>
+        <LiteralSchema schema={local.schema as LiteralSchemaType} {...others} />
+      </Match>
+      <Match when={isNullableSchema(local.schema)}>
+        <NullableSchema schema={local.schema as NullableSchemaType} {...others} />
       </Match>
       <Match when={isBooleanSchema(local.schema)}>
         <SchemaType type="boolean" {...others} />
@@ -59,12 +77,6 @@ export const Schema: Component<SchemaComponentProps> = (props) => {
       <Match when={isDateSchema(local.schema)}>
         <SchemaType type="date" {...others} />
       </Match>
-      <Match when={isRecordSchema(local.schema)}>
-        <RecordSchema schema={local.schema as RecordSchemaType} {...others} />
-      </Match>
-      <Match when={isLiteralSchema(local.schema)}>
-        <LiteralSchema schema={local.schema as LiteralSchemaType} {...others} />
-      </Match>
       <Match when={isUndefinedSchema(local.schema)}>
         <SchemaType type="undefined" {...others} />
       </Match>
@@ -73,12 +85,6 @@ export const Schema: Component<SchemaComponentProps> = (props) => {
       </Match>
       <Match when={isNullSchema(local.schema)}>
         <SchemaType type="null" {...others} />
-      </Match>
-      <Match when={isNullableSchema(local.schema)}>
-        <NullableSchema schema={local.schema as NullableSchemaType} {...others} />
-      </Match>
-      <Match when={isArrayOrTupleSchema(local.schema)}>
-        <ArraySchema schema={local.schema as ArraySchemaType | TupleSchemaType} {...others} />
       </Match>
     </Switch>
   )

@@ -36,11 +36,12 @@
   grid-template-columns: min-content auto;
 }
 
+.enum,
 .tuple {
   background-color: var(--acd-color-gray-700);
 }
 
-.tuple > div:nth-child(2n + 1) {
+:is(.enum, .tuple) > div:nth-child(2n + 1) {
   background-color: var(--acd-color-gray-800);
 }
 

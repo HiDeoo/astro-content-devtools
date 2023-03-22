@@ -14,6 +14,16 @@ const posts = defineCollection({
   }),
 })
 
+enum NumericEnum {
+  Apple,
+  Banana,
+}
+
+enum StringEnum {
+  Apple = 'apple',
+  Banana = 'banana',
+}
+
 const debug = defineCollection({
   schema: z.object({
     aString: z.string(),
@@ -82,6 +92,9 @@ const debug = defineCollection({
           .optional(),
       })
       .optional(),
+    aZodEnum: z.enum(['a', 'b', 'c']),
+    aNumericNativeEnum: z.nativeEnum(NumericEnum),
+    aStringNativeEnum: z.nativeEnum(StringEnum),
   }),
 })
 
