@@ -11,6 +11,7 @@ import { type JsonSchema7NullableType } from 'zod-to-json-schema/src/parsers/nul
 import { type JsonSchema7NumberType } from 'zod-to-json-schema/src/parsers/number'
 import { type JsonSchema7ObjectType } from 'zod-to-json-schema/src/parsers/object'
 import { type JsonSchema7RecordType } from 'zod-to-json-schema/src/parsers/record'
+import { type JsonSchema7SetType } from 'zod-to-json-schema/src/parsers/set'
 import { type JsonSchema7StringType } from 'zod-to-json-schema/src/parsers/string'
 import { type JsonSchema7TupleType } from 'zod-to-json-schema/src/parsers/tuple'
 import { type JsonSchema7UndefinedType } from 'zod-to-json-schema/src/parsers/undefined'
@@ -132,13 +133,12 @@ export type JsonSchema =
   | TupleSchemaType
   //   | JsonSchema7UnionType
   | UndefinedSchemaType
-  //   | JsonSchema7RefType
   //   | JsonSchema7MapType
   | JsonSchema7AnyType
   | NullableSchemaType
   //   | JsonSchema7AllOfType
   | UnknownSchemaType
-//   | JsonSchema7SetType
+  | SetSchemaType
 
 export type ArraySchemaType = JsonSchema7ArrayType
 export type BigIntSchemaType = JsonSchema7BigintType
@@ -152,6 +152,7 @@ export type NullSchemaType = JsonSchema7NullType
 export type NullableSchemaType = JsonSchema7NullableType
 export type ObjectSchemaType = JsonSchema7ObjectType
 export type RecordSchemaType = JsonSchema7RecordType
+export type SetSchemaType = JsonSchema7SetType
 export type StringSchemaType = JsonSchema7StringType
 export type TupleSchemaType = JsonSchema7TupleType
 export type UndefinedSchemaType = JsonSchema7UndefinedType
