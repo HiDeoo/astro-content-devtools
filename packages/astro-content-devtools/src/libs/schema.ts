@@ -10,6 +10,7 @@ import { type JsonSchema7NumberType } from 'zod-to-json-schema/src/parsers/numbe
 import { type JsonSchema7ObjectType } from 'zod-to-json-schema/src/parsers/object'
 import { type JsonSchema7RecordType } from 'zod-to-json-schema/src/parsers/record'
 import { type JsonSchema7StringType } from 'zod-to-json-schema/src/parsers/string'
+import { type JsonSchema7TupleType } from 'zod-to-json-schema/src/parsers/tuple'
 import { type JsonSchema7UndefinedType } from 'zod-to-json-schema/src/parsers/undefined'
 import { type JsonSchema7UnknownType } from 'zod-to-json-schema/src/parsers/unknown'
 
@@ -58,8 +59,16 @@ export function isLiteralSchema(schema: JsonSchema): schema is LiteralSchemaType
   )
 }
 
-export function isArraySchema(schema: JsonSchema): schema is ArraySchemaType {
+export function isArrayOrTupleSchema(schema: JsonSchema): schema is ArraySchemaType | TupleSchemaType {
   return isTypedSchema(schema) && schema.type === 'array'
+}
+
+export function isTupleSchema(schema: JsonSchema): schema is TupleSchemaType {
+  return isTypedSchema(schema) && schema.type === 'array' && Array.isArray((schema as TupleSchemaType).items)
+}
+
+export function isVariadicTupleSchema(schema: TupleSchemaType): schema is VariadicTupleSchema {
+  return !(`maxItems` in schema) && `additionalItems` in schema
 }
 
 export function isUndefinedSchema(schema: JsonSchema): schema is UndefinedSchemaType {
@@ -112,7 +121,7 @@ export type JsonSchema =
   | NullSchemaType
   | ObjectSchemaType
   | RecordSchemaType
-  //   | JsonSchema7TupleType
+  | TupleSchemaType
   //   | JsonSchema7UnionType
   | UndefinedSchemaType
   //   | JsonSchema7RefType
@@ -135,6 +144,7 @@ export type NullableSchemaType = JsonSchema7NullableType
 export type ObjectSchemaType = JsonSchema7ObjectType
 export type RecordSchemaType = JsonSchema7RecordType
 export type StringSchemaType = JsonSchema7StringType
+export type TupleSchemaType = JsonSchema7TupleType
 export type UndefinedSchemaType = JsonSchema7UndefinedType
 export type UnknownSchemaType = JsonSchema7UnknownType
 
@@ -153,6 +163,8 @@ interface AnyOfSchema {
 interface ConstSchema {
   const: string | number | boolean
 }
+
+type VariadicTupleSchema = Omit<TupleSchemaType, 'maxItems'> & { additionalItems: JsonSchema }
 
 export interface SchemaProps<TSchema> {
   nullable?: boolean | undefined

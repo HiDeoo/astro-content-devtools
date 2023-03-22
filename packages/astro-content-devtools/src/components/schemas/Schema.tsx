@@ -1,7 +1,7 @@
 import { type Component, Match, Switch, splitProps } from 'solid-js'
 
 import {
-  isArraySchema,
+  isArrayOrTupleSchema,
   isBigIntSchema,
   isBooleanSchema,
   isDateSchema,
@@ -23,6 +23,7 @@ import {
   type RecordSchemaType,
   type SchemaProps,
   type StringSchemaType,
+  type TupleSchemaType,
 } from '../../libs/schema'
 
 import { ArraySchema } from './ArraySchema'
@@ -76,8 +77,8 @@ export const Schema: Component<SchemaComponentProps> = (props) => {
       <Match when={isNullableSchema(local.schema)}>
         <NullableSchema schema={local.schema as NullableSchemaType} {...others} />
       </Match>
-      <Match when={isArraySchema(local.schema)}>
-        <ArraySchema schema={local.schema as ArraySchemaType} {...others} />
+      <Match when={isArrayOrTupleSchema(local.schema)}>
+        <ArraySchema schema={local.schema as ArraySchemaType | TupleSchemaType} {...others} />
       </Match>
     </Switch>
   )

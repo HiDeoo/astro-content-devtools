@@ -36,6 +36,14 @@
   grid-template-columns: min-content auto;
 }
 
+.tuple {
+  background-color: var(--acd-color-gray-700);
+}
+
+.tuple > div:nth-child(2n + 1) {
+  background-color: var(--acd-color-gray-800);
+}
+
 .table > div {
   padding: 0.4rem 0.5rem;
 }
@@ -48,4 +56,8 @@
 
 .object > .propertyName:not(.required) {
   font-style: italic;
+}
+
+.variadicSchema {
+  display: flex;
 }

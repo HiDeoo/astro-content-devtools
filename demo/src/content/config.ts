@@ -46,6 +46,14 @@ const debug = defineCollection({
       tags: z.string().array().length(10),
     }),
     aNestedArrayOfArrays: z.string().array().array(),
+    aTuple: z.tuple([
+      z.string(),
+      z.number(),
+      z.object({
+        score: z.number(),
+      }),
+    ]),
+    aVariadicTuple: z.tuple([z.string()]).rest(z.number()).nullable(),
     anUndefined: z.undefined(),
     anUnknown: z.unknown(),
     anNullableBoolean: z.boolean().nullable(),

@@ -1,14 +1,37 @@
-import { type Component } from 'solid-js'
+import { type Component, For } from 'solid-js'
 
-import { type ArraySchemaType, type SchemaProps } from '../../libs/schema'
+import {
+  isTupleSchema,
+  type ArraySchemaType,
+  type SchemaProps,
+  type TupleSchemaType,
+  isVariadicTupleSchema,
+} from '../../libs/schema'
 
 import { Schema } from './Schema'
-import { TabularSchema } from './TabularSchema'
+import { TabularSchema, TabularVariadicSchema } from './TabularSchema'
 
-export const ArraySchema: Component<SchemaProps<ArraySchemaType>> = (props) => {
+export const ArraySchema: Component<SchemaProps<ArraySchemaType | TupleSchemaType>> = (props) => {
+  props.schema
+
+  if (isTupleSchema(props.schema)) {
+    return (
+      <TabularSchema nullable={props.nullable} type="tuple">
+        <For each={props.schema.items}>
+          {(item) => (
+            <div>
+              <Schema schema={item} />
+            </div>
+          )}
+        </For>
+        {isVariadicTupleSchema(props.schema) ? <TabularVariadicSchema schema={props.schema.additionalItems} /> : null}
+      </TabularSchema>
+    )
+  }
+
   return (
     <TabularSchema nullable={props.nullable} type="array" headerDetails={getArrayDetails(props.schema)}>
-      <div>{props.schema.items ? <Schema schema={props.schema.items} /> : 'unknown'}</div>
+      <div>{props.schema.items ? <Schema schema={props.schema.items} /> : 'undefined'}</div>
     </TabularSchema>
   )
 }
