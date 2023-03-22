@@ -96,6 +96,7 @@ const debug = defineCollection({
     aNumericNativeEnum: z.nativeEnum(NumericEnum),
     aStringNativeEnum: z.nativeEnum(StringEnum),
     aSet: z.set(z.string()).min(5),
+    aMap: z.map(z.string(), z.number()),
   }),
 })
 

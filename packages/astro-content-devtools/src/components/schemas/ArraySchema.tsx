@@ -12,8 +12,6 @@ import { Schema } from './Schema'
 import { TabularSchema, TabularVariadicSchema } from './TabularSchema'
 
 export const ArraySchema: Component<SchemaProps<ArraySchemaType | TupleSchemaType>> = (props) => {
-  props.schema
-
   if (isTupleSchema(props.schema)) {
     return (
       <TabularSchema nullable={props.nullable} type="tuple">

@@ -7,6 +7,7 @@ import {
   isDateSchema,
   isZodOrNativeEnumSchema,
   isLiteralSchema,
+  isMapSchema,
   isNullableSchema,
   isNullSchema,
   isNumberSchema,
@@ -19,6 +20,7 @@ import {
   type EnumSchemaType,
   type JsonSchema,
   type LiteralSchemaType,
+  type MapSchemaType,
   type NativeEnumSchemaType,
   type NullableSchemaType,
   type NumberSchemaType,
@@ -32,6 +34,7 @@ import {
 import { ArraySchema } from './ArraySchema'
 import { EnumSchema } from './EnumSchema'
 import { LiteralSchema } from './LiteralSchema'
+import { MapSchema } from './MapSchema'
 import { NullableSchema } from './NullableSchema'
 import { NumberSchema } from './NumberSchema'
 import { ObjectSchema } from './ObjectSchema'
@@ -52,6 +55,9 @@ export const Schema: Component<SchemaComponentProps> = (props) => {
       </Match>
       <Match when={isArrayOrTupleSchema(local.schema)}>
         <ArraySchema schema={local.schema as ArraySchemaType | TupleSchemaType} {...others} />
+      </Match>
+      <Match when={isMapSchema(local.schema)}>
+        <MapSchema schema={local.schema as MapSchemaType} {...others} />
       </Match>
       <Match when={isZodOrNativeEnumSchema(local.schema)}>
         <EnumSchema schema={local.schema as EnumSchemaType | NativeEnumSchemaType} {...others} />

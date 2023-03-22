@@ -5,6 +5,7 @@ import { type JsonSchema7BooleanType } from 'zod-to-json-schema/src/parsers/bool
 import { type JsonSchema7DateType } from 'zod-to-json-schema/src/parsers/date'
 import { type JsonSchema7EnumType } from 'zod-to-json-schema/src/parsers/enum'
 import { type JsonSchema7LiteralType } from 'zod-to-json-schema/src/parsers/literal'
+import { type JsonSchema7MapType } from 'zod-to-json-schema/src/parsers/map'
 import { type JsonSchema7NativeEnumType } from 'zod-to-json-schema/src/parsers/nativeEnum'
 import { type JsonSchema7NullType } from 'zod-to-json-schema/src/parsers/null'
 import { type JsonSchema7NullableType } from 'zod-to-json-schema/src/parsers/nullable'
@@ -65,7 +66,7 @@ export function isLiteralSchema(schema: JsonSchema): schema is LiteralSchemaType
 }
 
 export function isArrayOrTupleSchema(schema: JsonSchema): schema is ArraySchemaType | TupleSchemaType {
-  return isTypedSchema(schema) && schema.type === 'array'
+  return isTypedSchema(schema) && schema.type === 'array' && (schema as ArraySchemaType).maxItems !== 125
 }
 
 export function isTupleSchema(schema: JsonSchema): schema is TupleSchemaType {
@@ -78,6 +79,10 @@ export function isVariadicTupleSchema(schema: TupleSchemaType): schema is Variad
 
 export function isZodOrNativeEnumSchema(schema: JsonSchema): schema is EnumSchemaType | NativeEnumSchemaType {
   return isTypedSchema(schema) && 'enum' in schema
+}
+
+export function isMapSchema(schema: JsonSchema): schema is MapSchemaType {
+  return isTypedSchema(schema) && schema.type === 'array' && (schema as ArraySchemaType).maxItems === 125
 }
 
 export function isUndefinedSchema(schema: JsonSchema): schema is UndefinedSchemaType {
@@ -133,7 +138,7 @@ export type JsonSchema =
   | TupleSchemaType
   //   | JsonSchema7UnionType
   | UndefinedSchemaType
-  //   | JsonSchema7MapType
+  | MapSchemaType
   | JsonSchema7AnyType
   | NullableSchemaType
   //   | JsonSchema7AllOfType
@@ -146,6 +151,7 @@ export type BooleanSchemaType = JsonSchema7BooleanType
 export type DateSchemaType = JsonSchema7DateType
 export type EnumSchemaType = JsonSchema7EnumType
 export type LiteralSchemaType = JsonSchema7LiteralType
+export type MapSchemaType = JsonSchema7MapType
 export type NativeEnumSchemaType = JsonSchema7NativeEnumType
 export type NumberSchemaType = JsonSchema7NumberType
 export type NullSchemaType = JsonSchema7NullType
