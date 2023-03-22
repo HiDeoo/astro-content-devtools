@@ -59,7 +59,7 @@ interface TabularSchemaProps {
   nullable?: boolean | undefined
   showBorder?: boolean | undefined
   showHeader?: boolean | undefined
-  type: 'array' | 'enum' | 'map' | 'object' | 'record' | 'tuple' | 'union'
+  type: 'array' | 'enum' | 'intersection' | 'map' | 'object' | 'record' | 'tuple' | 'union'
 }
 
 interface TabularPropertyNameProps {

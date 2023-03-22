@@ -5,7 +5,7 @@ import {
   isBigIntSchema,
   isBooleanSchema,
   isDateSchema,
-  isZodOrNativeEnumSchema,
+  isIntersectionSchema,
   isLiteralSchema,
   isMapSchema,
   isNullableSchema,
@@ -17,8 +17,10 @@ import {
   isUndefinedSchema,
   isUnionSchema,
   isUnknownSchema,
+  isZodOrNativeEnumSchema,
   type ArraySchemaType,
   type EnumSchemaType,
+  type IntersectionSchemaType,
   type JsonSchema,
   type LiteralSchemaType,
   type MapSchemaType,
@@ -35,6 +37,7 @@ import {
 
 import { ArraySchema } from './ArraySchema'
 import { EnumSchema } from './EnumSchema'
+import { IntersectionSchema } from './IntersectionSchema'
 import { LiteralSchema } from './LiteralSchema'
 import { MapSchema } from './MapSchema'
 import { NullableSchema } from './NullableSchema'
@@ -67,6 +70,9 @@ export const Schema: Component<SchemaComponentProps> = (props) => {
       </Match>
       <Match when={isUnionSchema(local.schema)}>
         <UnionSchema schema={local.schema as UnionSchemaType} {...others} />
+      </Match>
+      <Match when={isIntersectionSchema(local.schema)}>
+        <IntersectionSchema schema={local.schema as IntersectionSchemaType} {...others} />
       </Match>
       <Match when={isStringSchema(local.schema)}>
         <StringSchema schema={local.schema as StringSchemaType} {...others} />

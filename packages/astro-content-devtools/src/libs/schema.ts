@@ -4,6 +4,7 @@ import { type JsonSchema7BigintType } from 'zod-to-json-schema/src/parsers/bigin
 import { type JsonSchema7BooleanType } from 'zod-to-json-schema/src/parsers/boolean'
 import { type JsonSchema7DateType } from 'zod-to-json-schema/src/parsers/date'
 import { type JsonSchema7EnumType } from 'zod-to-json-schema/src/parsers/enum'
+import { type JsonSchema7AllOfType } from 'zod-to-json-schema/src/parsers/intersection'
 import { type JsonSchema7LiteralType } from 'zod-to-json-schema/src/parsers/literal'
 import { type JsonSchema7MapType } from 'zod-to-json-schema/src/parsers/map'
 import { type JsonSchema7NativeEnumType } from 'zod-to-json-schema/src/parsers/nativeEnum'
@@ -122,6 +123,10 @@ export function isPrimitiveUnionSchema(schema: JsonSchema): schema is PrimitiveU
   )
 }
 
+export function isIntersectionSchema(schema: JsonSchema): schema is IntersectionSchemaType {
+  return !isTypedSchema(schema) && 'allOf' in schema
+}
+
 export function isAnyOfSchema(schema: JsonSchema): schema is AnyOfSchema {
   return !isTypedSchema(schema) && 'anyOf' in schema && !isAnyOfNullableSchema(schema)
 }
@@ -142,41 +147,41 @@ export function isTypedSchema(schema: JsonSchema): schema is TypedSchema {
   return typeof (schema as TypedSchema).type === 'string'
 }
 
-// TODO(HiDeoo)
 export type JsonSchema =
-  | StringSchemaType
   | ArraySchemaType
-  | NumberSchemaType
   | BigIntSchemaType
   | BooleanSchemaType
   | DateSchemaType
   | EnumSchemaType
+  | IntersectionSchemaType
+  | JsonSchema7AnyType
   | LiteralSchemaType
+  | MapSchemaType
   | NativeEnumSchemaType
+  | NullableSchemaType
   | NullSchemaType
+  | NumberSchemaType
   | ObjectSchemaType
   | RecordSchemaType
-  | TupleSchemaType
-  | UnionSchemaType
-  | UndefinedSchemaType
-  | MapSchemaType
-  | JsonSchema7AnyType
-  | NullableSchemaType
-  //   | JsonSchema7AllOfType
-  | UnknownSchemaType
   | SetSchemaType
+  | StringSchemaType
+  | TupleSchemaType
+  | UndefinedSchemaType
+  | UnionSchemaType
+  | UnknownSchemaType
 
 export type ArraySchemaType = JsonSchema7ArrayType
 export type BigIntSchemaType = JsonSchema7BigintType
 export type BooleanSchemaType = JsonSchema7BooleanType
 export type DateSchemaType = JsonSchema7DateType
 export type EnumSchemaType = JsonSchema7EnumType
+export type IntersectionSchemaType = JsonSchema7AllOfType
 export type LiteralSchemaType = JsonSchema7LiteralType
 export type MapSchemaType = JsonSchema7MapType
 export type NativeEnumSchemaType = JsonSchema7NativeEnumType
-export type NumberSchemaType = JsonSchema7NumberType
-export type NullSchemaType = JsonSchema7NullType
 export type NullableSchemaType = JsonSchema7NullableType
+export type NullSchemaType = JsonSchema7NullType
+export type NumberSchemaType = JsonSchema7NumberType
 export type ObjectSchemaType = JsonSchema7ObjectType
 export type RecordSchemaType = JsonSchema7RecordType
 export type SetSchemaType = JsonSchema7SetType

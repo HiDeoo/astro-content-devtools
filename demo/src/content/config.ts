@@ -105,6 +105,14 @@ const debug = defineCollection({
       z.number(),
       z.boolean(),
     ]),
+    anIntersection: z.intersection(
+      z.object({
+        aString: z.string(),
+      }),
+      z.object({
+        aString: z.string(),
+      })
+    ),
   }),
 })
 
