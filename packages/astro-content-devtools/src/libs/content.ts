@@ -11,7 +11,7 @@ export function parseAstroCollections(astroCollections: AstroCollections): Colle
     const config: CollectionConfig = {}
 
     if (collectionConfig.schema) {
-      config.schema = zodToJsonSchema(collectionConfig.schema)
+      config.schema = zodToJsonSchema(collectionConfig.schema, { $refStrategy: 'none', errorMessages: false })
     }
 
     collections[collectionName] = config

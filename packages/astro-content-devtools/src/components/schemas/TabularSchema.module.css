@@ -7,6 +7,10 @@
   padding: 0.4rem 0.5rem;
 }
 
+.header.borderless {
+  border: none;
+}
+
 .details {
   display: block;
   font-size: var(--acd-text-sm);
@@ -48,7 +52,7 @@
 }
 
 .table > div {
-  padding: 0.4rem 0.5rem;
+  padding: 0.5rem;
 }
 
 .propertyName {

@@ -48,13 +48,13 @@ import { SchemaType } from './SchemaType'
 import { StringSchema } from './StringSchema'
 import { UnionSchema } from './UnionSchema'
 
-export const Schema: Component<SchemaComponentProps> = (props) => {
-  const [local, others] = splitProps(props, ['root', 'schema'])
+export const Schema: Component<SchemaProps<JsonSchema>> = (props) => {
+  const [local, others] = splitProps(props, ['schema'])
 
   return (
     <Switch fallback={<p>{`// TODO`}</p>}>
       <Match when={isObjectSchema(local.schema)}>
-        <ObjectSchema root={local.root} schema={local.schema as ObjectSchemaType} {...others} />
+        <ObjectSchema schema={local.schema as ObjectSchemaType} {...others} />
       </Match>
       <Match when={isRecordSchema(local.schema)}>
         <RecordSchema schema={local.schema as RecordSchemaType} {...others} />
@@ -106,8 +106,4 @@ export const Schema: Component<SchemaComponentProps> = (props) => {
       </Match>
     </Switch>
   )
-}
-
-interface SchemaComponentProps extends SchemaProps<JsonSchema> {
-  root?: boolean | undefined
 }

@@ -222,5 +222,6 @@ type UnionPrimitive = (typeof unionPrimitives)[number]
 
 export interface SchemaProps<TSchema> {
   nullable?: boolean | undefined
+  root?: boolean | undefined
   schema: TSchema
 }

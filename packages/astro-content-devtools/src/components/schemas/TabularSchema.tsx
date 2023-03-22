@@ -17,7 +17,7 @@ export const TabularSchema: ParentComponent<TabularSchemaProps> = (props) => {
   return (
     <div>
       <Show when={merged.showHeader}>
-        <div class={styles['header']}>
+        <div class={styles['header']} classList={{ [String(styles['borderless'])]: !merged.showBorder }}>
           {merged.type}
           <Show when={headerDetails.length > 0}>
             <span class={styles['details']}> ({headerDetails.join(' - ')})</span>

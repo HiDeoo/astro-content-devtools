@@ -15,7 +15,7 @@ export const ObjectSchema: Component<ObjectSchemaProps> = (props) => {
   const properties = () => Object.entries(props.schema.properties)
 
   return (
-    <Show when={properties().length > 0} fallback="object">
+    <Show when={properties().length > 0} fallback={props.root ? '// TODO' : 'object'}>
       <TabularSchema nullable={props.nullable} showBorder={!props.root} showHeader={!props.root} type="object">
         <For each={properties()}>
           {([propertyName, propertySchema]: [string, JsonSchema]) => {

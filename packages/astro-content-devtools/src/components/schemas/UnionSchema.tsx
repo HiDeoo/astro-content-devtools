@@ -7,7 +7,7 @@ import { TabularSchema } from './TabularSchema'
 
 export const UnionSchema: Component<SchemaProps<UnionSchemaType>> = (props) => {
   return (
-    <TabularSchema nullable={props.nullable} type="union">
+    <TabularSchema nullable={props.nullable} showBorder={!props.root} type="union">
       {isPrimitiveUnionSchema(props.schema) ? (
         <For each={props.schema.type}>{(item) => <div>{item}</div>}</For>
       ) : isAnyOfSchema(props.schema) ? (
