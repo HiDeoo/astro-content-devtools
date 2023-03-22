@@ -1,4 +1,4 @@
-import { type Component, Match, Switch } from 'solid-js'
+import { type Component, Match, Switch, splitProps } from 'solid-js'
 
 import {
   isBigIntSchema,
@@ -19,6 +19,7 @@ import {
   type NumberSchemaType,
   type ObjectSchemaType,
   type RecordSchemaType,
+  type SchemaProps,
   type StringSchemaType,
 } from '../../libs/schema'
 
@@ -31,52 +32,52 @@ import { SchemaType } from './SchemaType'
 import { StringSchema } from './StringSchema'
 
 // TODO(HiDeoo) Check zod documentation for more types
-export const Schema: Component<SchemaProps> = (props) => {
+export const Schema: Component<SchemaComponentProps> = (props) => {
+  const [local, others] = splitProps(props, ['root', 'schema'])
+
   // TODO(HiDeoo) refactor
   return (
     <Switch fallback={<p>{`// TODO`}</p>}>
-      <Match when={isObjectSchema(props.schema)}>
-        <ObjectSchema nullable={props.nullable} root={props.root} schema={props.schema as ObjectSchemaType} />
+      <Match when={isObjectSchema(local.schema)}>
+        <ObjectSchema root={local.root} schema={local.schema as ObjectSchemaType} {...others} />
       </Match>
-      <Match when={isStringSchema(props.schema)}>
-        <StringSchema schema={props.schema as StringSchemaType} />
+      <Match when={isStringSchema(local.schema)}>
+        <StringSchema schema={local.schema as StringSchemaType} {...others} />
       </Match>
-      <Match when={isNumberSchema(props.schema)}>
-        <NumberSchema schema={props.schema as NumberSchemaType} />
+      <Match when={isNumberSchema(local.schema)}>
+        <NumberSchema schema={local.schema as NumberSchemaType} {...others} />
       </Match>
-      <Match when={isBooleanSchema(props.schema)}>
-        <SchemaType type="boolean" />
+      <Match when={isBooleanSchema(local.schema)}>
+        <SchemaType type="boolean" {...others} />
       </Match>
-      <Match when={isBigIntSchema(props.schema)}>
-        <SchemaType type="bigint" />
+      <Match when={isBigIntSchema(local.schema)}>
+        <SchemaType type="bigint" {...others} />
       </Match>
-      <Match when={isDateSchema(props.schema)}>
-        <SchemaType type="date" />
+      <Match when={isDateSchema(local.schema)}>
+        <SchemaType type="date" {...others} />
       </Match>
-      <Match when={isRecordSchema(props.schema)}>
-        <RecordSchema nullable={props.nullable} schema={props.schema as RecordSchemaType} />
+      <Match when={isRecordSchema(local.schema)}>
+        <RecordSchema schema={local.schema as RecordSchemaType} {...others} />
       </Match>
-      <Match when={isLiteralSchema(props.schema)}>
-        <LiteralSchema schema={props.schema as LiteralSchemaType} />
+      <Match when={isLiteralSchema(local.schema)}>
+        <LiteralSchema schema={local.schema as LiteralSchemaType} {...others} />
       </Match>
-      <Match when={isUndefinedSchema(props.schema)}>
-        <SchemaType type="undefined" />
+      <Match when={isUndefinedSchema(local.schema)}>
+        <SchemaType type="undefined" {...others} />
       </Match>
-      <Match when={isUnknownSchema(props.schema)}>
-        <SchemaType type="unknown" />
+      <Match when={isUnknownSchema(local.schema)}>
+        <SchemaType type="unknown" {...others} />
       </Match>
-      <Match when={isNullSchema(props.schema)}>
-        <SchemaType type="null" />
+      <Match when={isNullSchema(local.schema)}>
+        <SchemaType type="null" {...others} />
       </Match>
-      <Match when={isNullableSchema(props.schema)}>
-        <NullableSchema schema={props.schema as NullableSchemaType} />
+      <Match when={isNullableSchema(local.schema)}>
+        <NullableSchema schema={local.schema as NullableSchemaType} {...others} />
       </Match>
     </Switch>
   )
 }
 
-interface SchemaProps {
-  nullable?: boolean | undefined
+interface SchemaComponentProps extends SchemaProps<JsonSchema> {
   root?: boolean | undefined
-  schema: JsonSchema
 }

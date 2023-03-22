@@ -29,8 +29,6 @@ export const SchemaPanel: Component = () => {
   return (
     <Panel>
       <Schema root schema={schema()} />
-      {/* // FIXME(HiDeoo)  */}
-      <pre>{JSON.stringify(schema(), null, 2)}</pre>
     </Panel>
   )
 }

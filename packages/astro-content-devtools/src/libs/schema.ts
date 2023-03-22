@@ -70,7 +70,7 @@ export function isNullSchema(schema: JsonSchema): schema is NullSchemaType {
 }
 
 export function isNullableSchema(schema: JsonSchema): schema is NullableSchemaType {
-  return isTypedNullableSchema(schema) || isAnyOfSchema(schema)
+  return isTypedNullableSchema(schema) || isAnyOfNullableSchema(schema)
 }
 
 export function isConstSchema(schema: JsonSchema): schema is ConstSchema {
@@ -85,8 +85,8 @@ export function isTypedNullableSchema(schema: JsonSchema): schema is TypedNullab
   return Array.isArray((schema as TypedNullableSchema).type) && (schema as { type?: string[] }).type?.[1] === 'null'
 }
 
-export function isAnyOfSchema(schema: JsonSchema): schema is AnyOfSchema {
-  return !isTypedSchema(schema) && 'anyOf' in schema
+export function isAnyOfNullableSchema(schema: JsonSchema): schema is AnyOfSchema {
+  return !isTypedSchema(schema) && 'anyOf' in schema && (schema.anyOf[1] as { type?: string }).type === 'null'
 }
 
 export function isTypedSchema(schema: JsonSchema): schema is TypedSchema {
@@ -148,6 +148,7 @@ interface ConstSchema {
   const: string | number | boolean
 }
 
-export interface WithSchemaProps<TSchema> {
+export interface SchemaProps<TSchema> {
+  nullable?: boolean | undefined
   schema: TSchema
 }

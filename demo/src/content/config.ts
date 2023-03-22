@@ -48,6 +48,12 @@ const debug = defineCollection({
       })
       .nullable(),
     anNullableRecord: z.record(z.number()).nullable(),
+    aNullableString: z
+      .string()
+      .min(3)
+      .max(5)
+      .regex(/^[a-z]+$/)
+      .nullable(),
     aNull: z.null(),
     anOptionalNestedObject: z
       .object({

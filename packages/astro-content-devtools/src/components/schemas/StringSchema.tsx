@@ -1,15 +1,19 @@
 import { type Component } from 'solid-js'
 
-import { type StringSchemaType, type WithSchemaProps } from '../../libs/schema'
+import { type StringSchemaType, type SchemaProps } from '../../libs/schema'
 
 import { SchemaType } from './SchemaType'
 
-export const StringSchema: Component<WithSchemaProps<StringSchemaType>> = (props) => {
-  return <SchemaType type="string" details={getStringDetails(props.schema)} />
+export const StringSchema: Component<SchemaProps<StringSchemaType>> = (props) => {
+  return <SchemaType type="string" details={getStringDetails(props.schema, props.nullable)} />
 }
 
-function getStringDetails(schema: StringSchemaType) {
+function getStringDetails(schema: StringSchemaType, nullable?: boolean) {
   const details: string[] = []
+
+  if (nullable) {
+    details.push('nullable')
+  }
 
   if (schema.minLength !== undefined) {
     details.push(`min: ${schema.minLength}`)

@@ -1,11 +1,11 @@
 import { type Component, Show } from 'solid-js'
 
-import { type RecordSchemaType, type WithSchemaProps } from '../../libs/schema'
+import { type RecordSchemaType, type SchemaProps } from '../../libs/schema'
 
 import styles from './ObjectSchema.module.css'
 import { Schema } from './Schema'
 
-export const RecordSchema: Component<RecordSchemaProps> = (props) => {
+export const RecordSchema: Component<SchemaProps<RecordSchemaType>> = (props) => {
   return (
     <div>
       <div class={styles['header']}>
@@ -22,8 +22,4 @@ export const RecordSchema: Component<RecordSchemaProps> = (props) => {
       </div>
     </div>
   )
-}
-
-interface RecordSchemaProps extends WithSchemaProps<RecordSchemaType> {
-  nullable?: boolean | undefined
 }

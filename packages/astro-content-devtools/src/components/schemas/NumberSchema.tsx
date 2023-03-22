@@ -1,15 +1,19 @@
 import { type Component } from 'solid-js'
 
-import { type NumberSchemaType, type WithSchemaProps } from '../../libs/schema'
+import { type NumberSchemaType, type SchemaProps } from '../../libs/schema'
 
 import { SchemaType } from './SchemaType'
 
-export const NumberSchema: Component<WithSchemaProps<NumberSchemaType>> = (props) => {
-  return <SchemaType type={props.schema.type} details={getNumberDetails(props.schema)} />
+export const NumberSchema: Component<SchemaProps<NumberSchemaType>> = (props) => {
+  return <SchemaType type={props.schema.type} details={getNumberDetails(props.schema, props.nullable)} />
 }
 
-function getNumberDetails(schema: NumberSchemaType) {
+function getNumberDetails(schema: NumberSchemaType, nullable?: boolean) {
   const details: string[] = []
+
+  if (nullable) {
+    details.push('nullable')
+  }
 
   if (schema.minimum !== undefined) {
     details.push(`≥ ${schema.minimum}`)

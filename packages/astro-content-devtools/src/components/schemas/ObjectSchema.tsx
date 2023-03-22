@@ -5,7 +5,7 @@ import {
   isRecordSchema,
   type JsonSchema,
   type ObjectSchemaType,
-  type WithSchemaProps,
+  type SchemaProps,
 } from '../../libs/schema'
 
 import styles from './ObjectSchema.module.css'
@@ -62,7 +62,6 @@ function isRequiredProperty(propertyName: string, required: string[] | undefined
   return required?.includes(propertyName) ?? false
 }
 
-interface ObjectSchemaProps extends WithSchemaProps<ObjectSchemaType> {
-  nullable?: boolean | undefined
+interface ObjectSchemaProps extends SchemaProps<ObjectSchemaType> {
   root?: boolean | undefined
 }
