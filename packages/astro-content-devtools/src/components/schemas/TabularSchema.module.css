@@ -38,11 +38,12 @@
 }
 
 .enum,
-.tuple {
+.tuple,
+.union {
   background-color: var(--acd-color-gray-700);
 }
 
-:is(.enum, .tuple) > div:nth-child(2n + 1) {
+:is(.enum, .tuple, .union) > div:nth-child(2n + 1) {
   background-color: var(--acd-color-gray-800);
 }
 

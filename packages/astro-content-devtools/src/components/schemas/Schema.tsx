@@ -15,6 +15,7 @@ import {
   isRecordSchema,
   isStringSchema,
   isUndefinedSchema,
+  isUnionSchema,
   isUnknownSchema,
   type ArraySchemaType,
   type EnumSchemaType,
@@ -29,6 +30,7 @@ import {
   type SchemaProps,
   type StringSchemaType,
   type TupleSchemaType,
+  type UnionSchemaType,
 } from '../../libs/schema'
 
 import { ArraySchema } from './ArraySchema'
@@ -41,6 +43,7 @@ import { ObjectSchema } from './ObjectSchema'
 import { RecordSchema } from './RecordSchema'
 import { SchemaType } from './SchemaType'
 import { StringSchema } from './StringSchema'
+import { UnionSchema } from './UnionSchema'
 
 export const Schema: Component<SchemaComponentProps> = (props) => {
   const [local, others] = splitProps(props, ['root', 'schema'])
@@ -61,6 +64,9 @@ export const Schema: Component<SchemaComponentProps> = (props) => {
       </Match>
       <Match when={isZodOrNativeEnumSchema(local.schema)}>
         <EnumSchema schema={local.schema as EnumSchemaType | NativeEnumSchemaType} {...others} />
+      </Match>
+      <Match when={isUnionSchema(local.schema)}>
+        <UnionSchema schema={local.schema as UnionSchemaType} {...others} />
       </Match>
       <Match when={isStringSchema(local.schema)}>
         <StringSchema schema={local.schema as StringSchemaType} {...others} />

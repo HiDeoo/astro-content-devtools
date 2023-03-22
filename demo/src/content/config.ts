@@ -60,7 +60,7 @@ const debug = defineCollection({
       z.string(),
       z.number(),
       z.object({
-        score: z.number(),
+        aNumber: z.number(),
       }),
     ]),
     aVariadicTuple: z.tuple([z.string()]).rest(z.number()).nullable(),
@@ -69,7 +69,7 @@ const debug = defineCollection({
     anNullableBoolean: z.boolean().nullable(),
     anNullableObject: z
       .object({
-        title: z.string(),
+        aString: z.string(),
       })
       .nullable(),
     anNullableRecord: z.record(z.number()).nullable(),
@@ -97,6 +97,14 @@ const debug = defineCollection({
     aStringNativeEnum: z.nativeEnum(StringEnum),
     aSet: z.set(z.string()).min(5),
     aMap: z.map(z.string(), z.number()),
+    aUnion: z.union([z.string(), z.number(), z.boolean()]),
+    anotherUnion: z.union([
+      z.object({
+        aString: z.string(),
+      }),
+      z.number(),
+      z.boolean(),
+    ]),
   }),
 })
 

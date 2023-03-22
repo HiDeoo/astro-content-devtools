@@ -16,6 +16,7 @@ import { type JsonSchema7SetType } from 'zod-to-json-schema/src/parsers/set'
 import { type JsonSchema7StringType } from 'zod-to-json-schema/src/parsers/string'
 import { type JsonSchema7TupleType } from 'zod-to-json-schema/src/parsers/tuple'
 import { type JsonSchema7UndefinedType } from 'zod-to-json-schema/src/parsers/undefined'
+import { type JsonSchema7UnionType } from 'zod-to-json-schema/src/parsers/union'
 import { type JsonSchema7UnknownType } from 'zod-to-json-schema/src/parsers/unknown'
 
 export function isObjectSchema(schema: JsonSchema): schema is ObjectSchemaType {
@@ -109,11 +110,31 @@ export function isConstSchema(schema: JsonSchema): schema is ConstSchema {
   )
 }
 
-export function isTypedNullableSchema(schema: JsonSchema): schema is TypedNullableSchema {
-  return Array.isArray((schema as TypedNullableSchema).type) && (schema as { type?: string[] }).type?.[1] === 'null'
+export function isUnionSchema(schema: JsonSchema): schema is UnionSchemaType {
+  return isPrimitiveUnionSchema(schema) || isAnyOfSchema(schema)
 }
 
-export function isAnyOfNullableSchema(schema: JsonSchema): schema is AnyOfSchema {
+export function isPrimitiveUnionSchema(schema: JsonSchema): schema is PrimitiveUnionSchema {
+  return (
+    Array.isArray((schema as PrimitiveUnionSchema).type) &&
+    !isTypedNullableSchema(schema) &&
+    (schema as PrimitiveUnionSchema).type.every((type) => unionPrimitives.includes(type))
+  )
+}
+
+export function isAnyOfSchema(schema: JsonSchema): schema is AnyOfSchema {
+  return !isTypedSchema(schema) && 'anyOf' in schema && !isAnyOfNullableSchema(schema)
+}
+
+export function isTypedNullableSchema(schema: JsonSchema): schema is TypedNullableSchema {
+  return (
+    Array.isArray((schema as TypedNullableSchema).type) &&
+    (schema as { type?: string[] }).type?.length === 2 &&
+    (schema as { type?: string[] }).type?.[1] === 'null'
+  )
+}
+
+export function isAnyOfNullableSchema(schema: JsonSchema): schema is AnyOfNullableSchema {
   return !isTypedSchema(schema) && 'anyOf' in schema && (schema.anyOf[1] as { type?: string }).type === 'null'
 }
 
@@ -136,7 +157,7 @@ export type JsonSchema =
   | ObjectSchemaType
   | RecordSchemaType
   | TupleSchemaType
-  //   | JsonSchema7UnionType
+  | UnionSchemaType
   | UndefinedSchemaType
   | MapSchemaType
   | JsonSchema7AnyType
@@ -162,6 +183,7 @@ export type SetSchemaType = JsonSchema7SetType
 export type StringSchemaType = JsonSchema7StringType
 export type TupleSchemaType = JsonSchema7TupleType
 export type UndefinedSchemaType = JsonSchema7UndefinedType
+export type UnionSchemaType = JsonSchema7UnionType
 export type UnknownSchemaType = JsonSchema7UnknownType
 
 interface TypedSchema {
@@ -172,7 +194,15 @@ interface TypedNullableSchema {
   type: [string, 'null']
 }
 
+interface PrimitiveUnionSchema {
+  type: UnionPrimitive[]
+}
+
 interface AnyOfSchema {
+  anyOf: JsonSchema[]
+}
+
+interface AnyOfNullableSchema {
   anyOf: [JsonSchema, NullSchemaType]
 }
 
@@ -181,6 +211,9 @@ interface ConstSchema {
 }
 
 type VariadicTupleSchema = Omit<TupleSchemaType, 'maxItems'> & { additionalItems: JsonSchema }
+
+const unionPrimitives = ['string', 'number', 'integer', 'boolean', 'null']
+type UnionPrimitive = (typeof unionPrimitives)[number]
 
 export interface SchemaProps<TSchema> {
   nullable?: boolean | undefined
