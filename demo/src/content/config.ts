@@ -116,8 +116,27 @@ const debug = defineCollection({
   }),
 })
 
+const types = defineCollection({
+  schema: z.object({
+    aString: z.string(),
+    aBoolean: z.boolean(),
+    aNumber: z.number(),
+    anArray: z.string().array(),
+    anObject: z.object({
+      key1: z.string(),
+      key2: z.string(),
+      aNestedObject: z.object({
+        key1: z.string(),
+        key2: z.string(),
+      }),
+    }),
+    aNull: z.null(),
+  }),
+})
+
 export const collections = {
   docs,
   posts,
   debug,
+  types,
 }

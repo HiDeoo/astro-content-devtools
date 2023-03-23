@@ -1,5 +1,10 @@
 .variable {
+  color: var(--acd-color-white);
   display: flex;
   font-weight: var(--acd-font-medium);
   justify-content: space-between;
+}
+
+.variable code {
+  color: var(--acd-color-gray-100);
 }

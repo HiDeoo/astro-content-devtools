@@ -3,6 +3,7 @@ import { createResource, type Component, Show } from 'solid-js'
 import { useSelection } from '../../hooks/useSelection'
 import { fetchCollectionEntry } from '../../libs/content'
 import { DataContent } from '../data/DataContent'
+import { DataFrontmatter } from '../data/DataFrontmatter'
 import { DataSection } from '../data/DataSection'
 import { DataVariable } from '../data/DataVariable'
 
@@ -37,8 +38,7 @@ export const DataPanel: Component = () => {
           <div>{'// TODO(HiDeoo)'}</div>
         </DataSection>
         <DataSection title="Frontmatter">
-          {/* // TODO(HiDeoo)  */}
-          <div>{JSON.stringify(entry()?.data)}</div>
+          <DataFrontmatter frontmatter={entry()?.data} />
         </DataSection>
         <DataSection title="Content">
           <DataContent>{entry()?.body}</DataContent>
