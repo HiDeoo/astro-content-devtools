@@ -221,7 +221,7 @@ const unionPrimitives = ['string', 'number', 'integer', 'boolean', 'null']
 type UnionPrimitive = (typeof unionPrimitives)[number]
 
 export interface SchemaProps<TSchema> {
-  nullable?: boolean | undefined
-  root?: boolean | undefined
+  nullable?: boolean
+  root?: boolean
   schema: TSchema
 }

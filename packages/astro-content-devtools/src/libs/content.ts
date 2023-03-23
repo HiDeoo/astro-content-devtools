@@ -20,16 +20,11 @@ export function parseAstroCollections(astroCollections: AstroCollections): Colle
   return collections
 }
 
-export async function fetchCollectionEntries(collectionName: CollectionName) {
-  const entries = await getCollection(collectionName)
-
-  return entries.map(({ render, ...rest }) => rest)
+export function fetchCollectionEntries(collectionName: CollectionName) {
+  return getCollection(collectionName)
 }
 
-export async function fetchCollectionEntry(params: {
-  collectionName: CollectionName
-  entrySlug: CollectionEntry['slug']
-}) {
+export function fetchCollectionEntry(params: { collectionName: CollectionName; entrySlug: CollectionEntry['slug'] }) {
   return getEntryBySlug(params.collectionName, params.entrySlug)
 }
 

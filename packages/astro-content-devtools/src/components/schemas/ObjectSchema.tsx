@@ -46,10 +46,10 @@ export const ObjectSchema: Component<ObjectSchemaProps> = (props) => {
   )
 }
 
-function isRequiredProperty(propertyName: string, required: string[] | undefined) {
+function isRequiredProperty(propertyName: string, required?: string[]) {
   return required?.includes(propertyName) ?? false
 }
 
 interface ObjectSchemaProps extends SchemaProps<ObjectSchemaType> {
-  root?: boolean | undefined
+  root?: boolean
 }

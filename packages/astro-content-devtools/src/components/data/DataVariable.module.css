@@ -1,0 +1,5 @@
+.variable {
+  display: flex;
+  font-weight: var(--acd-font-medium);
+  justify-content: space-between;
+}

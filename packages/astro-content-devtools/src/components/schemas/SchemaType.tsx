@@ -21,6 +21,6 @@ export const SchemaType: Component<SchemaTypeProps> = (props) => {
 
 interface SchemaTypeProps {
   details?: string[]
-  nullable?: boolean | undefined
+  nullable?: boolean
   type: string
 }

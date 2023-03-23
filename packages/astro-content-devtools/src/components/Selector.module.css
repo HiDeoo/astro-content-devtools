@@ -7,7 +7,7 @@
   display: block;
   font-size: var(--acd-text-base);
   overflow: hidden;
-  padding: 0.4rem 0.5rem;
+  padding: var(--acd-size-2);
   text-align: left;
   text-overflow: ellipsis;
   white-space: nowrap;

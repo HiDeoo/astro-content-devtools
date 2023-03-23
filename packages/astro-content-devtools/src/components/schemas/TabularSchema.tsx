@@ -60,14 +60,14 @@ TabularSchema.VariadicSchema = TabularVariadicSchema
 
 interface TabularSchemaProps {
   headerDetails?: string[]
-  nullable?: boolean | undefined
-  showBorder?: boolean | undefined
-  showHeader?: boolean | undefined
+  nullable?: boolean
+  showBorder?: boolean
+  showHeader?: boolean
   type: 'array' | 'enum' | 'intersection' | 'map' | 'object' | 'record' | 'tuple' | 'union'
 }
 
 interface TabularPropertyNameProps {
-  required?: boolean | undefined
+  required?: boolean
 }
 
 interface TabularVariadicSchemaProps {

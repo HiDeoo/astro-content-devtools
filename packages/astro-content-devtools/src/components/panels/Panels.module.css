@@ -4,12 +4,12 @@
   bottom: 0;
   box-sizing: border-box;
   display: grid;
-  gap: 0.5rem;
+  gap: var(--acd-size-2);
   /* TODO(HiDeoo)  */
   height: 1200px;
   left: 0;
   opacity: 0;
-  padding: 0.5rem;
+  padding: var(--acd-size-2);
   pointer-events: none;
   position: fixed;
   right: 0;
