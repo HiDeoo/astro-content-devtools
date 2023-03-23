@@ -14,6 +14,8 @@
 
 .key {
   color: var(--acd-color-white);
+  line-height: var(--acd-size-5);
+  overflow-wrap: break-word;
 }
 
 .collapser {
@@ -35,6 +37,8 @@
 
 .value {
   color: var(--acd-color-cyan-400);
+  line-height: var(--acd-size-5);
+  overflow-wrap: break-word;
 }
 
 .collapserIcon {
