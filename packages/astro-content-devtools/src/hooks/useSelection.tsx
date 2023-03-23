@@ -1,7 +1,8 @@
-import { type Accessor, type Context, createContext, createSignal, type ParentComponent, useContext } from 'solid-js'
+import { type Accessor, type Context, createContext, type ParentComponent, useContext } from 'solid-js'
 
 import { type CollectionEntry, type CollectionName } from '../libs/content'
 import { type PreviewType } from '../libs/previewType'
+import { createLocalStorageSignal } from '../libs/signal'
 
 const SelectionContext = createContext<SelectionContextType>() as Context<SelectionContextType>
 
@@ -10,23 +11,32 @@ export function useSelection() {
 }
 
 export const SelectionProvider: ParentComponent = (props) => {
-  const [collection, setCollection] = createSignal<CollectionSelection>(undefined)
-  const [entry, setEntry] = createSignal<EntrySelection>(undefined)
-  const [previewType, setPreviewType] = createSignal<PreviewTypeSelection>('schema')
+  const [collectionName, setCollectionName] = createLocalStorageSignal<CollectionNameSelection>(
+    'astroContentDevtoolsActiveCollectionName',
+    undefined
+  )
+  const [previewType, setPreviewType] = createLocalStorageSignal<PreviewTypeSelection>(
+    'astroContentDevtoolsActivePreviewType',
+    'schema'
+  )
+  const [entrySlug, setEntrySlug] = createLocalStorageSignal<EntrySlugSelection>(
+    'astroContentDevtoolsActiveEntrySlug',
+    undefined
+  )
 
-  function handleSelectionChange(collection: CollectionSelection) {
-    setCollection(collection)
-    setEntry(undefined)
+  function handleCollectionNameChange(collectionName: CollectionNameSelection) {
+    setCollectionName(collectionName)
+    setEntrySlug(undefined)
   }
 
   return (
     <SelectionContext.Provider
       value={{
-        collection,
-        entry,
+        collectionName,
+        entrySlug,
         previewType,
-        setCollection: handleSelectionChange,
-        setEntry,
+        setCollectionName: handleCollectionNameChange,
+        setEntrySlug,
         setPreviewType,
       }}
     >
@@ -36,14 +46,14 @@ export const SelectionProvider: ParentComponent = (props) => {
 }
 
 interface SelectionContextType {
-  collection: Accessor<CollectionSelection>
-  entry: Accessor<EntrySelection>
+  collectionName: Accessor<CollectionNameSelection>
+  entrySlug: Accessor<EntrySlugSelection>
   previewType: Accessor<PreviewTypeSelection>
-  setCollection: (collection: CollectionSelection) => void
-  setEntry: (entry: EntrySelection) => void
+  setCollectionName: (collectionName: CollectionNameSelection) => void
+  setEntrySlug: (entrySlug: EntrySlugSelection) => void
   setPreviewType: (contentType: PreviewTypeSelection) => void
 }
 
-type CollectionSelection = CollectionName | undefined
-type EntrySelection = CollectionEntry | undefined
+type CollectionNameSelection = CollectionName | undefined
 type PreviewTypeSelection = PreviewType
+type EntrySlugSelection = CollectionEntry['slug'] | undefined

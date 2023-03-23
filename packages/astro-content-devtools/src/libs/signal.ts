@@ -6,7 +6,7 @@ export function createLocalStorageSignal<TType>(key: string, defaultValue: TType
   try {
     const localStorageValue = localStorage.getItem(key)
 
-    if (localStorageValue) {
+    if (typeof localStorageValue === 'string') {
       setValue(() => JSON.parse(localStorageValue) as TType)
     }
   } catch {

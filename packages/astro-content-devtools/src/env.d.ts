@@ -16,4 +16,5 @@ declare module 'astro:content' {
   }
 
   export function getCollection(collectionName: string): Promise<AstroCollectionEntry[]>
+  export function getEntryBySlug(collectionName: string, entrySlug: string): Promise<AstroCollectionEntry | undefined>
 }

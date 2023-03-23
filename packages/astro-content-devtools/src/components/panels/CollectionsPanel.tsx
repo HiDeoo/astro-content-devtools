@@ -11,7 +11,7 @@ import { Panel } from './Panel'
 // TODO(HiDeoo) nis
 export const CollectionsPanel: Component = () => {
   const { collections } = useDevtools()
-  const { collection, setCollection } = useSelection()
+  const { collectionName, setCollectionName } = useSelection()
 
   // TODO(HiDeoo) sort
   const collectionNames = Object.keys(collections)
@@ -22,12 +22,12 @@ export const CollectionsPanel: Component = () => {
       <ul>
         <For each={collectionNames}>
           {(panelCollectionName: CollectionName) => {
-            const isSelected = () => collection() === panelCollectionName
+            const isSelected = () => collectionName() === panelCollectionName
 
             return (
               <Selector
                 label={`Open details for the ${panelCollectionName} collection`}
-                onSelect={() => setCollection(isSelected() ? undefined : panelCollectionName)}
+                onSelect={() => setCollectionName(isSelected() ? undefined : panelCollectionName)}
                 selected={isSelected()}
               >
                 {panelCollectionName}

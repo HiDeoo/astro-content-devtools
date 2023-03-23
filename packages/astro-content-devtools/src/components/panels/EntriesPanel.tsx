@@ -8,10 +8,10 @@ import { DataPanel } from './DataPanel'
 import { Panel } from './Panel'
 
 export const EntriesPanel: Component = () => {
-  const { collection, entry, previewType, setEntry } = useSelection()
-  const [entries] = createResource(collection, fetchCollectionEntries)
+  const { collectionName, entrySlug, previewType, setEntrySlug } = useSelection()
+  const [entries] = createResource(collectionName, fetchCollectionEntries)
 
-  const shouldShowDataPanel = () => previewType() === 'data' && entry() !== undefined
+  const shouldShowDataPanel = () => previewType() === 'data' && entrySlug() !== undefined
 
   return (
     <>
@@ -19,12 +19,12 @@ export const EntriesPanel: Component = () => {
         <ul>
           <For each={entries()}>
             {(panelEntry: CollectionEntry) => {
-              const isSelected = () => entry()?.id === panelEntry.id
+              const isSelected = () => entrySlug() === panelEntry.slug
 
               return (
                 <Selector
                   label={`Open ${panelEntry.id}`}
-                  onSelect={() => setEntry(isSelected() ? undefined : panelEntry)}
+                  onSelect={() => setEntrySlug(isSelected() ? undefined : panelEntry.slug)}
                   selected={isSelected()}
                 >
                   {panelEntry.id}

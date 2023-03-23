@@ -8,16 +8,16 @@ import { Panel } from './Panel'
 
 export const SchemaPanel: Component = () => {
   const { collections } = useDevtools()
-  const { collection } = useSelection()
+  const { collectionName } = useSelection()
 
   const schema = () => {
-    const collectionName = collection()
+    const activeCollectionName = collectionName()
 
-    if (!collectionName) {
+    if (!activeCollectionName) {
       throw new Error('Failed to get collection name to render schema.')
     }
 
-    const collectionConfig = collections[collectionName]
+    const collectionConfig = collections[activeCollectionName]
 
     if (!collectionConfig?.schema) {
       throw new Error('Failed to get collection schema to render.')

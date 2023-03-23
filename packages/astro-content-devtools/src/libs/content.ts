@@ -1,5 +1,5 @@
 import type { AnyZodObject, ZodDiscriminatedUnion, ZodEffects, ZodIntersection, ZodUnion } from 'astro/zod'
-import { getCollection } from 'astro:content'
+import { getCollection, getEntryBySlug } from 'astro:content'
 import zodToJsonSchema from 'zod-to-json-schema'
 
 import { type JsonSchema } from './schema'
@@ -24,6 +24,13 @@ export async function fetchCollectionEntries(collectionName: CollectionName) {
   const entries = await getCollection(collectionName)
 
   return entries.map(({ render, ...rest }) => rest)
+}
+
+export async function fetchCollectionEntry(params: {
+  collectionName: CollectionName
+  entrySlug: CollectionEntry['slug']
+}) {
+  return getEntryBySlug(params.collectionName, params.entrySlug)
 }
 
 export type CollectionName = string

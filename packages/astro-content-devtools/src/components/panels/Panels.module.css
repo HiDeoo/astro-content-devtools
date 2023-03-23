@@ -25,6 +25,10 @@
   grid-template-columns: 1fr;
 }
 
+.column2 {
+  grid-template-columns: 1fr 1fr;
+}
+
 .columns3 {
   grid-template-columns: 20% 20% 1fr;
 }

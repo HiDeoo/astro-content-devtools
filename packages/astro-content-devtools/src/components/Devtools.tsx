@@ -1,4 +1,4 @@
-import { type Component, Show } from 'solid-js'
+import { type Component, Match, Show, Switch } from 'solid-js'
 
 import { useDevtools } from '../hooks/useDevtools'
 import { useSelection } from '../hooks/useSelection'
@@ -11,22 +11,55 @@ import { SchemaPanel } from './panels/SchemaPanel'
 import { Toggle } from './Toggle'
 
 export const Devtools: Component = () => {
-  const { isOverlayOpened } = useDevtools()
-  const { collection, entry, previewType } = useSelection()
+  const { collections, isOverlayOpened } = useDevtools()
+  const { collectionName, entrySlug, previewType } = useSelection()
 
-  const shouldShowPreviewTypesPanel = () => collection() !== undefined
-  const shouldShowSchemaPanel = () => previewType() === 'schema'
-  const shouldShowDataPanel = () => previewType() === 'data' && entry() !== undefined
+  const shouldShowPreviewTypesPanel = () => {
+    const activeCollectionName = collectionName()
+
+    if (!activeCollectionName) {
+      return false
+    }
+
+    const collectionConfig = collections[activeCollectionName]
+
+    if (!collectionConfig) {
+      return false
+    }
+
+    return true
+  }
+  const shouldShowSchemaPanel = () => shouldShowPreviewTypesPanel() && previewType() === 'schema'
+  const shouldShowEntriesPanel = () => shouldShowPreviewTypesPanel() && previewType() === 'data'
+  const shouldShowDataPanel = () =>
+    shouldShowPreviewTypesPanel() && previewType() === 'data' && entrySlug() !== undefined
+
+  const columnCount = () => {
+    if (!shouldShowPreviewTypesPanel()) {
+      return 1
+    }
+
+    if (!shouldShowSchemaPanel() && !shouldShowEntriesPanel()) {
+      return 2
+    }
+
+    return shouldShowDataPanel() ? 4 : 3
+  }
 
   return (
     <aside>
-      <Panels columns={shouldShowPreviewTypesPanel() ? (shouldShowDataPanel() ? 4 : 3) : 1}>
+      <Panels columns={columnCount()}>
         <CollectionsPanel />
         <Show when={shouldShowPreviewTypesPanel()}>
           <PreviewTypesPanel />
-          <Show when={shouldShowSchemaPanel()} fallback={<EntriesPanel />}>
-            <SchemaPanel />
-          </Show>
+          <Switch>
+            <Match when={shouldShowSchemaPanel()}>
+              <SchemaPanel />
+            </Match>
+            <Match when={shouldShowEntriesPanel()}>
+              <EntriesPanel />
+            </Match>
+          </Switch>
         </Show>
       </Panels>
       <Show when={!isOverlayOpened()}>
