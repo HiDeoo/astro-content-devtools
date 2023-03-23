@@ -9,7 +9,7 @@ import {
 } from '../../libs/schema'
 
 import { Schema } from './Schema'
-import { TabularSchema, TabularVariadicSchema } from './TabularSchema'
+import { TabularSchema } from './TabularSchema'
 
 export const ArraySchema: Component<SchemaProps<ArraySchemaType | TupleSchemaType>> = (props) => {
   if (isTupleSchema(props.schema)) {
@@ -22,7 +22,9 @@ export const ArraySchema: Component<SchemaProps<ArraySchemaType | TupleSchemaTyp
             </div>
           )}
         </For>
-        {isVariadicTupleSchema(props.schema) ? <TabularVariadicSchema schema={props.schema.additionalItems} /> : null}
+        {isVariadicTupleSchema(props.schema) ? (
+          <TabularSchema.VariadicSchema schema={props.schema.additionalItems} />
+        ) : null}
       </TabularSchema>
     )
   }

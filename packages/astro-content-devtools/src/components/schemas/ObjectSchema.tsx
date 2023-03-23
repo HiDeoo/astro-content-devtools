@@ -9,7 +9,7 @@ import {
 } from '../../libs/schema'
 
 import { Schema } from './Schema'
-import { TabularPropertyName, TabularSchema } from './TabularSchema'
+import { TabularSchema } from './TabularSchema'
 
 export const ObjectSchema: Component<ObjectSchemaProps> = (props) => {
   const properties = () => Object.entries(props.schema.properties)
@@ -26,7 +26,7 @@ export const ObjectSchema: Component<ObjectSchemaProps> = (props) => {
 
             return (
               <>
-                <TabularPropertyName required={isRequired}>{propertyName}</TabularPropertyName>
+                <TabularSchema.PropertyName required={isRequired}>{propertyName}</TabularSchema.PropertyName>
                 <Show when={isNested} fallback={<SchemaContent />}>
                   <div>
                     <SchemaContent />

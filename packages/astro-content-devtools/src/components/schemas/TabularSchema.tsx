@@ -1,11 +1,11 @@
-import { mergeProps, type ParentComponent, Show } from 'solid-js'
+import { mergeProps, type ParentComponent, type ParentProps, Show } from 'solid-js'
 
 import { type JsonSchema } from '../../libs/schema'
 
 import { Schema } from './Schema'
 import styles from './TabularSchema.module.css'
 
-export const TabularSchema: ParentComponent<TabularSchemaProps> = (props) => {
+export const TabularSchema = (props: ParentProps<TabularSchemaProps>) => {
   const merged = mergeProps({ showBorder: true, showHeader: true }, props)
 
   const headerDetails = props.headerDetails ?? []
@@ -37,7 +37,7 @@ export const TabularSchema: ParentComponent<TabularSchemaProps> = (props) => {
   )
 }
 
-export const TabularPropertyName: ParentComponent<TabularPropertyNameProps> = (props) => {
+const TabularPropertyName: ParentComponent<TabularPropertyNameProps> = (props) => {
   return (
     <div class={styles.propertyName} classList={{ [styles.required!]: props.required }}>
       {props.children}
@@ -45,7 +45,9 @@ export const TabularPropertyName: ParentComponent<TabularPropertyNameProps> = (p
   )
 }
 
-export const TabularVariadicSchema: ParentComponent<TabularVariadicSchemaProps> = (props) => {
+TabularSchema.PropertyName = TabularPropertyName
+
+const TabularVariadicSchema: ParentComponent<TabularVariadicSchemaProps> = (props) => {
   return (
     <div class={styles.variadicSchema}>
       <span>…</span>
@@ -53,6 +55,8 @@ export const TabularVariadicSchema: ParentComponent<TabularVariadicSchemaProps> 
     </div>
   )
 }
+
+TabularSchema.VariadicSchema = TabularVariadicSchema
 
 interface TabularSchemaProps {
   headerDetails?: string[]
