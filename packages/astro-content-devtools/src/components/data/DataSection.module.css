@@ -12,3 +12,7 @@
   gap: var(--acd-size-2);
   padding: var(--acd-size-2);
 }
+
+.content.horizontal {
+  flex-direction: row;
+}
