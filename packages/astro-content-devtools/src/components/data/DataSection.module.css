@@ -4,6 +4,8 @@
   font-weight: var(--acd-font-normal);
   margin: 0;
   padding: var(--acd-size-2);
+  position: sticky;
+  top: 0;
 }
 
 .content {
