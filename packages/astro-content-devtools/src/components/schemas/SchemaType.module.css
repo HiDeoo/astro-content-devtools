@@ -1,14 +1,11 @@
 .type {
-  align-items: center;
+  align-items: flex-start;
   display: flex;
-  min-width: 0;
 }
 
 .details {
   display: block;
   font-size: var(--acd-text-sm);
+  margin-top: 1px;
   margin-left: var(--acd-size-1-5);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }

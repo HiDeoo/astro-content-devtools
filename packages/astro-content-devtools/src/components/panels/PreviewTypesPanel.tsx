@@ -11,7 +11,7 @@ export const PreviewTypesPanel: Component = () => {
   const { previewType, setPreviewType } = useSelection()
 
   return (
-    <Panel>
+    <Panel name="previewType">
       <ul>
         <For each={PREVIEW_TYPES}>
           {(panelPreviewType: PreviewType) => {

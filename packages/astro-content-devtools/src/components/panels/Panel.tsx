@@ -4,12 +4,13 @@ import styles from './Panel.module.css'
 
 export const Panel: ParentComponent<PanelProps> = (props) => {
   return (
-    <div class={styles.panel} style={props.style}>
+    <div class={styles.panel} classList={{ [`acd-panel-${props.name}`]: true }} style={props.style}>
       {props.children}
     </div>
   )
 }
 
 interface PanelProps {
+  name: string
   style?: JSX.CSSProperties | string
 }

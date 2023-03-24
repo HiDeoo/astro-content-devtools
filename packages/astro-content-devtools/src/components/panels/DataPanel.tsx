@@ -27,7 +27,7 @@ export const DataPanel: Component = () => {
   const [entry] = createResource(collectionNameAndEntrySlyg, fetchCollectionEntry)
 
   return (
-    <Panel style={{ 'background-color': 'var(--acd-color-gray-700)' }}>
+    <Panel name="data" style={{ 'background-color': 'var(--acd-color-gray-700)' }}>
       <Show when={entry() !== undefined} fallback="// TODO(HiDeoo) pelase select a valid entry">
         <DataSection title="Details">
           <DataVariable key="ID" value={entry()?.id} />

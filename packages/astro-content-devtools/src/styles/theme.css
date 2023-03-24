@@ -32,4 +32,6 @@
   --acd-size-5: 1.25rem;
 
   --acd-duration-150: 150ms;
+
+  --acd-panel-width: min(17rem, 15%);
 }

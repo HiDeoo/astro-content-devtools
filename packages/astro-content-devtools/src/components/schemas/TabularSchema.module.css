@@ -58,7 +58,7 @@
 .propertyName {
   color: var(--acd-color-white);
   font-weight: var(--acd-font-medium);
-  white-space: pre;
+  white-space: nowrap;
 }
 
 .object > .propertyName:not(.required) {

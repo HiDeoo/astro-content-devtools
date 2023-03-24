@@ -17,7 +17,7 @@ export const CollectionsPanel: Component = () => {
   const collectionNames = Object.keys(collections)
 
   return (
-    <Panel>
+    <Panel name="collections">
       <Toggle />
       <ul>
         <For each={collectionNames}>

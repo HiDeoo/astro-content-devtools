@@ -12,7 +12,7 @@ import { Toggle } from './Toggle'
 
 export const Devtools: Component = () => {
   const { collections, isOverlayOpened } = useDevtools()
-  const { collectionName, entrySlug, previewType } = useSelection()
+  const { collectionName, previewType } = useSelection()
 
   const shouldShowPreviewTypesPanel = () => {
     const activeCollectionName = collectionName()
@@ -31,24 +31,10 @@ export const Devtools: Component = () => {
   }
   const shouldShowSchemaPanel = () => shouldShowPreviewTypesPanel() && previewType() === 'schema'
   const shouldShowEntriesPanel = () => shouldShowPreviewTypesPanel() && previewType() === 'data'
-  const shouldShowDataPanel = () =>
-    shouldShowPreviewTypesPanel() && previewType() === 'data' && entrySlug() !== undefined
-
-  const columnCount = () => {
-    if (!shouldShowPreviewTypesPanel()) {
-      return 1
-    }
-
-    if (!shouldShowSchemaPanel() && !shouldShowEntriesPanel()) {
-      return 2
-    }
-
-    return shouldShowDataPanel() ? 4 : 3
-  }
 
   return (
     <aside>
-      <Panels columns={columnCount()}>
+      <Panels>
         <CollectionsPanel />
         <Show when={shouldShowPreviewTypesPanel()}>
           <PreviewTypesPanel />

@@ -15,7 +15,7 @@ export const EntriesPanel: Component = () => {
 
   return (
     <>
-      <Panel>
+      <Panel name="entries">
         <ul>
           <For each={entries()}>
             {(panelEntry: CollectionEntry) => {

@@ -27,7 +27,7 @@ export const SchemaPanel: Component = () => {
   }
 
   return (
-    <Panel>
+    <Panel name="schema">
       <Schema root schema={schema()} />
     </Panel>
   )

@@ -5,11 +5,13 @@ import { type FrontmatterProperty, getFrontmatterProperties } from '../../libs/f
 import styles from './DataFrontmatter.module.css'
 
 export const DataFrontmatter: Component<DataFrontmatterProps> = (props) => {
-  const properties = getFrontmatterProperties(props.frontmatter)
+  const properties = () => getFrontmatterProperties(props.frontmatter)
 
   return (
     <ul class={styles.properties}>
-      <For each={properties}>{(property) => <DataFrontmatterProperty key={property.key} value={property.value} />}</For>
+      <For each={properties()}>
+        {(property) => <DataFrontmatterProperty key={property.key} value={property.value} />}
+      </For>
     </ul>
   )
 }
