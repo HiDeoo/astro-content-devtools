@@ -3,6 +3,8 @@ import { type Accessor, type Context, createContext, type ParentComponent, useCo
 import { type Collections } from '../libs/content'
 import { createLocalStorageSignal } from '../libs/signal'
 
+const devtoolsDefaultHeightInPx = 500
+
 const DevtoolsContext = createContext<DevtoolsContextType>() as Context<DevtoolsContextType>
 
 export function useDevtools() {
@@ -11,6 +13,10 @@ export function useDevtools() {
 
 export const DevtoolsProvider: ParentComponent<DevtoolsProviderProps> = (props) => {
   const [isOverlayOpened, setIsOverlayOpened] = createLocalStorageSignal('astroContentDevtoolsIsOverlayOpened', false)
+  const [overlayHeight, setOverlayHeight] = createLocalStorageSignal(
+    'astroContentDevtoolsOverlayHeight',
+    devtoolsDefaultHeightInPx
+  )
 
   function toggleOverlay() {
     setIsOverlayOpened((prevIsOverlayOpened) => !prevIsOverlayOpened)
@@ -21,6 +27,8 @@ export const DevtoolsProvider: ParentComponent<DevtoolsProviderProps> = (props) 
       value={{
         collections: props.collections,
         isOverlayOpened,
+        overlayHeight,
+        setOverlayHeight,
         toggleOverlay,
       }}
     >
@@ -32,6 +40,8 @@ export const DevtoolsProvider: ParentComponent<DevtoolsProviderProps> = (props) 
 interface DevtoolsContextType {
   collections: Collections
   isOverlayOpened: Accessor<boolean>
+  overlayHeight: Accessor<number>
+  setOverlayHeight: (height: number) => void
   toggleOverlay: () => void
 }
 

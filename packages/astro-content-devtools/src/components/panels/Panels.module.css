@@ -1,36 +1,28 @@
-.devtools {
+.panels {
   background-color: var(--acd-color-gray-900);
   border-top: 1px solid var(--acd-color-gray-700);
-  bottom: 0;
   box-sizing: border-box;
   display: grid;
   gap: var(--acd-size-2);
-  /* TODO(HiDeoo)  */
-  height: 1200px;
-  left: 0;
+  height: 100%;
   opacity: 0;
   padding: var(--acd-size-2);
-  pointer-events: none;
-  position: fixed;
-  right: 0;
-  z-index: 99999;
 }
 
 .opened {
   opacity: 1;
-  pointer-events: all;
 }
 
-.devtools:has(> :last-child:nth-child(1)) {
+.panels:has(> :last-child:nth-child(1)) {
   grid-template-columns: 1fr;
 }
 
-.devtools:has(> :last-child:nth-child(2)) {
+.panels:has(> :last-child:nth-child(2)) {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
 }
 
-.devtools:has(> :last-child:nth-child(3):not(:global(.acd-panel-entries))) {
+.panels:has(> :last-child:nth-child(3):not(:global(.acd-panel-entries))) {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto 1fr;
 
@@ -48,12 +40,12 @@
   }
 }
 
-.devtools:has(> :last-child:nth-child(3):global(.acd-panel-entries)) {
+.panels:has(> :last-child:nth-child(3):global(.acd-panel-entries)) {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
 }
 
-.devtools:has(> :last-child:nth-child(4)) {
+.panels:has(> :last-child:nth-child(4)) {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto 1fr;
 

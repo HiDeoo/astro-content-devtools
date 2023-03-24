@@ -1,6 +1,7 @@
 .toggle {
   cursor: pointer;
   margin: var(--acd-size-2);
+  pointer-events: all;
 }
 
 .closed {

@@ -9,7 +9,7 @@ export const Panels: ParentComponent = (props) => {
   const { isOverlayOpened } = useDevtools()
 
   return (
-    <div class={styles.devtools} classList={{ [styles.opened!]: isOverlayOpened() }}>
+    <div class={styles.panels} classList={{ [styles.opened!]: isOverlayOpened() }}>
       <ErrorBoundary>{props.children}</ErrorBoundary>
     </div>
   )
