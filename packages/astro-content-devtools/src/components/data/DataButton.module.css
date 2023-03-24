@@ -8,6 +8,11 @@
   padding: var(--acd-size-2) var(--acd-size-3-5);
 }
 
+.button:focus-visible {
+  outline: 2px solid var(--acd-color-blue-700);
+  outline-offset: 2px;
+}
+
 .button:hover:not(.danger, .success) {
   background-color: var(--acd-color-blue-600);
 }

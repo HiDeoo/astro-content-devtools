@@ -30,6 +30,11 @@
   width: 100%;
 }
 
+.collapser:focus-visible {
+  outline: 2px solid var(--acd-color-blue-700);
+  outline-offset: 2px;
+}
+
 .infos {
   color: var(--acd-color-gray-200);
   font-size: var(--acd-text-sm);

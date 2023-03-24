@@ -4,7 +4,7 @@ import styles from './Panel.module.css'
 
 export const Panel: ParentComponent<PanelProps> = (props) => {
   return (
-    <div class={styles.panel} classList={{ [`acd-panel-${props.name}`]: true }} style={props.style}>
+    <div class={styles.panel} classList={{ [`acd-panel-${props.name}`]: true }} style={props.style} tabIndex={-1}>
       {props.children}
     </div>
   )
