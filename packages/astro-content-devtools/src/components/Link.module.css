@@ -1,0 +1,13 @@
+.link {
+  color: var(--acd-color-gray-100);
+  text-decoration: underline;
+  text-underline-offset: var(--acd-size-1);
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: color var(--acd-duration-150) ease, text-decoration-color var(--acd-duration-150) ease;
+  }
+}
+
+.link:hover {
+  color: var(--acd-color-blue-700);
+}

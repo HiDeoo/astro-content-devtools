@@ -5,6 +5,7 @@ import { type CollectionEntry, fetchCollectionEntries } from '../../libs/content
 import { Selector } from '../Selector'
 
 import { DataPanel } from './DataPanel'
+import { InfoPanel } from './InfoPanel'
 import { Panel } from './Panel'
 
 export const EntriesPanel: Component = () => {
@@ -16,23 +17,28 @@ export const EntriesPanel: Component = () => {
   return (
     <>
       <Panel name="entries">
-        <ul>
-          <For each={entries()}>
-            {(panelEntry: CollectionEntry) => {
-              const isSelected = () => entrySlug() === panelEntry.slug
+        <Show
+          fallback={<InfoPanel message="This content collection does not contain any entries yet." />}
+          when={(entries()?.length ?? 0) > 0}
+        >
+          <ul>
+            <For each={entries()}>
+              {(panelEntry: CollectionEntry) => {
+                const isSelected = () => entrySlug() === panelEntry.slug
 
-              return (
-                <Selector
-                  label={`Open ${panelEntry.id}`}
-                  onSelect={() => setEntrySlug(isSelected() ? undefined : panelEntry.slug)}
-                  selected={isSelected()}
-                >
-                  {panelEntry.id}
-                </Selector>
-              )
-            }}
-          </For>
-        </ul>
+                return (
+                  <Selector
+                    label={`Open ${panelEntry.id}`}
+                    onSelect={() => setEntrySlug(isSelected() ? undefined : panelEntry.slug)}
+                    selected={isSelected()}
+                  >
+                    {panelEntry.id}
+                  </Selector>
+                )
+              }}
+            </For>
+          </ul>
+        </Show>
       </Panel>
       <Show when={shouldShowDataPanel()}>
         <DataPanel />

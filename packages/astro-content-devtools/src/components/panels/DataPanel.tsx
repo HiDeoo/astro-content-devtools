@@ -8,6 +8,7 @@ import { DataFrontmatter } from '../data/DataFrontmatter'
 import { DataSection } from '../data/DataSection'
 import { DataVariable } from '../data/DataVariable'
 
+import { InfoPanel } from './InfoPanel'
 import { Panel } from './Panel'
 
 export const DataPanel: Component = () => {
@@ -28,7 +29,7 @@ export const DataPanel: Component = () => {
 
   return (
     <Panel name="data" style={{ 'background-color': 'var(--acd-color-gray-700)' }}>
-      <Show when={entry() !== undefined} fallback="// TODO(HiDeoo) pelase select a valid entry">
+      <Show when={entry() !== undefined} fallback={<InfoPanel message="Select an entry to visualize its data." />}>
         <DataSection title="Details">
           <DataVariable key="ID" value={entry()?.id} />
           <DataVariable key="Slug" value={entry()?.slug} />

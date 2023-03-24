@@ -34,6 +34,7 @@ import {
   type TupleSchemaType,
   type UnionSchemaType,
 } from '../../libs/schema'
+import { Link } from '../Link'
 
 import { ArraySchema } from './ArraySchema'
 import { EnumSchema } from './EnumSchema'
@@ -52,7 +53,14 @@ export const Schema: Component<SchemaProps<JsonSchema>> = (props) => {
   const [local, others] = splitProps(props, ['schema'])
 
   return (
-    <Switch fallback={<p>{`// TODO`}</p>}>
+    <Switch
+      fallback={
+        <div>
+          unsupported type (<Link href="https://github.com/HiDeoo/astro-content-devtools/issues">report</Link> this
+          issue)
+        </div>
+      }
+    >
       <Match when={isObjectSchema(local.schema)}>
         <ObjectSchema schema={local.schema as ObjectSchemaType} {...others} />
       </Match>

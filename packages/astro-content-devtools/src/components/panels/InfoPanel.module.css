@@ -1,0 +1,19 @@
+.info {
+  background-color: var(--acd-color-gray-800);
+  box-sizing: border-box;
+  display: grid;
+  font-size: var(--acd-text-lg);
+  font-weight: var(--acd-font-semibold);
+  height: 100%;
+  line-height: var(--acd-size-7);
+  padding: var(--acd-size-5);
+  place-items: center;
+  text-align: center;
+}
+
+.details {
+  font-size: var(--acd-text-base);
+  font-weight: var(--acd-font-normal);
+  line-height: var(--acd-size-5);
+  margin-block: var(--acd-size-2);
+}

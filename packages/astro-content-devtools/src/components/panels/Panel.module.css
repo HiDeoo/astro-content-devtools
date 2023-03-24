@@ -6,6 +6,11 @@
   overflow-x: hidden;
 }
 
+.panel :global(*::selection) {
+  background-color: var(--acd-color-blue-700);
+  color: var(--acd-color-white);
+}
+
 .panel :global(ul) {
   list-style-type: none;
   margin: 0;

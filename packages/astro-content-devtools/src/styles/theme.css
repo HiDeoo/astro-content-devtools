@@ -21,15 +21,18 @@
   --acd-text-xs: 0.625rem;
   --acd-text-sm: 0.75rem;
   --acd-text-base: 0.875rem;
+  --acd-text-lg: 1.25rem;
 
   --acd-font-normal: 400;
   --acd-font-medium: 500;
+  --acd-font-semibold: 600;
 
   --acd-size-1: 0.25rem;
   --acd-size-1-5: 0.375rem;
   --acd-size-2: 0.5rem;
   --acd-size-3-5: 0.875rem;
   --acd-size-5: 1.25rem;
+  --acd-size-7: 1.75rem;
 
   --acd-duration-150: 150ms;
 
