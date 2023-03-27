@@ -31,6 +31,12 @@ const PanelInfo: Component<PanelInfoProps> = (props) => {
 
 Panel.Info = PanelInfo
 
+const PanelInput: Component<JSX.InputHTMLAttributes<HTMLInputElement>> = (props) => {
+  return <input {...props} class={styles.input} />
+}
+
+Panel.Input = PanelInput
+
 interface PanelProps {
   name: string
   style?: JSX.CSSProperties | string

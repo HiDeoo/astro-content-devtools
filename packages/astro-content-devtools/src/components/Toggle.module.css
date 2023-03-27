@@ -1,7 +1,6 @@
 .toggle {
   border-radius: var(--acd-rounded-full);
   cursor: pointer;
-  margin: var(--acd-size-2);
   pointer-events: all;
 }
 
@@ -11,6 +10,7 @@
   bottom: 0;
   box-shadow: 0 1px 2px 0 var(--acd-color-gray-200);
   left: 0;
+  margin: var(--acd-size-2);
   padding: var(--acd-size-2);
   position: fixed;
   z-index: 99999;
