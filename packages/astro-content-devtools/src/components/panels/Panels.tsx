@@ -9,7 +9,13 @@ export const Panels: ParentComponent = (props) => {
   const { isOverlayOpened } = useDevtools()
 
   return (
-    <div class={styles.panels} classList={{ [styles.opened!]: isOverlayOpened() }}>
+    <div
+      aria-hidden={!isOverlayOpened()}
+      aria-label="Astro Content Devtools"
+      class={styles.panels}
+      classList={{ [styles.opened!]: isOverlayOpened() }}
+      id="AstroContentDevtools"
+    >
       <ErrorBoundary>{props.children}</ErrorBoundary>
     </div>
   )

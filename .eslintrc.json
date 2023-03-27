@@ -17,7 +17,10 @@
       "files": ["*.tsx"],
       "rules": {
         "@typescript-eslint/no-non-null-assertion": "off",
-        "react/no-unknown-property": ["error", { "ignore": ["class", "classList"] }]
+        "react/no-unknown-property": [
+          "error",
+          { "ignore": ["class", "classList", "stroke-linecap", "stroke-linejoin", "stroke-width"] }
+        ]
       }
     },
     {

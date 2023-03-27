@@ -19,7 +19,9 @@ export const CollectionsPanel: Component = () => {
 
   return (
     <Panel name="collections">
-      <Toggle />
+      <Panel.Header>
+        <Toggle />
+      </Panel.Header>
       <Show
         fallback={
           <InfoPanel

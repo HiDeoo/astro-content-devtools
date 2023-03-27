@@ -1,0 +1,12 @@
+/* https://github.com/twbs/bootstrap/blob/23e50829f958ea1d741d63e2781716be037e4644/scss/mixins/_visually-hidden.scss */
+.hidden {
+  border: 0px;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}

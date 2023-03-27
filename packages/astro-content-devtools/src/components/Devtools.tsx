@@ -59,17 +59,19 @@ export const Devtools: Component = () => {
     >
       <ResizeHandle onResize={handleResize} reference={overlay} />
       <Panels>
-        <CollectionsPanel />
-        <Show when={shouldShowPreviewTypesPanel()}>
-          <PreviewTypesPanel />
-          <Switch>
-            <Match when={shouldShowSchemaPanel()}>
-              <SchemaPanel />
-            </Match>
-            <Match when={shouldShowEntriesPanel()}>
-              <EntriesPanel />
-            </Match>
-          </Switch>
+        <Show when={isOverlayOpened()}>
+          <CollectionsPanel />
+          <Show when={shouldShowPreviewTypesPanel()}>
+            <PreviewTypesPanel />
+            <Switch>
+              <Match when={shouldShowSchemaPanel()}>
+                <SchemaPanel />
+              </Match>
+              <Match when={shouldShowEntriesPanel()}>
+                <EntriesPanel />
+              </Match>
+            </Switch>
+          </Show>
         </Show>
       </Panels>
       <Show when={!isOverlayOpened()}>

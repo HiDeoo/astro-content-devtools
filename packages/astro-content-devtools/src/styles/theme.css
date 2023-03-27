@@ -34,7 +34,10 @@
   --acd-size-5: 1.25rem;
   --acd-size-7: 1.75rem;
 
+  --acd-rounded-full: 9999px;
+
   --acd-duration-150: 150ms;
 
   --acd-panel-width: min(17rem, 15%);
+  --acd-icon-size: 1.75rem;
 }

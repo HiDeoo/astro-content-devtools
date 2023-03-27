@@ -4,6 +4,7 @@
   color: var(--acd-color-gray-100);
   font-size: var(--acd-text-base);
   overflow-x: hidden;
+  outline: none;
 }
 
 .panel :global(*::selection) {
@@ -15,4 +16,10 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+
+.header {
+  background-color: var(--acd-color-gray-800);
+  position: sticky;
+  top: 0;
 }
