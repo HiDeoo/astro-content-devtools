@@ -39,7 +39,7 @@ export const EntriesPanel: Component = () => {
           </ul>
         </Show>
       </Panel>
-      <Show when={shouldShowDataPanel()}>
+      <Show when={!entries.loading && shouldShowDataPanel()}>
         <DataPanel />
       </Show>
     </>

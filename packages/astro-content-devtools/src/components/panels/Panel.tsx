@@ -1,11 +1,11 @@
-import { type JSX, type Component, type ParentComponent, type ParentProps, Show } from 'solid-js'
+import { type JSX, type Component, type ParentComponent, type ParentProps, Show, Suspense } from 'solid-js'
 
 import styles from './Panel.module.css'
 
 export const Panel = (props: ParentProps<PanelProps>) => {
   return (
     <div class={styles.panel} classList={{ [`acd-panel-${props.name}`]: true }} style={props.style}>
-      {props.children}
+      <Suspense fallback={<PanelInfo message="Loading…" />}>{props.children}</Suspense>
     </div>
   )
 }
