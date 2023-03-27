@@ -13,8 +13,7 @@ export const CollectionsPanel: Component = () => {
   const { collections } = useDevtools()
   const { collectionName, setCollectionName } = useSelection()
 
-  // TODO(HiDeoo) sort
-  const collectionNames = Object.keys(collections)
+  const collectionNames = Object.keys(collections).sort((a, b) => a.localeCompare(b))
 
   return (
     <Panel name="collections">
