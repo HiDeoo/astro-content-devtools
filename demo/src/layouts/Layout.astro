@@ -23,10 +23,14 @@ const { title } = Astro.props
     <header>
       <nav>
         <a href="/">Home</a>
-        <a href="/test">Test</a>
+        <a href="/docs">Docs</a>
+        <a href="/posts">Posts</a>
       </nav>
     </header>
-    <slot />
+    <main>
+      <h1>{title}</h1>
+      <slot />
+    </main>
     <AstroContentDevtools collections={collections} />
   </body>
 </html>
@@ -38,12 +42,24 @@ const { title } = Astro.props
   }
 
   html {
-    font-family: system-ui, sans-serif;
     background-color: #f6f6f6;
+    font-family: system-ui, sans-serif;
   }
 
-  code {
-    font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New,
-      monospace;
+  main {
+    margin: auto;
+    max-width: 80ch;
+    padding: 1.5rem;
+  }
+
+  h1 {
+    background-image: var(--accent-gradient);
+    background-position: 0%;
+    background-size: 400%;
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 </style>
