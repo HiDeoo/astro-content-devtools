@@ -7,6 +7,7 @@ import {
   type ObjectSchemaType,
   type SchemaProps,
 } from '../../libs/schema'
+import { Panel } from '../panels/Panel'
 
 import { Schema } from './Schema'
 import { TabularSchema } from './TabularSchema'
@@ -15,7 +16,10 @@ export const ObjectSchema: Component<ObjectSchemaProps> = (props) => {
   const properties = () => Object.entries(props.schema.properties)
 
   return (
-    <Show when={properties().length > 0} fallback={props.root ? '// TODO' : 'object'}>
+    <Show
+      fallback={props.root ? <Panel.Info message="This content collection does not define a schema yet." /> : 'object'}
+      when={properties().length > 0}
+    >
       <TabularSchema nullable={props.nullable} showBorder={!props.root} showHeader={!props.root} type="object">
         <For each={properties()}>
           {([propertyName, propertySchema]: [string, JsonSchema]) => {
