@@ -11,3 +11,8 @@
 .link:hover {
   color: var(--acd-color-blue-700);
 }
+
+.link:focus-visible {
+  color: var(--acd-color-blue-700);
+  outline: none;
+}

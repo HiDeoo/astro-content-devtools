@@ -5,7 +5,6 @@ import { type CollectionEntry, fetchCollectionEntries } from '../../libs/content
 import { Selector } from '../Selector'
 
 import { DataPanel } from './DataPanel'
-import { InfoPanel } from './InfoPanel'
 import { Panel } from './Panel'
 
 export const EntriesPanel: Component = () => {
@@ -18,7 +17,7 @@ export const EntriesPanel: Component = () => {
     <>
       <Panel name="entries">
         <Show
-          fallback={<InfoPanel message="This content collection does not contain any entries yet." />}
+          fallback={<Panel.Info message="This content collection does not contain any entries yet." />}
           when={(entries()?.length ?? 0) > 0}
         >
           <ul>

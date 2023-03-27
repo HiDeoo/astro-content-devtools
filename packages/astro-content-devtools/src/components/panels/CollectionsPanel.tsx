@@ -7,7 +7,6 @@ import { Link } from '../Link'
 import { Selector } from '../Selector'
 import { Toggle } from '../Toggle'
 
-import { InfoPanel } from './InfoPanel'
 import { Panel } from './Panel'
 
 export const CollectionsPanel: Component = () => {
@@ -24,13 +23,13 @@ export const CollectionsPanel: Component = () => {
       </Panel.Header>
       <Show
         fallback={
-          <InfoPanel
+          <Panel.Info
             details={
-              <>
+              <p>
                 Make sure to{' '}
                 <Link href="https://docs.astro.build/en/guides/content-collections/#defining-collections">define</Link>{' '}
                 at least one content collection.
-              </>
+              </p>
             }
             message="No content collections found."
           />

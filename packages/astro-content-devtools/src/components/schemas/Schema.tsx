@@ -1,5 +1,6 @@
 import { type Component, Match, Switch, splitProps } from 'solid-js'
 
+import pkg from '../../../package.json'
 import {
   isArrayOrTupleSchema,
   isBigIntSchema,
@@ -56,8 +57,7 @@ export const Schema: Component<SchemaProps<JsonSchema>> = (props) => {
     <Switch
       fallback={
         <div>
-          unsupported type (<Link href="https://github.com/HiDeoo/astro-content-devtools/issues">report</Link> this
-          issue)
+          unsupported type (<Link href={pkg.bugs}>report</Link> this issue)
         </div>
       }
     >

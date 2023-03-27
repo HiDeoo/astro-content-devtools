@@ -1,4 +1,4 @@
-import { type JSX, type ParentComponent, type ParentProps } from 'solid-js'
+import { type JSX, type Component, type ParentComponent, type ParentProps, Show } from 'solid-js'
 
 import styles from './Panel.module.css'
 
@@ -16,7 +16,27 @@ const PanelHeader: ParentComponent = (props) => {
 
 Panel.Header = PanelHeader
 
+const PanelInfo: Component<PanelInfoProps> = (props) => {
+  return (
+    <div class={styles.info}>
+      <div>
+        {props.message}
+        <Show when={props.details !== undefined}>
+          <div class={styles.infoDetails}>{props.details}</div>
+        </Show>
+      </div>
+    </div>
+  )
+}
+
+Panel.Info = PanelInfo
+
 interface PanelProps {
   name: string
   style?: JSX.CSSProperties | string
+}
+
+interface PanelInfoProps {
+  details?: JSX.Element | string
+  message: string
 }
