@@ -1,6 +1,6 @@
 <div align="center">
   <h1>astro-content-devtools 🔬</h1>
-  <p>Browse Astro Content Collections, schemas and entry files directly in your browser.</p>
+  <p>Browse Astro Content Collections, schemas and entry files in your browser.</p>
   <p>
     <a href="https://user-images.githubusercontent.com/494699/228251573-956d8dda-dc9e-483f-8437-52f274838fe1.png" title="Entry data preview in astro-content-devtools">
       <img alt="Entry data preview in astro-content-devtools" src="https://user-images.githubusercontent.com/494699/228251573-956d8dda-dc9e-483f-8437-52f274838fe1.png" width="520" />
@@ -25,7 +25,7 @@
 
 Browsing [Astro Content Collections](https://docs.astro.build/en/guides/content-collections/) entry files can sometimes be a bit cumbersome, especially when you have a lot of them spread across multiple collections. Same goes for [collection schemas](https://docs.astro.build/en/guides/content-collections/#defining-a-collection-schema) which are written in TypeScript using [Zod](https://github.com/colinhacks/zod) and can be hard to read for non-developers.
 
-The Astro Content Devtools are available through an Astro component using [SolidJS](https://www.solidjs.com) that you can add to your project and that will provide you with a UI to browse your content collections, schemas and entry files directly in your browser.
+The Astro Content Devtools are available through an Astro component using [SolidJS](https://www.solidjs.com) that you can add to your project and that will provide you with a UI to browse your content collections, schemas and entry files in your browser.
 
 - 🎈 Floating UI togglable with a button in the corner of the screen to show and hide the devtools.
 - 💾 Current state stored in localStorage to remember the toggle state, selected collection and entry file across reloads and navigation.

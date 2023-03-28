@@ -1,6 +1,6 @@
 <div align="center">
   <h1>astro-content-devtools 🔬</h1>
-  <p>Browse Astro Content Collections, schemas and entry files directly in your browser.</p>
+  <p>Browse Astro Content Collections, schemas and entry files in your browser.</p>
 </div>
 
 <div align="center">
