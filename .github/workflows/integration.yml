@@ -44,6 +44,20 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+
+      - name: Set Playwright path
+        run: echo "PLAYWRIGHT_BROWSERS_PATH=$HOME/.cache/playwright-bin" >> $GITHUB_ENV
+
+      - name: Setup Playwright cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.PLAYWRIGHT_BROWSERS_PATH }}
+          key: ${{ runner.os }}-playwright
+
+      - name: Install Playwright browsers
+        run: pnpx playwright install chromium
 
       - name: Lint
         run: pnpm lint

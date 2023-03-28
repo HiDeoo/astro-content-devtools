@@ -51,6 +51,8 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
 
       - name: Publish
         run: pnpm publish --no-git-checks

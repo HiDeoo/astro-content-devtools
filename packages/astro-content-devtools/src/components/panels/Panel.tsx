@@ -4,7 +4,12 @@ import styles from './Panel.module.css'
 
 export const Panel = (props: ParentProps<PanelProps>) => {
   return (
-    <div class={styles.panel} classList={{ [`acd-panel-${props.name}`]: true }} style={props.style}>
+    <div
+      class={styles.panel}
+      classList={{ [`acd-panel-${props.name}`]: true }}
+      data-testid={`panel-${props.name}`}
+      style={props.style}
+    >
       <Suspense fallback={<PanelInfo message="Loading…" />}>{props.children}</Suspense>
     </div>
   )

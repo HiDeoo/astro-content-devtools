@@ -10,7 +10,7 @@ export const DataButton: ParentComponent<DataButtonProps> = (props) => {
   }
 
   const [intent, setIntent] = createSignal<DataButtonIntent | undefined>(undefined)
-  let intentTimeout: number | undefined
+  let intentTimeout: ReturnType<typeof setTimeout> | undefined
 
   onCleanup(() => {
     if (intentTimeout) {

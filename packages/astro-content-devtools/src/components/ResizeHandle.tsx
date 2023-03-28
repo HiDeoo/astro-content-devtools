@@ -76,7 +76,7 @@ export const ResizeHandle: Component<ResizeHandleProps> = (props) => {
     props.onResize(Math.ceil(resizeStartEventReferenceHeight + resizeStartEventY - eventY), handleResizeEnd)
   }
 
-  return <div class={styles.handle} ref={setHandleRef} />
+  return <div class={styles.handle} data-testid="resize-handle" ref={setHandleRef} />
 }
 
 interface ResizeHandleProps {

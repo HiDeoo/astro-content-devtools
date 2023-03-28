@@ -6,6 +6,7 @@ export const Selector: ParentComponent<SelectorProps> = (props) => {
   return (
     <li>
       <button
+        aria-pressed={props.selected}
         aria-label={props.label}
         class={styles.selector}
         classList={{ [styles.selected!]: props.selected }}
