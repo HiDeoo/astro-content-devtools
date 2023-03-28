@@ -59,6 +59,10 @@ jobs:
       - name: Install Playwright browsers
         run: pnpx playwright install chromium
 
+      - name: Generates TypeScript types
+        run: pnpm astro sync
+        working-directory: demo
+
       - name: Lint
         run: pnpm lint
 
