@@ -1,0 +1,11 @@
+.type {
+  align-items: flex-start;
+  display: flex;
+}
+
+.details {
+  display: block;
+  font-size: var(--acd-text-sm);
+  margin-top: 1px;
+  margin-left: var(--acd-size-1-5);
+}

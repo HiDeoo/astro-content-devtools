@@ -1,0 +1,15 @@
+.error {
+  background-color: var(--acd-color-gray-700);
+  border: 1px solid var(--acd-color-gray-900);
+  margin-top: var(--acd-size-2);
+  max-width: 50vw;
+  overflow-x: auto;
+  min-width: 0;
+  padding: var(--acd-size-3-5);
+  text-align: left;
+}
+
+.error pre {
+  margin-block: 0;
+  max-width: 100%;
+}

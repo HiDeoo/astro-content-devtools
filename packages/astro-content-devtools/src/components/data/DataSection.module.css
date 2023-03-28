@@ -1,0 +1,20 @@
+.title {
+  background-color: var(--acd-color-gray-800);
+  font-size: var(--acd-text-base);
+  font-weight: var(--acd-font-normal);
+  margin: 0;
+  padding: var(--acd-size-2);
+  position: sticky;
+  top: 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--acd-size-2);
+  padding: var(--acd-size-2);
+}
+
+.content.horizontal {
+  flex-direction: row;
+}

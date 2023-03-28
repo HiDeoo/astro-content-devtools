@@ -1,0 +1,30 @@
+.selector {
+  background-color: transparent;
+  border: none;
+  box-sizing: border-box;
+  color: var(--acd-color-gray-100);
+  cursor: pointer;
+  display: block;
+  font-size: var(--acd-text-base);
+  overflow: hidden;
+  padding: var(--acd-size-2);
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.selector:hover:not(.selected) {
+  background-color: var(--acd-color-gray-700);
+  color: var(--acd-color-white);
+}
+
+.selector:focus-visible {
+  background-color: var(--acd-color-gray-700);
+  outline: 2px solid var(--acd-color-blue-700);
+}
+
+.selected {
+  background-color: var(--acd-color-blue-700);
+  color: var(--acd-color-white);
+}

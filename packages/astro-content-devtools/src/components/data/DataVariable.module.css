@@ -1,0 +1,14 @@
+.variable {
+  color: var(--acd-color-white);
+  display: flex;
+  font-weight: var(--acd-font-medium);
+  gap: var(--acd-size-2);
+  justify-content: space-between;
+}
+
+.variable code {
+  color: var(--acd-color-gray-100);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

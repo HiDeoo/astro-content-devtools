@@ -1,0 +1,30 @@
+.button {
+  background-color: var(--acd-color-blue-700);
+  border: none;
+  border-radius: var(--acd-size-1);
+  color: var(--acd-color-white);
+  cursor: pointer;
+  font-weight: var(--acd-font-medium);
+  padding: var(--acd-size-2) var(--acd-size-3-5);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--acd-color-blue-700);
+  outline-offset: 2px;
+}
+
+.button:hover:not(.danger, .success) {
+  background-color: var(--acd-color-blue-600);
+}
+
+.button:active:not(.danger, .success) {
+  background-color: var(--acd-color-blue-500);
+}
+
+.success {
+  background-color: var(--acd-color-emerald-600);
+}
+
+.danger {
+  background-color: var(--acd-color-rose-600);
+}

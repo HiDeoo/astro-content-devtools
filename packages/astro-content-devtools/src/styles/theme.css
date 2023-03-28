@@ -1,0 +1,43 @@
+:root {
+  --acd-color-white: #f2f6fa;
+
+  --acd-color-gray-900: #17191e;
+  --acd-color-gray-800: #24272e;
+  --acd-color-gray-700: #333740;
+  --acd-color-gray-600: #4f5364;
+  --acd-color-gray-200: #8e94a8;
+  --acd-color-gray-100: #bfc1c9;
+
+  --acd-color-blue-700: #344ef9;
+  --acd-color-blue-600: #2563eb;
+  --acd-color-blue-500: #3b83f6;
+
+  --acd-color-cyan-400: #3fbad9;
+
+  --acd-color-emerald-600: #059669;
+
+  --acd-color-rose-600: #e11d48;
+
+  --acd-text-xs: 0.625rem;
+  --acd-text-sm: 0.75rem;
+  --acd-text-base: 0.875rem;
+  --acd-text-lg: 1.25rem;
+
+  --acd-font-normal: 400;
+  --acd-font-medium: 500;
+  --acd-font-semibold: 600;
+
+  --acd-size-1: 0.25rem;
+  --acd-size-1-5: 0.375rem;
+  --acd-size-2: 0.5rem;
+  --acd-size-3-5: 0.875rem;
+  --acd-size-5: 1.25rem;
+  --acd-size-7: 1.75rem;
+
+  --acd-rounded-full: 9999px;
+
+  --acd-duration-150: 150ms;
+
+  --acd-panel-width: min(17rem, 15%);
+  --acd-icon-size: 1.75rem;
+}

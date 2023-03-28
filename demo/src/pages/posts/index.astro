@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content'
+
+import Layout from '../../layouts/Layout.astro'
+
+const postsEntries = await getCollection('posts')
+---
+
+<Layout title="astro-content-devtools">
+  <ul>
+    {
+      postsEntries.map((postsEntry) => (
+        <li>
+          <a href={`/posts/${postsEntry.slug}`}>{postsEntry.data.title}</a>
+          {postsEntry.data.tags ? (
+            <>
+              - Tags: <em>{postsEntry.data.tags?.join(', ')}</em>
+            </>
+          ) : null}
+        </li>
+      ))
+    }
+  </ul>
+</Layout>

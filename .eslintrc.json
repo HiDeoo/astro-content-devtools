@@ -1,0 +1,33 @@
+{
+  "extends": ["@hideoo", "plugin:astro/recommended"],
+  "overrides": [
+    {
+      "files": ["*.astro"],
+      "parser": "astro-eslint-parser",
+      "parserOptions": {
+        "parser": "@typescript-eslint/parser",
+        "extraFileExtensions": [".astro"]
+      },
+      "rules": {
+        "react/jsx-key": "off",
+        "react/no-unknown-property": ["error", { "ignore": ["class", "is:global"] }]
+      }
+    },
+    {
+      "files": ["*.tsx"],
+      "rules": {
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "react/no-unknown-property": [
+          "error",
+          { "ignore": ["class", "classList", "stroke-linecap", "stroke-linejoin", "stroke-width"] }
+        ]
+      }
+    },
+    {
+      "files": ["env.d.ts"],
+      "rules": {
+        "@typescript-eslint/triple-slash-reference": "off"
+      }
+    }
+  ]
+}

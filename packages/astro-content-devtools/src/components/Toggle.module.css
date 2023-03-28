@@ -1,0 +1,71 @@
+.toggle {
+  border-radius: var(--acd-rounded-full);
+  cursor: pointer;
+  pointer-events: all;
+}
+
+.closed {
+  background-color: var(--acd-color-gray-900);
+  border: 1px solid var(--acd-color-gray-700);
+  bottom: 0;
+  box-shadow: 0 1px 2px 0 var(--acd-color-gray-200);
+  left: 0;
+  margin: var(--acd-size-2);
+  padding: var(--acd-size-2);
+  position: fixed;
+  z-index: 99999;
+}
+
+.closed:hover {
+  background-color: var(--acd-color-gray-800);
+}
+
+.closed:active {
+  background-color: var(--acd-color-gray-700);
+}
+
+.closed:focus-visible {
+  outline: 3px solid var(--acd-color-blue-700);
+  outline-offset: 1px;
+}
+
+.opened {
+  background-color: var(--acd-color-gray-800);
+  border: 1px solid var(--acd-color-gray-600);
+  padding: var(--acd-size-1);
+}
+
+.opened:hover {
+  background-color: var(--acd-color-gray-700);
+}
+
+.opened:active {
+  background-color: var(--acd-color-gray-600);
+}
+
+.opened:focus-visible {
+  outline: 2px solid var(--acd-color-blue-700);
+  outline-offset: 2px;
+}
+
+.icon {
+  display: block;
+  color: var(--acd-color-gray-100);
+  fill: var(--acd-color-gray-100);
+}
+
+.toggle:is(:hover, :focus-visible) .icon {
+  color: var(--acd-color-white);
+  fill: var(--acd-color-white);
+}
+
+.closed .icon {
+  display: block;
+  height: var(--acd-icon-size);
+  width: var(--acd-icon-size);
+}
+
+.opened .icon {
+  height: var(--acd-size-5);
+  width: var(--acd-size-5);
+}

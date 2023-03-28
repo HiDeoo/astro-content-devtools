@@ -1,0 +1,58 @@
+{
+  "name": "astro-content-devtools-monorepo",
+  "version": "0.0.1",
+  "license": "MIT",
+  "description": "Browse Astro Content Collections, schemas and entry files in your browser",
+  "author": "HiDeoo <github@hideoo.dev> (https://hideoo.dev)",
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --stream -r dev",
+    "test": "pnpm --stream -r test",
+    "lint": "pnpm -r lint",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@hideoo/eslint-config": "1.1.0",
+    "@hideoo/prettier-config": "1.0.1",
+    "@hideoo/tsconfig": "1.0.0",
+    "@types/prettier": "2.7.2",
+    "eslint": "8.36.0",
+    "eslint-plugin-astro": "0.26.1",
+    "husky": "8.0.3",
+    "lint-staged": "13.2.0",
+    "prettier": "2.8.6",
+    "prettier-plugin-astro": "0.8.0",
+    "typescript": "5.0.2"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "pnpm@7.29.3",
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@babel/core"
+      ]
+    }
+  },
+  "private": true,
+  "sideEffects": false,
+  "keywords": [
+    "astro-component",
+    "withastro",
+    "astro",
+    "content",
+    "collections",
+    "devtools"
+  ],
+  "homepage": "https://github.com/HiDeoo/astro-content-devtools",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HiDeoo/astro-content-devtools.git"
+  },
+  "bugs": "https://github.com/HiDeoo/astro-content-devtools/issues",
+  "lint-staged": {
+    "**/*": "prettier -w -u --cache",
+    "**/*.{js,jsx,ts,tsx,cjs,mjs}": "eslint --cache --max-warnings=0"
+  }
+}

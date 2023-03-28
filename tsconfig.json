@@ -1,0 +1,7 @@
+{
+  "extends": "@hideoo/tsconfig",
+  "compilerOptions": {
+    "moduleResolution": "bundler",
+    "target": "ESNext"
+  }
+}

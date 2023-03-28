@@ -1,0 +1,70 @@
+.header {
+  align-items: center;
+  background-color: var(--acd-color-gray-700);
+  border: 1px solid var(--acd-color-gray-600);
+  border-bottom: none;
+  display: flex;
+  padding: var(--acd-size-2);
+}
+
+.header.borderless {
+  border: none;
+}
+
+.details {
+  display: block;
+  font-size: var(--acd-text-sm);
+  margin-left: var(--acd-size-1-5);
+}
+
+.table {
+  background-color: var(--acd-color-gray-800);
+  border: 1px solid var(--acd-color-gray-600);
+  display: grid;
+}
+
+.table.borderless {
+  border: none;
+}
+
+.object {
+  background-color: var(--acd-color-gray-700);
+  grid-template-columns: min-content auto min-content;
+}
+
+.object > :is(div:nth-child(6n + 1), div:nth-child(6n + 2), div:nth-child(6n + 3)) {
+  background-color: var(--acd-color-gray-800);
+}
+
+.map,
+.record {
+  grid-template-columns: min-content auto;
+}
+
+.enum,
+.tuple,
+.union {
+  background-color: var(--acd-color-gray-700);
+}
+
+:is(.enum, .tuple, .union) > div:nth-child(2n + 1) {
+  background-color: var(--acd-color-gray-800);
+}
+
+.table > div {
+  padding: var(--acd-size-2);
+}
+
+.propertyName {
+  color: var(--acd-color-white);
+  font-weight: var(--acd-font-medium);
+  white-space: nowrap;
+}
+
+.object > .propertyName:not(.required) {
+  font-style: italic;
+}
+
+.variadicSchema {
+  display: flex;
+}

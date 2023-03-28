@@ -1,0 +1,12 @@
+---
+import { App } from './components/App'
+import { type AstroCollections, parseAstroCollections } from './libs/content'
+
+export interface Props {
+  collections: AstroCollections
+}
+
+const { collections } = Astro.props
+---
+
+<App client:only="solid-js" collections={parseAstroCollections(collections)} />
