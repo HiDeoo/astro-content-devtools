@@ -56,7 +56,7 @@ Update your [Astro configuration](https://docs.astro.build/en/guides/configuring
 Load the Astro Content Devtools component, e.g. in a layout to make it available on all pages, and pass it the collections object from your [content collections configuration](https://docs.astro.build/en/guides/content-collections/#configuring-collections):
 
 ```diff
----
+  ---
 + import { AstroContentDevtools } from 'astro-content-devtools'
 + import { collections } from '../content/config'
 
