@@ -39,7 +39,14 @@
     "index.ts",
     "src"
   ],
-  "keywords": [],
+  "keywords": [
+    "astro-component",
+    "withastro",
+    "astro",
+    "content",
+    "collections",
+    "devtools"
+  ],
   "homepage": "https://github.com/HiDeoo/astro-content-devtools",
   "repository": {
     "type": "git",

@@ -37,7 +37,14 @@
   },
   "private": true,
   "sideEffects": false,
-  "keywords": [],
+  "keywords": [
+    "astro-component",
+    "withastro",
+    "astro",
+    "content",
+    "collections",
+    "devtools"
+  ],
   "homepage": "https://github.com/HiDeoo/astro-content-devtools",
   "repository": {
     "type": "git",
