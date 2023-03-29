@@ -1,10 +1,11 @@
 import type { AnyZodObject, ZodDiscriminatedUnion, ZodEffects, ZodIntersection, ZodUnion } from 'astro/zod'
 import { getCollection, getEntryBySlug } from 'astro:content'
-import zodToJsonSchema from 'zod-to-json-schema'
 
 import { type JsonSchema } from './schema'
 
-export function parseAstroCollections(astroCollections: AstroCollections): Collections {
+export async function parseAstroCollections(astroCollections: AstroCollections): Promise<Collections> {
+  const { default: zodToJsonSchema } = await import('zod-to-json-schema')
+
   const collections: Collections = {}
 
   for (const [collectionName, collectionConfig] of Object.entries(astroCollections)) {
