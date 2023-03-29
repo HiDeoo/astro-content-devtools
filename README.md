@@ -44,13 +44,13 @@ pnpm add -D astro-content-devtools @astrojs/solid-js solid-js
 Update your [Astro configuration](https://docs.astro.build/en/guides/configuring-astro/#supported-config-file-types) to apply the SolidJS integration:
 
 ```diff
-  import { defineConfig } from 'astro/config';
-+ import solid from '@astrojs/solid-js';
+  import { defineConfig } from 'astro/config'
++ import solid from '@astrojs/solid-js'
 
   export default defineConfig({
     // …
 +   integrations: [solid()],
-  });
+  })
 ```
 
 Temporarily load the Astro Content Devtools component, e.g. in a layout to make it available on all pages, and pass it the collections object from your [content collections configuration](https://docs.astro.build/en/guides/content-collections/#configuring-collections):
