@@ -9,9 +9,11 @@ export const DataFrontmatter: Component<DataFrontmatterProps> = (props) => {
 
   return (
     <ul class={styles.properties}>
-      <For each={properties()}>
-        {(property) => <DataFrontmatterProperty key={property.key} value={property.value} />}
-      </For>
+      <Show fallback="This entry does no contain a frontmatter." when={properties().length > 0}>
+        <For each={properties()}>
+          {(property) => <DataFrontmatterProperty key={property.key} value={property.value} />}
+        </For>
+      </Show>
     </ul>
   )
 }
