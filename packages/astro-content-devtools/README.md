@@ -2,11 +2,11 @@
   <h1>astro-content-devtools 🔬</h1>
   <p>Browse Astro Content Collections, schemas and entry files in your browser.</p>
   <p>
-    <a href="https://user-images.githubusercontent.com/494699/228251573-956d8dda-dc9e-483f-8437-52f274838fe1.png" title="Entry data preview in astro-content-devtools">
-      <img alt="Entry data preview in astro-content-devtools" src="https://user-images.githubusercontent.com/494699/228251573-956d8dda-dc9e-483f-8437-52f274838fe1.png" width="520" />
+    <a href="https://user-images.githubusercontent.com/494699/228443849-58d904aa-26e8-4a33-a4be-16df8099cc7a.png" title="Entry data preview in astro-content-devtools">
+      <img alt="Entry data preview in astro-content-devtools" src="https://user-images.githubusercontent.com/494699/228443849-58d904aa-26e8-4a33-a4be-16df8099cc7a.png" width="520" />
     </a>
-    <a href="https://user-images.githubusercontent.com/494699/228251736-9ee603b2-2b37-4304-8e60-41019e7121bb.png" title="Schema preview in astro-content-devtools">
-      <img alt="Schema preview in astro-content-devtools" src="https://user-images.githubusercontent.com/494699/228251736-9ee603b2-2b37-4304-8e60-41019e7121bb.png" width="520" />
+    <a href="https://user-images.githubusercontent.com/494699/228443940-5e116a6d-c531-4276-8c40-7672aebd8f0c.png" title="Schema preview in astro-content-devtools">
+      <img alt="Schema preview in astro-content-devtools" src="https://user-images.githubusercontent.com/494699/228443940-5e116a6d-c531-4276-8c40-7672aebd8f0c.png" width="520" />
     </a>
   </p>
 </div>
@@ -53,7 +53,7 @@ Update your [Astro configuration](https://docs.astro.build/en/guides/configuring
   });
 ```
 
-Load the Astro Content Devtools component, e.g. in a layout to make it available on all pages, and pass it the collections object from your [content collections configuration](https://docs.astro.build/en/guides/content-collections/#configuring-collections):
+Temporarily load the Astro Content Devtools component, e.g. in a layout to make it available on all pages, and pass it the collections object from your [content collections configuration](https://docs.astro.build/en/guides/content-collections/#configuring-collections):
 
 ```diff
   ---
