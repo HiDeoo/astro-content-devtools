@@ -1,24 +1,26 @@
-import type { JsonSchema7AnyType } from 'zod-to-json-schema/src/parsers/any'
-import type { JsonSchema7ArrayType } from 'zod-to-json-schema/src/parsers/array'
-import type { JsonSchema7BigintType } from 'zod-to-json-schema/src/parsers/bigint'
-import type { JsonSchema7BooleanType } from 'zod-to-json-schema/src/parsers/boolean'
-import type { JsonSchema7DateType } from 'zod-to-json-schema/src/parsers/date'
-import type { JsonSchema7EnumType } from 'zod-to-json-schema/src/parsers/enum'
-import type { JsonSchema7AllOfType } from 'zod-to-json-schema/src/parsers/intersection'
-import type { JsonSchema7LiteralType } from 'zod-to-json-schema/src/parsers/literal'
-import type { JsonSchema7MapType } from 'zod-to-json-schema/src/parsers/map'
-import type { JsonSchema7NativeEnumType } from 'zod-to-json-schema/src/parsers/nativeEnum'
-import type { JsonSchema7NullType } from 'zod-to-json-schema/src/parsers/null'
-import type { JsonSchema7NullableType } from 'zod-to-json-schema/src/parsers/nullable'
-import type { JsonSchema7NumberType } from 'zod-to-json-schema/src/parsers/number'
-import type { JsonSchema7ObjectType } from 'zod-to-json-schema/src/parsers/object'
-import type { JsonSchema7RecordType } from 'zod-to-json-schema/src/parsers/record'
-import type { JsonSchema7SetType } from 'zod-to-json-schema/src/parsers/set'
-import type { JsonSchema7StringType } from 'zod-to-json-schema/src/parsers/string'
-import type { JsonSchema7TupleType } from 'zod-to-json-schema/src/parsers/tuple'
-import type { JsonSchema7UndefinedType } from 'zod-to-json-schema/src/parsers/undefined'
-import type { JsonSchema7UnionType } from 'zod-to-json-schema/src/parsers/union'
-import type { JsonSchema7UnknownType } from 'zod-to-json-schema/src/parsers/unknown'
+import type {
+  JsonSchema7AnyType,
+  JsonSchema7ArrayType,
+  JsonSchema7BigintType,
+  JsonSchema7BooleanType,
+  JsonSchema7DateType,
+  JsonSchema7EnumType,
+  JsonSchema7AllOfType,
+  JsonSchema7LiteralType,
+  JsonSchema7MapType,
+  JsonSchema7NativeEnumType,
+  JsonSchema7NullType,
+  JsonSchema7NullableType,
+  JsonSchema7NumberType,
+  JsonSchema7ObjectType,
+  JsonSchema7RecordType,
+  JsonSchema7SetType,
+  JsonSchema7StringType,
+  JsonSchema7TupleType,
+  JsonSchema7UndefinedType,
+  JsonSchema7UnionType,
+  JsonSchema7UnknownType,
+} from 'zod-to-json-schema'
 
 export function isObjectSchema(schema: JsonSchema): schema is ObjectSchemaType {
   return isTypedSchema(schema) && schema.type === 'object' && 'properties' in schema
@@ -92,7 +94,7 @@ export function isUndefinedSchema(schema: JsonSchema): schema is UndefinedSchema
 }
 
 export function isUnknownSchema(schema: JsonSchema): schema is UnknownSchemaType {
-  return Object.keys(schema).length === 0
+  return Object.keys(schema as object).length === 0
 }
 
 export function isNullSchema(schema: JsonSchema): schema is NullSchemaType {

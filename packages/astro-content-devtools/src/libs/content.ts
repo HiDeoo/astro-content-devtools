@@ -4,7 +4,7 @@ import { getCollection, getEntryBySlug } from 'astro:content'
 import { type JsonSchema } from './schema'
 
 export async function parseAstroCollections(astroCollections: AstroCollections): Promise<Collections> {
-  const { default: zodToJsonSchema } = await import('zod-to-json-schema')
+  const { zodToJsonSchema } = await import('zod-to-json-schema')
 
   const collections: Collections = {}
 
@@ -12,7 +12,11 @@ export async function parseAstroCollections(astroCollections: AstroCollections):
     const config: CollectionConfig = {}
 
     if (collectionConfig.schema) {
-      config.schema = zodToJsonSchema(collectionConfig.schema, { $refStrategy: 'none', errorMessages: false })
+      const schema = collectionConfig.schema
+      config.schema = zodToJsonSchema(typeof schema === 'function' ? schema({}) : schema, {
+        $refStrategy: 'none',
+        errorMessages: false,
+      })
     }
 
     collections[collectionName] = config
@@ -46,13 +50,15 @@ export interface CollectionEntry {
 export type AstroCollections = Record<CollectionName, AstroCollectionConfig>
 
 interface AstroCollectionConfig {
-  schema?: AstroCollectionSchema
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  schema?: AstroCollectionSchema | ((context: any) => AstroCollectionSchema)
+  type?: 'content' | 'data'
 }
 
 type AstroCollectionSchema = AstroCollectionSchemaWithoutEffects | ZodEffects<AstroCollectionSchemaWithoutEffects>
 
 type AstroCollectionSchemaWithoutEffects =
   | AnyZodObject
-  | ZodUnion<[AnyZodObject, ...AnyZodObject[]]>
+  | ZodUnion<[AstroCollectionSchemaWithoutEffects, ...AstroCollectionSchemaWithoutEffects[]]>
   | ZodDiscriminatedUnion<string, AnyZodObject[]>
-  | ZodIntersection<AnyZodObject, AnyZodObject>
+  | ZodIntersection<AstroCollectionSchemaWithoutEffects, AstroCollectionSchemaWithoutEffects>
