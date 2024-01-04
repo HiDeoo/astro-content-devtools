@@ -1,6 +1,6 @@
 {
   "name": "astro-content-devtools-monorepo",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "license": "MIT",
   "description": "Browse Astro Content Collections, schemas and entry files in your browser",
   "author": "HiDeoo <github@hideoo.dev> (https://hideoo.dev)",
