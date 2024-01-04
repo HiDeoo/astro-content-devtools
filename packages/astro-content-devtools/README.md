@@ -33,6 +33,12 @@ The Astro Content Devtools are available through an Astro component using [Solid
 - 🗜️ Filterable list of collection entry files.
 - 📏 Responsive and resizable UI.
 
+> [!WARNING]  
+> The Astro Content Devtools are not compatible with Astro data content collections.
+
+> [!WARNING]  
+> Now that Astro 4.0 has a built-in [Dev Toolbar](https://astro.build/blog/astro-4/#the-astro-dev-toolbar), this package should be refactored to a Dev Toolbar App.
+
 ## Installation
 
 Install the Astro Content Devtools package and its peer dependencies using your favorite package manager, e.g. with [pnpm](https://pnpm.io):
